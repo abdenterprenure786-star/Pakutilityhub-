@@ -1,0 +1,6 @@
+{
+  "name": "Pak Utility Hub",
+  "description": "Real-time geolocation tracking, alert push notifications, and live Pakistani bullion, fuel, forex, and mandi commodity matrix with Gemini High-Thinking intelligence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
