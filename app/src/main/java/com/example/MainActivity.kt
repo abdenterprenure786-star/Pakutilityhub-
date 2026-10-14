@@ -46,7 +46,7 @@ import com.example.ui.components.NavigationPanelDialog
 import com.example.ui.screens.AiMatrixScreen
 import com.example.ui.screens.ForexScreen
 import com.example.ui.screens.FuelScreen
-import com.example.ui.screens.GeoTrackingScreen
+import com.example.ui.screens.SpeedTestScreen
 import com.example.ui.screens.GoldScreen
 import com.example.ui.screens.MandiScreen
 import com.example.ui.screens.NotificationsScreen
@@ -71,7 +71,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainAppContent() {
-    var currentChannel by remember { mutableStateOf(HubChannel.GEO_TRACKER) }
+    var currentChannel by remember { mutableStateOf(HubChannel.FUEL_LOGS) }
     var isNavigationPanelOpen by remember { mutableStateOf(false) }
 
     val notifications by LocationRepository.notifications.collectAsState()
@@ -83,12 +83,12 @@ fun MainAppContent() {
 
     var isFullScreen by remember { mutableStateOf(false) }
 
-    // BackHandler: exits fullscreen first, or returns to GEO_TRACKER if inside another channel
-    BackHandler(enabled = isFullScreen || currentChannel != HubChannel.GEO_TRACKER) {
+    // BackHandler: exits fullscreen first, or returns to FUEL_LOGS if inside another channel
+    BackHandler(enabled = isFullScreen || currentChannel != HubChannel.FUEL_LOGS) {
         if (isFullScreen) {
             isFullScreen = false
         } else {
-            currentChannel = HubChannel.GEO_TRACKER
+            currentChannel = HubChannel.FUEL_LOGS
         }
     }
 
@@ -148,7 +148,7 @@ fun MainAppContent() {
                     .widthIn(max = 680.dp)
             ) {
                 when (currentChannel) {
-                    HubChannel.GEO_TRACKER -> GeoTrackingScreen()
+                    HubChannel.NET_SPEED -> SpeedTestScreen()
                     HubChannel.PUSH_ALERTS -> NotificationsScreen()
                     HubChannel.GOLD_INDEX -> GoldScreen()
                     HubChannel.FUEL_LOGS -> FuelScreen()

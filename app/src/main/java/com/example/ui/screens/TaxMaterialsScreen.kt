@@ -436,5 +436,413 @@ fun TaxMaterialsScreen(
                 }
             }
         }
+
+        // ==========================================
+        // HOUSE CONSTRUCTION COST CALCULATOR SECTION
+        // ==========================================
+        var selectedMarla by remember { mutableStateOf(5.0) }
+        var selectedStories by remember { mutableStateOf(2) } // 1, 2, or 3
+        var isFullFinishing by remember { mutableStateOf(false) }
+
+        val houseEstimate = remember(selectedMarla, selectedStories, isFullFinishing) {
+            UtilityRepository.calculateHouseConstructionCost(selectedMarla, selectedStories, isFullFinishing)
+        }
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(1.5.dp, HubBorderGold, RoundedCornerShape(16.dp))
+                .testTag("house_construction_card"),
+            colors = CardDefaults.cardColors(containerColor = HubCardElevated),
+            shape = RoundedCornerShape(16.dp)
+        ) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                imageVector = Icons.Default.Construction,
+                                contentDescription = null,
+                                tint = HubGold,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(
+                                text = "GHAR BANANE KA KHARCHA (گھر کی لاگت)",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = HubGold,
+                                fontWeight = FontWeight.Bold,
+                                letterSpacing = 0.5.sp
+                            )
+                        }
+                        Text(
+                            text = "House Construction Cost Estimator (3 Marla to 1 Kanal)",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = HubTextSecondary,
+                            fontSize = 11.sp
+                        )
+                    }
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(6.dp))
+                            .background(Color(0xFF282D07))
+                            .border(1.dp, HubGold, RoundedCornerShape(6.dp))
+                            .padding(horizontal = 8.dp, vertical = 3.dp)
+                    ) {
+                        Text("2026 RATES", color = HubGold, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(14.dp))
+
+                // Plot Size Chips (3 Marla to 20 Marla / 1 Kanal)
+                Text(
+                    text = "SELECT PLOT SIZE (پلاٹ سائز): ${if (selectedMarla == 20.0) "1 Kanal (20 Marla)" else "${selectedMarla.toInt()} Marla (${(selectedMarla * 225).toInt()} sq ft)"}",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = HubTextSecondary,
+                    fontWeight = FontWeight.Bold
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    listOf(
+                        3.0 to "3 Marla",
+                        5.0 to "5 Marla",
+                        7.0 to "7 Marla",
+                        10.0 to "10 Marla",
+                        20.0 to "1 Kanal"
+                    ).forEach { (marlaVal, label) ->
+                        val isSel = selectedMarla == marlaVal
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(if (isSel) HubGold else HubInnerWell)
+                                .border(1.dp, if (isSel) HubGold else HubBorder, RoundedCornerShape(8.dp))
+                                .clickable { selectedMarla = marlaVal }
+                                .padding(vertical = 8.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = label,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = if (isSel) Color.Black else HubTextPrimary,
+                                fontWeight = if (isSel) FontWeight.Bold else FontWeight.Medium,
+                                fontSize = 10.sp
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(14.dp))
+
+                // Number of Stories (Single, Double, Triple)
+                Text(
+                    text = "SELECT FLOORS (منزلیں):",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = HubTextSecondary,
+                    fontWeight = FontWeight.Bold
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    listOf(
+                        1 to "Single Story (ایک منزلہ)",
+                        2 to "Double Story (دو منزلہ)",
+                        3 to "Triple Story (تین منزلہ)"
+                    ).forEach { (storyNum, label) ->
+                        val isSel = selectedStories == storyNum
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(if (isSel) Color(0xFF132A15) else HubInnerWell)
+                                .border(1.dp, if (isSel) HubEmerald else HubBorder, RoundedCornerShape(8.dp))
+                                .clickable { selectedStories = storyNum }
+                                .padding(vertical = 8.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = label,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = if (isSel) HubEmerald else HubTextPrimary,
+                                fontWeight = if (isSel) FontWeight.Bold else FontWeight.Medium,
+                                fontSize = 10.sp
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(14.dp))
+
+                // Construction Stage: Grey Structure vs Full A-Grade Finishing
+                Text(
+                    text = "CONSTRUCTION STAGE (کنسٹرکشن قسم):",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = HubTextSecondary,
+                    fontWeight = FontWeight.Bold
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(if (!isFullFinishing) Color(0xFF282D07) else HubInnerWell)
+                            .border(1.dp, if (!isFullFinishing) HubGold else HubBorder, RoundedCornerShape(8.dp))
+                            .clickable { isFullFinishing = false }
+                            .padding(vertical = 10.dp, horizontal = 8.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(
+                                text = "Grey Structure (گرے)",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = if (!isFullFinishing) HubGold else HubTextPrimary,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 11.sp
+                            )
+                            Text(
+                                text = "Rs. 3,100 / sq ft",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = HubTextDim,
+                                fontSize = 9.sp
+                            )
+                        }
+                    }
+
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(if (isFullFinishing) Color(0xFF132A15) else HubInnerWell)
+                            .border(1.dp, if (isFullFinishing) HubEmerald else HubBorder, RoundedCornerShape(8.dp))
+                            .clickable { isFullFinishing = true }
+                            .padding(vertical = 10.dp, horizontal = 8.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(
+                                text = "Full A-Grade Finishing",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = if (isFullFinishing) HubEmerald else HubTextPrimary,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 11.sp
+                            )
+                            Text(
+                                text = "Rs. 5,800 / sq ft",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = HubTextDim,
+                                fontSize = 9.sp
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Total Estimated Cost Highlight Box
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(Color(0xFF070B13))
+                        .border(1.5.dp, if (isFullFinishing) HubEmerald else HubBorderGold, RoundedCornerShape(12.dp))
+                        .padding(14.dp)
+                ) {
+                    Column {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "TOTAL ESTIMATED COST (کل لاگت)",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = HubGold,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 10.sp
+                            )
+                            Text(
+                                text = "${String.format("%,.0f", houseEstimate.totalCoveredAreaSqFt)} Sq Ft Covered Area",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = HubSky,
+                                fontSize = 10.sp
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(4.dp))
+
+                        Text(
+                            text = "Rs. ${String.format("%,.0f", houseEstimate.totalCostPkr)}",
+                            style = MaterialTheme.typography.headlineMedium,
+                            color = if (isFullFinishing) HubEmerald else HubGold,
+                            fontWeight = FontWeight.Black,
+                            fontSize = 26.sp
+                        )
+
+                        Text(
+                            text = "Approx. ${(houseEstimate.totalCostPkr / 100000.0).let { String.format("%.2f Lacs (%.2f Crore)", it, it / 100.0) }}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = HubTextSecondary,
+                            fontSize = 11.sp
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(14.dp))
+
+                // Material Quantity & Cost Breakdown
+                Text(
+                    text = "REQUIRED MATERIAL BREAKDOWN (سامان کی مقدار و خرچ):",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = HubTextDim,
+                    fontSize = 9.sp,
+                    fontWeight = FontWeight.Bold
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    // Cement
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "Cement (${houseEstimate.cementBagsCount} Bags @ Rs. 1,520)",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = HubTextPrimary,
+                            fontSize = 11.sp
+                        )
+                        Text(
+                            text = "Rs. ${String.format("%,.0f", houseEstimate.cementCostPkr)}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = HubTextPrimary,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 11.sp
+                        )
+                    }
+
+                    // Steel
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "Steel Grade-60 (${String.format("%.2f", houseEstimate.steelTons)} Tons @ Rs. 275k)",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = HubTextPrimary,
+                            fontSize = 11.sp
+                        )
+                        Text(
+                            text = "Rs. ${String.format("%,.0f", houseEstimate.steelCostPkr)}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = HubTextPrimary,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 11.sp
+                        )
+                    }
+
+                    // Bricks
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "Bricks Awal (${String.format("%,d", houseEstimate.bricksCount)} Pcs @ Rs. 18.5k/k)",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = HubTextPrimary,
+                            fontSize = 11.sp
+                        )
+                        Text(
+                            text = "Rs. ${String.format("%,.0f", houseEstimate.bricksCostPkr)}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = HubTextPrimary,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 11.sp
+                        )
+                    }
+
+                    // Sand & Crush
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "Sand & Crush (ریت و بجری)",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = HubTextPrimary,
+                            fontSize = 11.sp
+                        )
+                        Text(
+                            text = "Rs. ${String.format("%,.0f", houseEstimate.sandCrushCostPkr)}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = HubTextPrimary,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 11.sp
+                        )
+                    }
+
+                    // Labor Cost
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "Mason & Labor Cost (مزدوری ٹھیکیدار)",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = HubTextPrimary,
+                            fontSize = 11.sp
+                        )
+                        Text(
+                            text = "Rs. ${String.format("%,.0f", houseEstimate.laborCostPkr)}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = HubSky,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 11.sp
+                        )
+                    }
+
+                    if (isFullFinishing) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Text(
+                                text = "Tiles, Paint, Woodwork, Sanitary & Electricals",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = HubEmerald,
+                                fontSize = 11.sp
+                            )
+                            Text(
+                                text = "Rs. ${String.format("%,.0f", houseEstimate.finishingCostPkr)}",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = HubEmerald,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 11.sp
+                            )
+                        }
+                    }
+                }
+            }
+        }
     }
 }

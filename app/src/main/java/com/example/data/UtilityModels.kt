@@ -101,3 +101,21 @@ data class TaxBreakdown(
     val effectiveRatePercent: Double,
     val netMonthlySalary: Double
 )
+
+data class HouseConstructionEstimate(
+    val marla: Double,
+    val stories: Int,
+    val totalCoveredAreaSqFt: Double,
+    val isFullFinishing: Boolean,
+    val ratePerSqFt: Double,
+    val totalCostPkr: Double,
+    val cementBagsCount: Int,
+    val cementCostPkr: Double,
+    val steelTons: Double,
+    val steelCostPkr: Double,
+    val bricksCount: Int,
+    val bricksCostPkr: Double,
+    val sandCrushCostPkr: Double,
+    val laborCostPkr: Double,
+    val finishingCostPkr: Double
+)

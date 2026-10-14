@@ -51,7 +51,7 @@ fun NavigationPanelDialog(
     modifier: Modifier = Modifier
 ) {
     val channelDescriptions = mapOf(
-        HubChannel.GEO_TRACKER to "Live GPS telemetry, distance, speed gauge & interactive radar canvas",
+        HubChannel.NET_SPEED to "Live internet speed test (Mbps/MB/s), ping latency & active network throughput meter",
         HubChannel.PUSH_ALERTS to "Push notification manager, Rs. 300 alert rules & live dispatch drawer",
         HubChannel.GOLD_INDEX to "24K/22K Sarafa bullion rates, volumetric calculator & Islamic Zakat matrix",
         HubChannel.FUEL_LOGS to "Official OGRA ex-depot bulletin fuel rates & real GPS trip burn calculator",

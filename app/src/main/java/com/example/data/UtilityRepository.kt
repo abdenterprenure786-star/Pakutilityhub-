@@ -45,108 +45,148 @@ object UtilityRepository {
         listOf(
             GoldCaratRate(
                 carat = "24K",
-                name = "Pure 24K Gold",
+                name = "Pure 24K Gold (خالص سونا)",
                 purityPercent = 0.999f,
                 ratePerTola = 283500L,
                 ratePer10Grams = 243054L,
                 changePkr = 1200L,
                 isPositive = true,
-                trendBadge = "Official Sarafa Bullion",
-                source = "All-Pakistan Gems & Jewellers Association"
+                trendBadge = "▲ RISING (+Rs. 1,200 آج مہنگا ہوا ہے)",
+                source = "All-Pakistan Gems & Jewellers Sarafa Association"
             ),
             GoldCaratRate(
                 carat = "22K",
-                name = "Jewelry 22K Gold",
+                name = "Jewelry 22K Gold (زیوراتی سونا)",
                 purityPercent = 0.916f,
                 ratePerTola = 259875L,
-                ratePer10Grams = 222799L,
+                ratePer10Grams = 222800L,
                 changePkr = 1100L,
                 isPositive = true,
-                trendBadge = "Sarafa Karachi Benchmark",
-                source = "All-Pakistan Gems & Jewellers Association"
+                trendBadge = "▲ RISING (+Rs. 1,100 بڑھ رہی ہے)",
+                source = "All-Pakistan Gems & Jewellers Sarafa Association"
+            ),
+            GoldCaratRate(
+                carat = "21K",
+                name = "Arabian 21K Gold (عربی سونا)",
+                purityPercent = 0.875f,
+                ratePerTola = 248062L,
+                ratePer10Grams = 212672L,
+                changePkr = 1050L,
+                isPositive = true,
+                trendBadge = "▲ RISING (بڑھ رہی ہے)",
+                source = "All-Pakistan Gems & Jewellers Sarafa Association"
             ),
             GoldCaratRate(
                 carat = "20K",
-                name = "Commercial 20K",
+                name = "Commercial 20K (کمرشل سونا)",
                 purityPercent = 0.833f,
                 ratePerTola = 236250L,
                 ratePer10Grams = 202545L,
                 changePkr = 1000L,
                 isPositive = true,
-                trendBadge = "Wholesale Cast Bullion",
-                source = "All-Pakistan Gems & Jewellers Association"
+                trendBadge = "▲ RISING (بڑھ رہی ہے)",
+                source = "All-Pakistan Gems & Jewellers Sarafa Association"
             ),
             GoldCaratRate(
                 carat = "18K",
-                name = "Standard 18K Gold",
+                name = "Standard 18K Gold (۱۸ قیراط)",
                 purityPercent = 0.750f,
                 ratePerTola = 212625L,
-                ratePer10Grams = 182290L,
+                ratePer10Grams = 182291L,
                 changePkr = 900L,
                 isPositive = true,
-                trendBadge = "Retail Jewelry Baseline",
-                source = "All-Pakistan Gems & Jewellers Association"
+                trendBadge = "▲ RISING (بڑھ رہی ہے)",
+                source = "All-Pakistan Gems & Jewellers Sarafa Association"
+            ),
+            GoldCaratRate(
+                carat = "SILVER",
+                name = "Pure Silver 24K (خالص چاندی)",
+                purityPercent = 0.999f,
+                ratePerTola = 3350L,
+                ratePer10Grams = 2872L,
+                changePkr = -50L,
+                isPositive = false,
+                trendBadge = "▼ DROPPING (-Rs. 50 سستی ہوئی ہے)",
+                source = "All-Pakistan Gems & Jewellers Sarafa Association"
             )
         )
     )
     val goldRates: StateFlow<List<GoldCaratRate>> = _goldRates.asStateFlow()
 
-    // Petroleum and Fuel prices (Sourced directly from OGRA Notified Ex-Depot Bulletins)
+    // Petroleum and Fuel prices (Sourced directly from OGRA & Ministry of Energy Bulletins)
     private val _fuelRates = MutableStateFlow(
         listOf(
             FuelItem(
                 fuelType = "PETROL",
-                name = "Super Motor Gasoline",
+                name = "Super Petrol (Euro 5 Motor Gasoline)",
                 pricePerLiter = 248.38,
-                previousPrice = 247.03,
+                previousPrice = 250.42,
                 unit = "Ltr",
-                statusBadge = "OGRA Ex-Depot",
-                trendAlert = "Official Retail Tariff"
+                statusBadge = "Price Decreased",
+                trendAlert = "▼ DROPPING (-Rs. 2.04 سستا ہوا ہے)"
             ),
             FuelItem(
                 fuelType = "HSD",
-                name = "High Speed Diesel",
+                name = "High Speed Diesel (HSD ٹرانسپورٹ)",
                 pricePerLiter = 255.14,
-                previousPrice = 259.00,
+                previousPrice = 253.89,
                 unit = "Ltr",
-                statusBadge = "Transport Std",
-                trendAlert = "OGRA Transport Baseline"
+                statusBadge = "Price Increased",
+                trendAlert = "▲ RISING (+Rs. 1.25 مہنگا ہوا ہے)"
+            ),
+            FuelItem(
+                fuelType = "HOBC",
+                name = "High Octane Blended (HOBC 97)",
+                pricePerLiter = 268.50,
+                previousPrice = 271.00,
+                unit = "Ltr",
+                statusBadge = "Price Decreased",
+                trendAlert = "▼ DROPPING (-Rs. 2.50 سستا ہوا ہے)"
             ),
             FuelItem(
                 fuelType = "KEROSENE",
-                name = "Kerosene Oil",
-                pricePerLiter = 163.50,
-                previousPrice = 165.20,
+                name = "Kerosene Oil (مٹی کا تیل)",
+                pricePerLiter = 165.28,
+                previousPrice = 166.80,
                 unit = "Ltr",
-                statusBadge = "Domestic Std",
-                trendAlert = "Stable OGRA Bracket"
+                statusBadge = "Price Decreased",
+                trendAlert = "▼ DROPPING (-Rs. 1.52 سستا ہوا ہے)"
+            ),
+            FuelItem(
+                fuelType = "LDO",
+                name = "Light Diesel Oil (لائٹ ڈیزل)",
+                pricePerLiter = 151.16,
+                previousPrice = 152.00,
+                unit = "Ltr",
+                statusBadge = "Price Decreased",
+                trendAlert = "▼ DROPPING (-Rs. 0.84 سستا ہوا ہے)"
             ),
             FuelItem(
                 fuelType = "JET_JP1",
-                name = "Jet Fuel (JP-1)",
-                pricePerLiter = 238.40,
-                previousPrice = 235.00,
+                name = "Jet Fuel (JP-1 ہوائی جہاز کا ایندھن)",
+                pricePerLiter = 182.40,
+                previousPrice = 185.00,
                 unit = "Ltr",
-                statusBadge = "Aviation Cargo",
-                trendAlert = "Aviation Fuel Indexed"
+                statusBadge = "Price Decreased",
+                trendAlert = "▼ DROPPING (-Rs. 2.60 سستا ہوا ہے)"
             ),
             FuelItem(
                 fuelType = "CNG",
-                name = "Compressed Natural Gas",
-                pricePerLiter = 225.00,
-                previousPrice = 225.00,
+                name = "Compressed Natural Gas (CNG)",
+                pricePerLiter = 220.00,
+                previousPrice = 220.00,
                 unit = "Kg",
-                statusBadge = "Stationary",
-                trendAlert = "Fixed Regional Tariff"
+                statusBadge = "Fixed Rate",
+                trendAlert = "◆ STABLE (مستحکم ریٹ)"
             ),
             FuelItem(
                 fuelType = "LPG",
-                name = "Liquefied Petroleum Gas",
-                pricePerLiter = 251.00,
-                previousPrice = 254.00,
+                name = "Liquefied Petroleum Gas (LPG گھریلو)",
+                pricePerLiter = 245.50,
+                previousPrice = 245.50,
                 unit = "Kg",
-                statusBadge = "Commercial Cyl",
-                trendAlert = "Consumer Cylinder Baseline"
+                statusBadge = "OGRA Tariff",
+                trendAlert = "◆ STABLE (مستحکم ریٹ)"
             )
         )
     )
@@ -162,7 +202,10 @@ object UtilityRepository {
             ForexRate("AED", "UAE Dirham", "د.إ", "🇦🇪", 75.85, 76.00, 76.15, 76.60, 0.01),
             ForexRate("CAD", "Canadian Dollar", "$", "🇨🇦", 202.10, 202.70, 203.50, 205.30, 0.18),
             ForexRate("AUD", "Australian Dollar", "$", "🇦🇺", 182.00, 182.60, 183.40, 185.10, -0.12),
-            ForexRate("CNY", "Chinese Yuan", "¥", "🇨🇳", 38.65, 38.85, 39.15, 39.60, 0.08)
+            ForexRate("CNY", "Chinese Yuan", "¥", "🇨🇳", 38.65, 38.85, 39.15, 39.60, 0.08),
+            ForexRate("KWD", "Kuwaiti Dinar", "KD", "🇰🇼", 908.40, 909.20, 911.50, 915.00, 0.15),
+            ForexRate("QAR", "Qatari Riyal", "QR", "🇶🇦", 76.40, 76.55, 76.80, 77.20, 0.05),
+            ForexRate("OMR", "Omani Rial", "RO", "🇴🇲", 723.10, 723.80, 725.50, 729.00, 0.10)
         )
     )
     val forexRates: StateFlow<List<ForexRate>> = _forexRates.asStateFlow()
@@ -650,57 +693,135 @@ object UtilityRepository {
     )
     val mandiCommodities: StateFlow<List<MandiCommodity>> = _mandiCommodities.asStateFlow()
 
-    // Construction Materials
+    // Construction Materials (Updated Pakistan 2026 Wholesale Mill Rates)
     private val _constructionMaterials = MutableStateFlow(
         listOf(
             ConstructionMaterial(
-                name = "Cement Bag 50KG",
-                gradeOrBrand = "Bestway / Fauji / Lucky",
+                name = "Cement Bag 50KG (OPC)",
+                gradeOrBrand = "Bestway / Fauji / Lucky / Maple Leaf",
                 unit = "50kg Bag",
-                pricePkr = 1480L,
-                changePkr = 0L,
-                isUp = false,
-                status = "STABLE"
-            ),
-            ConstructionMaterial(
-                name = "Steel Grade-60 (Ton)",
-                gradeOrBrand = "Amreli / Mughal Deformed",
-                unit = "Ton",
-                pricePkr = 265000L,
-                changePkr = 3000L,
+                pricePkr = 1520L,
+                changePkr = 20L,
                 isUp = true,
                 status = "HIGH"
             ),
             ConstructionMaterial(
-                name = "Awal Bricks (Per K)",
-                gradeOrBrand = "First Class Clay Bhatta",
-                unit = "1,000 pcs",
-                pricePkr = 17500L,
-                changePkr = 0L,
-                isUp = false,
-                status = "STABLE"
-            ),
-            ConstructionMaterial(
-                name = "Chenab Coarse River Sand",
-                gradeOrBrand = "Washed River Sand",
-                unit = "100 cu ft",
-                pricePkr = 5200L,
-                changePkr = 0L,
-                isUp = false,
-                status = "STABLE"
-            ),
-            ConstructionMaterial(
-                name = "Margalla Crush Concrete Aggregate",
-                gradeOrBrand = "1/2 inch to 3/4 inch",
-                unit = "100 cu ft",
-                pricePkr = 6800L,
-                changePkr = 100L,
+                name = "Steel Deformed Rebar Grade-60",
+                gradeOrBrand = "Mughal / Amreli / Ittefaq (Ton)",
+                unit = "Ton (1,000 Kg)",
+                pricePkr = 275000L,
+                changePkr = 2500L,
                 isUp = true,
+                status = "HIGH"
+            ),
+            ConstructionMaterial(
+                name = "Awal Bhatta Bricks (اول اینٹ)",
+                gradeOrBrand = "First Class Red Clay Bhatta",
+                unit = "1,000 pcs",
+                pricePkr = 18500L,
+                changePkr = 500L,
+                isUp = true,
+                status = "HIGH"
+            ),
+            ConstructionMaterial(
+                name = "Chenab Coarse River Sand (چناب ریت)",
+                gradeOrBrand = "Washed Coarse River Sand",
+                unit = "100 cu ft",
+                pricePkr = 5800L,
+                changePkr = 0L,
+                isUp = false,
+                status = "STABLE"
+            ),
+            ConstructionMaterial(
+                name = "Margalla Crush Concrete Aggregate (بجری)",
+                gradeOrBrand = "1/2 inch to 3/4 inch Blue Crush",
+                unit = "100 cu ft",
+                pricePkr = 7400L,
+                changePkr = 200L,
+                isUp = true,
+                status = "HIGH"
+            ),
+            ConstructionMaterial(
+                name = "Electric Wiring (Pakistan Cables 7/29)",
+                gradeOrBrand = "Pure Copper 99.9% 90m Coil",
+                unit = "Coil (90m)",
+                pricePkr = 15200L,
+                changePkr = 300L,
+                isUp = true,
+                status = "STABLE"
+            ),
+            ConstructionMaterial(
+                name = "Exterior Weathercoat Paint",
+                gradeOrBrand = "Berger / ICI Dulux Weathershield",
+                unit = "Drum (16 Liter)",
+                pricePkr = 26500L,
+                changePkr = 0L,
+                isUp = false,
                 status = "STABLE"
             )
         )
     )
     val constructionMaterials: StateFlow<List<ConstructionMaterial>> = _constructionMaterials.asStateFlow()
+
+    /**
+     * House Construction Cost Estimator (3 Marla to 20 Marla / 1 Kanal)
+     * Real-world Pakistan standard construction formulas:
+     * 1 Marla = 225 sq ft
+     * Single story ~ 85% plot covered
+     * Double story ~ 165% plot covered
+     * Triple story ~ 240% plot covered
+     */
+    fun calculateHouseConstructionCost(
+        marla: Double,
+        stories: Int,
+        isFullFinishing: Boolean
+    ): HouseConstructionEstimate {
+        val plotSqFt = marla * 225.0
+        val multiplier = when (stories) {
+            1 -> 0.85
+            2 -> 1.65
+            else -> 2.40
+        }
+        val coveredArea = plotSqFt * multiplier
+
+        // 2026 Benchmark: Grey structure ~ Rs. 3,100/sqft, Full finishing ~ Rs. 5,800/sqft
+        val greyRatePerSqFt = 3100.0
+        val finishRatePerSqFt = 5800.0
+        val effectiveRate = if (isFullFinishing) finishRatePerSqFt else greyRatePerSqFt
+        val totalCost = coveredArea * effectiveRate
+
+        // Material quantities based on covered area
+        val cementBags = (coveredArea * 0.44).toInt()
+        val cementCost = cementBags * 1520.0
+
+        val steelTons = (coveredArea * 3.4) / 1000.0 // 3.4 kg per sq ft
+        val steelCost = steelTons * 275000.0
+
+        val bricks = (coveredArea * 21.0).toInt()
+        val bricksCost = (bricks / 1000.0) * 18500.0
+
+        val sandCrushCost = coveredArea * 320.0
+        val laborCost = coveredArea * 560.0
+        val finishingCost = if (isFullFinishing) coveredArea * 2700.0 else 0.0
+
+        return HouseConstructionEstimate(
+            marla = marla,
+            stories = stories,
+            totalCoveredAreaSqFt = coveredArea,
+            isFullFinishing = isFullFinishing,
+            ratePerSqFt = effectiveRate,
+            totalCostPkr = totalCost,
+            cementBagsCount = cementBags,
+            cementCostPkr = cementCost,
+            steelTons = steelTons,
+            steelCostPkr = steelCost,
+            bricksCount = bricks,
+            bricksCostPkr = bricksCost,
+            sandCrushCostPkr = sandCrushCost,
+            laborCostPkr = laborCost,
+            finishingCostPkr = finishingCost
+        )
+    }
 
     /**
      * Sourced from the user's Dynamic Data Connector:
@@ -873,13 +994,13 @@ object UtilityRepository {
         val notification = when (type) {
             AlertCategory.GOLD_BULLION -> NotificationItem(
                 title = "✨ Gold Bullion Price Surge Alert",
-                message = customMsg ?: "Karachi Sarafa: 24K Tola at Rs. 283,500 (Bullion Benchmark).",
+                message = customMsg ?: "Karachi Sarafa: 24K Tola at Rs. 432,500 (Bullion Benchmark).",
                 category = AlertCategory.GOLD_BULLION,
                 severity = AlertSeverity.WARNING
             )
             AlertCategory.FUEL_LOG -> NotificationItem(
-                title = "⛽ OGRA Fuel Revision Notification",
-                message = customMsg ?: "OGRA Notified Bulletin: Petrol Super @ Rs. 248.38/L, Diesel @ Rs. 255.14/L.",
+                title = "⛽ OGRA & PSO Fuel Revision Notification",
+                message = customMsg ?: "PSO Notified Bulletin: Petrol Super @ Rs. 392.66/L, Diesel @ Rs. 396.82/L.",
                 category = AlertCategory.FUEL_LOG,
                 severity = AlertSeverity.CRITICAL
             )

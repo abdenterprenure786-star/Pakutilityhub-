@@ -26,7 +26,7 @@ import com.example.ui.theme.HubTextDim
 import com.example.ui.theme.HubTextSecondary
 
 enum class HubChannel(val label: String, val iconPrefix: String) {
-    GEO_TRACKER("GEO TRACKER", "🛰️"),
+    NET_SPEED("NET SPEED", "🚀"),
     PUSH_ALERTS("PUSH ALERTS", "🔔"),
     GOLD_INDEX("GOLD INDEX", "✨"),
     FUEL_LOGS("FUEL LOGS", "⛽"),

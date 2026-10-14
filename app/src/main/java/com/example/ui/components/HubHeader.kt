@@ -321,7 +321,7 @@ fun HubHeader(
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = "Alert: 24K Gold Rs. 283.5K/tola • Petrol Super Rs. 248.38/L • Mandi Atta 10KG Rs. 1,120",
+                        text = "Alert: 24K Gold Rs. 432.5K/tola • Petrol Super Rs. 392.66/L • Diesel Rs. 396.82/L",
                         style = MaterialTheme.typography.bodyMedium,
                         color = HubTextSecondary,
                         fontSize = 11.sp,

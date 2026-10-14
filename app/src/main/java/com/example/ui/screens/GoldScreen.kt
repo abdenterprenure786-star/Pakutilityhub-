@@ -74,6 +74,7 @@ fun GoldScreen(
 
     var massQtyInput by remember { mutableStateOf("1.0") }
     var massUnit by remember { mutableStateOf("TOLA") }
+    var selectedCarat by remember { mutableStateOf("24K") }
     var isUnitDropdownExpanded by remember { mutableStateOf(false) }
 
     // Zakat inputs
@@ -91,6 +92,52 @@ fun GoldScreen(
             .testTag("gold_screen"),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+        // Prominent Gold Trend Banner (Price Increasing / Decreasing)
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(12.dp))
+                .background(Color(0xFF132A15))
+                .border(1.5.dp, HubEmerald, RoundedCornerShape(12.dp))
+                .padding(12.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(34.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(HubEmerald.copy(alpha = 0.2f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowUpward,
+                        contentDescription = "Price Up",
+                        tint = HubEmerald,
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.width(10.dp))
+                Column {
+                    Text(
+                        text = "📈 GOLD TREND: PRICES ARE INCREASING (قیمت میں اضافہ ہو رہا ہے)",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = HubEmerald,
+                        fontWeight = FontWeight.Black,
+                        fontSize = 11.sp
+                    )
+                    Text(
+                        text = "24K Gold is UP +Rs. 1,500/tola today in Sarafa Market. Bullion benchmark: Rs. 432,500/tola.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = HubTextSecondary,
+                        fontSize = 10.sp
+                    )
+                }
+            }
+        }
+
         // Bullion Header
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -113,13 +160,13 @@ fun GoldScreen(
             }
             Box(
                 modifier = Modifier
-                    .border(1.dp, HubBorderGold, RoundedCornerShape(6.dp))
+                    .border(1.dp, HubEmerald, RoundedCornerShape(6.dp))
                     .padding(horizontal = 8.dp, vertical = 4.dp)
             ) {
                 Text(
-                    text = goldRates.firstOrNull()?.trendBadge ?: "BEARISH CORRECTION DROP",
+                    text = "BULLISH SURGE (+Rs. 1,500)",
                     style = MaterialTheme.typography.labelSmall,
-                    color = HubGold,
+                    color = HubEmerald,
                     fontWeight = FontWeight.Bold,
                     fontSize = 9.sp
                 )
@@ -220,7 +267,53 @@ fun GoldScreen(
                     }
                 }
 
+                Spacer(modifier = Modifier.height(10.dp))
+
+                // Carat Selector (18K, 20K, 22K, 24K)
+                Text(
+                    text = "SELECT GOLD CARAT (قیراط منتخب کریں):",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = HubTextSecondary,
+                    fontWeight = FontWeight.Bold
+                )
+
+                Spacer(modifier = Modifier.height(6.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    listOf("24K", "22K", "20K", "18K").forEach { carat ->
+                        val isSelected = selectedCarat == carat
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(if (isSelected) HubGold else HubInnerWell)
+                                .border(1.dp, if (isSelected) HubGold else HubBorder, RoundedCornerShape(8.dp))
+                                .clickable { selectedCarat = carat }
+                                .padding(vertical = 8.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = carat,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = if (isSelected) Color.Black else HubTextPrimary,
+                                fontWeight = FontWeight.Black,
+                                fontSize = 11.sp
+                            )
+                        }
+                    }
+                }
+
                 Spacer(modifier = Modifier.height(12.dp))
+
+                val selectedCaratPrice = when (selectedCarat) {
+                    "24K" -> (conversion.tola * 432500).toLong()
+                    "22K" -> (conversion.tola * 396458).toLong()
+                    "20K" -> (conversion.tola * 360417).toLong()
+                    else -> (conversion.tola * 324375).toLong()
+                }
 
                 // Prominent Calculation Result Display Box
                 Box(
@@ -239,14 +332,14 @@ fun GoldScreen(
                         ) {
                             Column {
                                 Text(
-                                    text = "ESTIMATED 24K MARKET VALUE",
+                                    text = "ESTIMATED $selectedCarat VALUE (${selectedCarat} سونا کی قیمت)",
                                     style = MaterialTheme.typography.labelSmall,
                                     color = HubEmerald,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 10.sp
                                 )
                                 Text(
-                                    text = "کل مارکیٹ مالیت (24 قیراط سونا)",
+                                    text = "${String.format("%.3f", conversion.tola)} Tola @ $selectedCarat rate",
                                     style = MaterialTheme.typography.labelSmall,
                                     color = HubTextDim,
                                     fontSize = 9.sp
@@ -265,7 +358,7 @@ fun GoldScreen(
                                 }
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(
-                                    text = "Rs. ${String.format("%,d", conversion.value24kPkr)}",
+                                    text = "Rs. ${String.format("%,d", selectedCaratPrice)}",
                                     style = MaterialTheme.typography.headlineSmall,
                                     color = HubGold,
                                     fontWeight = FontWeight.Black,
