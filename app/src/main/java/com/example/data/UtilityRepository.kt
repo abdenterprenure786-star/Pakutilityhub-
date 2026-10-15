@@ -113,53 +113,53 @@ object UtilityRepository {
     )
     val goldRates: StateFlow<List<GoldCaratRate>> = _goldRates.asStateFlow()
 
-    // Petroleum and Fuel prices (Updated exactly from user screenshot retail rates)
+    // Petroleum and Fuel prices (Exact PSO Notified Rates from Screenshot 6 as of October 15, 2026)
     private val _fuelRates = MutableStateFlow(
         listOf(
             FuelItem(
                 fuelType = "PETROL",
-                name = "Super Petrol (Super / Gasoline)",
-                pricePerLiter = 393.86,
-                previousPrice = 390.15,
+                name = "Premier Euro 5 (Petrol)",
+                pricePerLiter = 395.37,
+                previousPrice = 393.86,
                 unit = "Ltr",
-                statusBadge = "PKR 393.86 - 396.65",
-                trendAlert = "▲ Retail Price Benchmark"
+                statusBadge = "PSO Official Rate",
+                trendAlert = "▲ Rs. 395.37 per litre"
             ),
             FuelItem(
                 fuelType = "HSD",
-                name = "High-Speed Diesel (HSD ٹرانسپورٹ)",
-                pricePerLiter = 394.94,
-                previousPrice = 396.65,
+                name = "Hi-Cetane Diesel Euro 5 (HSD)",
+                pricePerLiter = 396.85,
+                previousPrice = 394.94,
                 unit = "Ltr",
-                statusBadge = "PKR 394.94 - 396.65",
-                trendAlert = "▲ PSO Notified Rate"
+                statusBadge = "PSO Official Rate",
+                trendAlert = "▲ Rs. 396.85 per litre"
             ),
             FuelItem(
                 fuelType = "HOBC",
                 name = "High Octane / Octane Euro 5",
                 pricePerLiter = 415.00,
-                previousPrice = 410.00,
+                previousPrice = 415.00,
                 unit = "Ltr",
                 statusBadge = "Super High Octane (PSO)",
-                trendAlert = "▲ PKR 415.00 (up to 425 in Gilgit)"
+                trendAlert = "▲ Rs. 415.00 (up to 425 in Gilgit)"
             ),
             FuelItem(
                 fuelType = "KEROSENE",
-                name = "Kerosene Oil (مٹی کا تیل)",
+                name = "Superior Kerosene Oil (SKO)",
                 pricePerLiter = 330.14,
-                previousPrice = 329.54,
+                previousPrice = 330.14,
                 unit = "Ltr",
-                statusBadge = "PKR 329.54 - 330.14",
-                trendAlert = "◆ Domestic Standard"
+                statusBadge = "PSO Official Rate",
+                trendAlert = "◆ Rs. 330.14 per litre"
             ),
             FuelItem(
                 fuelType = "LDO",
-                name = "Light Speed Diesel (LSD / LDO)",
-                pricePerLiter = 272.29,
-                previousPrice = 266.41,
+                name = "Light Diesel Oil (LDO)",
+                pricePerLiter = 266.41,
+                previousPrice = 272.29,
                 unit = "Ltr",
-                statusBadge = "PKR 266.41 - 272.29",
-                trendAlert = "◆ Industrial Standard"
+                statusBadge = "PSO Official Rate",
+                trendAlert = "◆ Rs. 266.41 per litre"
             ),
             FuelItem(
                 fuelType = "JET_JP1",
@@ -167,8 +167,8 @@ object UtilityRepository {
                 pricePerLiter = 356.35,
                 previousPrice = 352.00,
                 unit = "Ltr",
-                statusBadge = "Aviation Cargo",
-                trendAlert = "▲ Aviation Fuel Indexed"
+                statusBadge = "Aviation Cargo (PSO)",
+                trendAlert = "▲ Rs. 356.35 per litre"
             ),
             FuelItem(
                 fuelType = "CNG",
@@ -181,12 +181,12 @@ object UtilityRepository {
             ),
             FuelItem(
                 fuelType = "LPG",
-                name = "LPG (Liquefied Petroleum Gas)",
+                name = "LPG (Liquid Petroleum Gas)",
                 pricePerLiter = 279.34,
                 previousPrice = 279.34,
                 unit = "Kg",
-                statusBadge = "PKR 279.34 per kg (PSO)",
-                trendAlert = "◆ Domestic Cylinder Tariff"
+                statusBadge = "PSO Tariff (Rs. 3,296/cyl)",
+                trendAlert = "◆ Rs. 279.34 per kg"
             )
         )
     )
@@ -785,17 +785,23 @@ object UtilityRepository {
         stories: Int,
         isFullFinishing: Boolean
     ): HouseConstructionEstimate {
+        val safeStories = stories.coerceIn(1, 100)
         val plotSqFt = marla * 225.0
-        val multiplier = when (stories) {
-            1 -> 0.85
-            2 -> 1.65
-            else -> 2.40
-        }
+        // Ground floor ~ 85%, each subsequent story ~ 80%
+        val multiplier = if (safeStories == 1) 0.85 else 0.85 + (safeStories - 1) * 0.80
         val coveredArea = plotSqFt * multiplier
 
+        // Structural multiplier for high-rise loads (framing, elevators, deep piling)
+        val structuralMultiplier = when {
+            safeStories <= 3 -> 1.0
+            safeStories <= 10 -> 1.15
+            safeStories <= 30 -> 1.35
+            else -> 1.55
+        }
+
         // 2026 Benchmark: Grey structure ~ Rs. 3,100/sqft, Full finishing ~ Rs. 5,800/sqft
-        val greyRatePerSqFt = 3100.0
-        val finishRatePerSqFt = 5800.0
+        val greyRatePerSqFt = 3100.0 * structuralMultiplier
+        val finishRatePerSqFt = 5800.0 * structuralMultiplier
         val effectiveRate = if (isFullFinishing) finishRatePerSqFt else greyRatePerSqFt
         val totalCost = coveredArea * effectiveRate
 
@@ -803,7 +809,7 @@ object UtilityRepository {
         val cementBags = (coveredArea * 0.44).toInt()
         val cementCost = cementBags * 1520.0
 
-        val steelTons = (coveredArea * 3.4) / 1000.0 // 3.4 kg per sq ft
+        val steelTons = (coveredArea * 3.4 * (if (safeStories > 3) 1.25 else 1.0)) / 1000.0 // higher grade rebar for multi-story
         val steelCost = steelTons * 275000.0
 
         val bricks = (coveredArea * 21.0).toInt()
@@ -815,7 +821,7 @@ object UtilityRepository {
 
         return HouseConstructionEstimate(
             marla = marla,
-            stories = stories,
+            stories = safeStories,
             totalCoveredAreaSqFt = coveredArea,
             isFullFinishing = isFullFinishing,
             ratePerSqFt = effectiveRate,

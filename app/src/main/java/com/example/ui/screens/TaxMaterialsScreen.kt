@@ -544,24 +544,39 @@ fun TaxMaterialsScreen(
 
                 Spacer(modifier = Modifier.height(14.dp))
 
-                // Number of Stories (Single, Double, Triple)
-                Text(
-                    text = "SELECT FLOORS (منزلیں):",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = HubTextSecondary,
-                    fontWeight = FontWeight.Bold
-                )
+                // Number of Stories (1 to 100 Storeys)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "FLOORS / STOREYS (منزلیں 1 تا 100):",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = HubTextSecondary,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "$selectedStories Storey${if (selectedStories > 1) "s" else ""}",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = HubGold,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
                     listOf(
-                        1 to "Single Story (ایک منزلہ)",
-                        2 to "Double Story (دو منزلہ)",
-                        3 to "Triple Story (تین منزلہ)"
+                        1 to "1 (Ground)",
+                        2 to "2 (Double)",
+                        3 to "3 (Triple)",
+                        4 to "4 Storey",
+                        5 to "5 Storey",
+                        10 to "10 Plaza"
                     ).forEach { (storyNum, label) ->
                         val isSel = selectedStories == storyNum
                         Box(
@@ -571,7 +586,7 @@ fun TaxMaterialsScreen(
                                 .background(if (isSel) Color(0xFF132A15) else HubInnerWell)
                                 .border(1.dp, if (isSel) HubEmerald else HubBorder, RoundedCornerShape(8.dp))
                                 .clickable { selectedStories = storyNum }
-                                .padding(vertical = 8.dp),
+                                .padding(vertical = 7.dp),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
@@ -579,8 +594,58 @@ fun TaxMaterialsScreen(
                                 style = MaterialTheme.typography.labelSmall,
                                 color = if (isSel) HubEmerald else HubTextPrimary,
                                 fontWeight = if (isSel) FontWeight.Bold else FontWeight.Medium,
-                                fontSize = 10.sp
+                                fontSize = 9.sp
                             )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Custom Storeys slider / input up to 100
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(HubInnerWell)
+                        .padding(horizontal = 10.dp, vertical = 6.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = "Custom Floors (1 - 100):",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = HubTextDim,
+                        fontSize = 10.sp
+                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(Color(0xFF1A2634))
+                                .clickable { if (selectedStories > 1) selectedStories-- }
+                                .padding(horizontal = 10.dp, vertical = 4.dp)
+                        ) {
+                            Text("-", color = HubSky, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                        }
+                        Text(
+                            text = "$selectedStories",
+                            color = HubTextPrimary,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 13.sp,
+                            modifier = Modifier.padding(horizontal = 6.dp)
+                        )
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(Color(0xFF1A2634))
+                                .clickable { if (selectedStories < 100) selectedStories++ }
+                                .padding(horizontal = 10.dp, vertical = 4.dp)
+                        ) {
+                            Text("+", color = HubSky, fontWeight = FontWeight.Bold, fontSize = 14.sp)
                         }
                     }
                 }
