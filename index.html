@@ -616,6 +616,112 @@
             border-color: var(--sky);
             font-weight: 800;
         }
+        /* Interactive Zoom & Tooltip Crosshair Controls */
+        .chart-zoom-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+            background: var(--bg-inner);
+            border: 1px solid var(--border-dim);
+            border-radius: 8px;
+            padding: 6px 10px;
+        }
+        .zoom-controls-left, .zoom-controls-right {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .zoom-label {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 2px;
+        }
+        .zoom-btn, .timeframe-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-dim);
+            color: var(--text-secondary);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .zoom-btn:hover, .timeframe-btn:hover {
+            background: var(--bg-card-elevated);
+            color: var(--text-primary);
+            border-color: var(--border-subtle);
+        }
+        .timeframe-btn.active {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+            font-weight: 800;
+        }
+        .timeframe-btn.sky-active {
+            background: var(--sky);
+            color: #000;
+            border-color: var(--sky);
+            font-weight: 800;
+        }
+        .timeframe-btn.emerald-active {
+            background: var(--emerald);
+            color: #000;
+            border-color: var(--emerald);
+            font-weight: 800;
+        }
+        .crosshair-indicator-badge {
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 12px;
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--gold);
+            border: 1px solid var(--gold-border);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .granular-inspection-bar {
+            margin-top: 10px;
+            background: var(--bg-inner);
+            border: 1px dashed var(--border-subtle);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        .granular-inspection-bar.active {
+            border-color: var(--gold);
+            background: rgba(245, 158, 11, 0.06);
+        }
+        .inspection-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .inspection-val {
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
 
         .stat-grid-4 {
             display: grid;
@@ -1148,8 +1254,45 @@
                 </div>
 
                 <!-- Recharts Target Root Container -->
-                <div class="trend-chart-box" id="rechartsRoot">
+                
+                <!-- Interactive Zoom & Granular Controls Toolbar -->
+                <div class="chart-zoom-toolbar">
+                    <div class="zoom-controls-left">
+                        <span class="zoom-label">Range:</span>
+                        <button class="timeframe-btn" id="tf24h" onclick="setTimeframe('24h', this)">⏱️ 24H (Intraday)</button>
+                        <button class="timeframe-btn" id="tf3d" onclick="setTimeframe('3d', this)">3D</button>
+                        <button class="timeframe-btn active" id="tf7d" onclick="setTimeframe('7d', this)">7D (Standard)</button>
+                        <button class="timeframe-btn" id="tf14d" onclick="setTimeframe('14d', this)">14D</button>
+                        <button class="timeframe-btn" id="tf30d" onclick="setTimeframe('30d', this)">30D (All)</button>
+                    </div>
+                    <div class="zoom-controls-right">
+                        <span class="zoom-label">Zoom:</span>
+                        <button class="zoom-btn" onclick="zoomInChart()" title="Zoom In on Granular Window">🔍➕ Zoom In</button>
+                        <button class="zoom-btn" onclick="zoomOutChart()" title="Zoom Out">🔍➖ Zoom Out</button>
+                        <button class="zoom-btn" onclick="resetChartZoom()" title="Reset Zoom">↺ Reset</button>
+                        <span class="crosshair-indicator-badge" id="crosshairStatusBadge">🎯 Crosshairs ON</span>
+                    </div>
+                </div>
+<div class="trend-chart-box" id="rechartsRoot">
                     <!-- Rendered by React/Recharts or Fallback SVG -->
+                </div>
+                <!-- Granular Inspection Readout Bar (Dual Crosshair Snapping) -->
+                <div class="granular-inspection-bar" id="rechartsInspectionBar">
+                    <div class="inspection-item">
+                        <span style="color:var(--gold);">🎯 Crosshair Lock:</span>
+                        <span class="inspection-val" id="inspectPointName">15 Oct 2026 (07:00 PM Sarafa Close)</span>
+                    </div>
+                    <div class="inspection-item">
+                        <span>Rate:</span>
+                        <span class="inspection-val" style="color:var(--gold);" id="inspectRateVal">PKR 437,836</span>
+                    </div>
+                    <div class="inspection-item">
+                        <span>Session Delta:</span>
+                        <span class="inspection-val" style="color:var(--emerald);" id="inspectVarianceVal">+PKR 11,336 (+2.6%)</span>
+                    </div>
+                    <div class="inspection-item">
+                        <span style="font-size:10px; color:var(--text-secondary);">💡 Tip: Hover or drag slider to inspect tick points</span>
+                    </div>
                 </div>
 
                 <!-- Live Metrics Summary Bar -->
@@ -1891,11 +2034,190 @@
     // -------------------------------------------------------------
     // 3. RECHARTS INITIALIZATION & RENDERING
     // -------------------------------------------------------------
+    
+    // -------------------------------------------------------------
+    // 3. ENHANCED RECHARTS IMPLEMENTATION: INTERACTIVE ZOOM & CROSSHAIRS
+    // -------------------------------------------------------------
     let currentChartMode = 'gold';
+    let currentTimeframe = '7d';
+    let chartZoomStart = 6;  // Index in dataset
+    let chartZoomEnd = 17;   // Last index
+    let hoveredPoint = null;
+    let hoveredPriceY = null;
+
+    // Granular 18-point Datasets with Intraday Sessions & 30-Day Historical Trend
+    const GRANULAR_GOLD_DATA = [
+        { day: '16 Sep', date: '16 Sep 2026', time: 'Close', session: 'Sarafa Close', price: 409500, label: 'PKR 409,500', change: '+0.5%' },
+        { day: '20 Sep', date: '20 Sep 2026', time: 'Close', session: 'Sarafa Close', price: 412000, label: 'PKR 412,000', change: '+0.6%' },
+        { day: '25 Sep', date: '25 Sep 2026', time: 'Close', session: 'Sarafa Close', price: 415200, label: 'PKR 415,200', change: '+0.8%' },
+        { day: '30 Sep', date: '30 Sep 2026', time: 'Close', session: 'Sarafa Close', price: 418000, label: 'PKR 418,000', change: '+0.7%' },
+        { day: '05 Oct', date: '05 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 422800, label: 'PKR 422,800', change: '+1.1%' },
+        { day: '07 Oct', date: '07 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 424000, label: 'PKR 424,000', change: '+0.3%' },
+        { day: '08 Oct', date: '08 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 425100, label: 'PKR 425,100', change: '+0.3%' },
+        { day: '09 Oct', date: '09 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 426500, label: 'PKR 426,500', change: '+0.3%' },
+        { day: '10 Oct', date: '10 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 428200, label: 'PKR 428,200', change: '+0.4%' },
+        { day: '11 Oct', date: '11 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 430000, label: 'PKR 430,000', change: '+0.4%' },
+        { day: '12 Oct', date: '12 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 431800, label: 'PKR 431,800', change: '+0.4%' },
+        { day: '13 Oct', date: '13 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 432500, label: 'PKR 432,500', change: '+0.2%' },
+        { day: '14 Oct (Mid)', date: '14 Oct 2026', time: '01:00 PM', session: 'Midday Bullion', price: 433500, label: 'PKR 433,500', change: '+0.2%' },
+        { day: '14 Oct (Close)', date: '14 Oct 2026', time: '07:00 PM', session: 'Sarafa Close', price: 434200, label: 'PKR 434,200', change: '+0.2%' },
+        { day: '15 Oct (Open)', date: '15 Oct 2026', time: '10:00 AM', session: 'Market Open', price: 435800, label: 'PKR 435,800', change: '+0.4%' },
+        { day: '15 Oct (12PM)', date: '15 Oct 2026', time: '12:30 PM', session: 'Midday Bullion', price: 436500, label: 'PKR 436,500', change: '+0.2%' },
+        { day: '15 Oct (4PM)', date: '15 Oct 2026', time: '04:00 PM', session: 'Afternoon Fix', price: 437200, label: 'PKR 437,200', change: '+0.2%' },
+        { day: '15 Oct (Today)', date: '15 Oct 2026', time: '07:00 PM', session: 'Sarafa Benchmark', price: 437836, label: 'PKR 437,836', change: '+0.1%' }
+    ];
+
+    const GRANULAR_PETROL_DATA = [
+        { day: '16 Sep', date: '16 Sep 2026', time: 'Notification', session: 'OGRA Fortnight', price: 379.20, label: 'PKR 379.20', change: '+0.0%' },
+        { day: '20 Sep', date: '20 Sep 2026', time: 'Regular', session: 'PSO Retail', price: 381.20, label: 'PKR 381.20', change: '+0.5%' },
+        { day: '25 Sep', date: '25 Sep 2026', time: 'Regular', session: 'Shell Retail', price: 383.00, label: 'PKR 383.00', change: '+0.5%' },
+        { day: '01 Oct', date: '01 Oct 2026', time: 'Notification', session: 'OGRA Revision', price: 386.40, label: 'PKR 386.40', change: '+0.9%' },
+        { day: '05 Oct', date: '05 Oct 2026', time: 'Regular', session: 'PSO Retail', price: 388.50, label: 'PKR 388.50', change: '+0.5%' },
+        { day: '07 Oct', date: '07 Oct 2026', time: 'Regular', session: 'Total Parco', price: 389.20, label: 'PKR 389.20', change: '+0.2%' },
+        { day: '08 Oct', date: '08 Oct 2026', time: 'Regular', session: 'National Average', price: 389.80, label: 'PKR 389.80', change: '+0.2%' },
+        { day: '09 Oct', date: '09 Oct 2026', time: 'Regular', session: 'PSO Base', price: 390.15, label: 'PKR 390.15', change: '+0.1%' },
+        { day: '10 Oct', date: '10 Oct 2026', time: 'Regular', session: 'PSO Base', price: 390.15, label: 'PKR 390.15', change: '0.0%' },
+        { day: '11 Oct', date: '11 Oct 2026', time: 'Revision', session: 'OGRA Mid-Rev', price: 392.66, label: 'PKR 392.66', change: '+0.6%' },
+        { day: '12 Oct', date: '12 Oct 2026', time: 'Regular', session: 'PSO Base', price: 392.66, label: 'PKR 392.66', change: '0.0%' },
+        { day: '13 Oct', date: '13 Oct 2026', time: 'Revision', session: 'OGRA Latest', price: 393.86, label: 'PKR 393.86', change: '+0.3%' },
+        { day: '14 Oct (Mid)', date: '14 Oct 2026', time: '12:00 PM', session: 'Day Shift', price: 393.86, label: 'PKR 393.86', change: '0.0%' },
+        { day: '14 Oct (Eve)', date: '14 Oct 2026', time: '08:00 PM', session: 'Evening Shift', price: 393.86, label: 'PKR 393.86', change: '0.0%' },
+        { day: '15 Oct (Morn)', date: '15 Oct 2026', time: '08:00 AM', session: 'Morning Shift', price: 393.86, label: 'PKR 393.86', change: '0.0%' },
+        { day: '15 Oct (Noon)', date: '15 Oct 2026', time: '01:00 PM', session: 'Afternoon Shift', price: 393.86, label: 'PKR 393.86', change: '0.0%' },
+        { day: '15 Oct (Eve)', date: '15 Oct 2026', time: '06:00 PM', session: 'Evening Shift', price: 393.86, label: 'PKR 393.86', change: '0.0%' },
+        { day: '15 Oct (Today)', date: '15 Oct 2026', time: 'Latest', session: 'Current Notified', price: 393.86, label: 'PKR 393.86', change: '0.0%' }
+    ];
+
+    const GRANULAR_DIESEL_DATA = [
+        { day: '16 Sep', date: '16 Sep 2026', time: 'Notification', session: 'OGRA Fortnight', price: 382.10, label: 'PKR 382.10', change: '+0.0%' },
+        { day: '20 Sep', date: '20 Sep 2026', time: 'Regular', session: 'PSO Retail', price: 384.50, label: 'PKR 384.50', change: '+0.6%' },
+        { day: '25 Sep', date: '25 Sep 2026', time: 'Regular', session: 'Shell Retail', price: 386.20, label: 'PKR 386.20', change: '+0.4%' },
+        { day: '01 Oct', date: '01 Oct 2026', time: 'Notification', session: 'OGRA Revision', price: 388.90, label: 'PKR 388.90', change: '+0.7%' },
+        { day: '05 Oct', date: '05 Oct 2026', time: 'Regular', session: 'PSO Retail', price: 390.60, label: 'PKR 390.60', change: '+0.4%' },
+        { day: '07 Oct', date: '07 Oct 2026', time: 'Regular', session: 'Total Parco', price: 391.50, label: 'PKR 391.50', change: '+0.2%' },
+        { day: '08 Oct', date: '08 Oct 2026', time: 'Regular', session: 'National Average', price: 392.00, label: 'PKR 392.00', change: '+0.1%' },
+        { day: '09 Oct', date: '09 Oct 2026', time: 'Regular', session: 'PSO Base', price: 392.50, label: 'PKR 392.50', change: '+0.1%' },
+        { day: '10 Oct', date: '10 Oct 2026', time: 'Regular', session: 'PSO Base', price: 392.50, label: 'PKR 392.50', change: '0.0%' },
+        { day: '11 Oct', date: '11 Oct 2026', time: 'Revision', session: 'OGRA Mid-Rev', price: 394.00, label: 'PKR 394.00', change: '+0.4%' },
+        { day: '12 Oct', date: '12 Oct 2026', time: 'Regular', session: 'PSO Base', price: 394.00, label: 'PKR 394.00', change: '0.0%' },
+        { day: '13 Oct', date: '13 Oct 2026', time: 'Revision', session: 'OGRA Latest', price: 394.94, label: 'PKR 394.94', change: '+0.2%' },
+        { day: '14 Oct (Mid)', date: '14 Oct 2026', time: '12:00 PM', session: 'Day Shift', price: 394.94, label: 'PKR 394.94', change: '0.0%' },
+        { day: '14 Oct (Eve)', date: '14 Oct 2026', time: '08:00 PM', session: 'Evening Shift', price: 394.94, label: 'PKR 394.94', change: '0.0%' },
+        { day: '15 Oct (Morn)', date: '15 Oct 2026', time: '08:00 AM', session: 'Morning Shift', price: 394.94, label: 'PKR 394.94', change: '0.0%' },
+        { day: '15 Oct (Noon)', date: '15 Oct 2026', time: '01:00 PM', session: 'Afternoon Shift', price: 394.94, label: 'PKR 394.94', change: '0.0%' },
+        { day: '15 Oct (Eve)', date: '15 Oct 2026', time: '06:00 PM', session: 'Evening Shift', price: 394.94, label: 'PKR 394.94', change: '0.0%' },
+        { day: '15 Oct (Today)', date: '15 Oct 2026', time: 'Latest', session: 'Current Notified', price: 394.94, label: 'PKR 394.94', change: '0.0%' }
+    ];
+
+    const GRANULAR_COMBINED_DATA = GRANULAR_GOLD_DATA.map((g, i) => {
+        const p = GRANULAR_PETROL_DATA[i] || GRANULAR_PETROL_DATA[GRANULAR_PETROL_DATA.length - 1];
+        const d = GRANULAR_DIESEL_DATA[i] || GRANULAR_DIESEL_DATA[GRANULAR_DIESEL_DATA.length - 1];
+        const baseG = GRANULAR_GOLD_DATA[0].price;
+        const baseP = GRANULAR_PETROL_DATA[0].price;
+        const baseD = GRANULAR_DIESEL_DATA[0].price;
+        return {
+            day: g.day,
+            date: g.date,
+            time: g.time,
+            session: g.session,
+            price: g.price, // Primary axis
+            goldPrice: g.price,
+            petrolPrice: p.price,
+            dieselPrice: d.price,
+            goldIndex: +((g.price / baseG) * 100).toFixed(2),
+            petrolIndex: +((p.price / baseP) * 100).toFixed(2),
+            dieselIndex: +((d.price / baseD) * 100).toFixed(2),
+            change: '+2.6%'
+        };
+    });
+
+    function getFullDataset() {
+        if (currentChartMode === 'petrol') return GRANULAR_PETROL_DATA;
+        if (currentChartMode === 'diesel') return GRANULAR_DIESEL_DATA;
+        if (currentChartMode === 'combined') return GRANULAR_COMBINED_DATA;
+        return GRANULAR_GOLD_DATA;
+    }
+
+    function getActiveChartColor() {
+        if (currentChartMode === 'petrol') return '#38BDF8';
+        if (currentChartMode === 'diesel') return '#10B981';
+        return '#F59E0B';
+    }
+
+    // Interactive Timeframe Switcher
+    function setTimeframe(tf, btn) {
+        currentTimeframe = tf;
+        document.querySelectorAll('.timeframe-btn').forEach(b => b.classList.remove('active', 'sky-active', 'emerald-active'));
+        if (btn) {
+            if (currentChartMode === 'petrol') btn.classList.add('sky-active');
+            else if (currentChartMode === 'diesel') btn.classList.add('emerald-active');
+            else btn.classList.add('active');
+        }
+
+        const data = getFullDataset();
+        const total = data.length;
+        if (tf === '24h') {
+            chartZoomStart = Math.max(0, total - 5);
+            chartZoomEnd = total - 1;
+        } else if (tf === '3d') {
+            chartZoomStart = Math.max(0, total - 8);
+            chartZoomEnd = total - 1;
+        } else if (tf === '7d') {
+            chartZoomStart = Math.max(0, total - 12);
+            chartZoomEnd = total - 1;
+        } else if (tf === '14d') {
+            chartZoomStart = Math.max(0, total - 15);
+            chartZoomEnd = total - 1;
+        } else if (tf === '30d') {
+            chartZoomStart = 0;
+            chartZoomEnd = total - 1;
+        }
+
+        renderMainRecharts();
+        showToast(`🔍 Range: ${tf.toUpperCase()} (${chartZoomEnd - chartZoomStart + 1} Points)`);
+    }
+
+    // Granular Zoom In & Zoom Out Buttons
+    function zoomInChart() {
+        const span = chartZoomEnd - chartZoomStart;
+        if (span <= 3) {
+            showToast("🔍 Maximum zoom level reached (3 points)");
+            return;
+        }
+        chartZoomStart = Math.min(chartZoomStart + 1, chartZoomEnd - 3);
+        chartZoomEnd = Math.max(chartZoomEnd - 1, chartZoomStart + 3);
+        renderMainRecharts();
+        showToast(`🔍 Zoomed In: ${chartZoomEnd - chartZoomStart + 1} granular points`);
+    }
+
+    function zoomOutChart() {
+        const data = getFullDataset();
+        const total = data.length;
+        if (chartZoomStart === 0 && chartZoomEnd === total - 1) {
+            showToast("🔍 Full dataset already in view");
+            return;
+        }
+        chartZoomStart = Math.max(0, chartZoomStart - 1);
+        chartZoomEnd = Math.min(total - 1, chartZoomEnd + 1);
+        renderMainRecharts();
+        showToast(`🔍 Zoomed Out: ${chartZoomEnd - chartZoomStart + 1} points`);
+    }
+
+    function resetChartZoom() {
+        setTimeframe(currentTimeframe);
+    }
 
     function changeChartMode(mode) {
         currentChartMode = mode;
-        document.querySelectorAll('.chart-pill').forEach(btn => btn.classList.remove('active', 'sky-active'));
+        document.querySelectorAll('.chart-pill').forEach(btn => btn.classList.remove('active', 'sky-active', 'emerald-active'));
+
+        const tfBtn = document.querySelector(`.timeframe-btn.active, .timeframe-btn.sky-active, .timeframe-btn.emerald-active`);
+        if (tfBtn) {
+            tfBtn.classList.remove('active', 'sky-active', 'emerald-active');
+            if (mode === 'petrol') tfBtn.classList.add('sky-active');
+            else if (mode === 'diesel') tfBtn.classList.add('emerald-active');
+            else tfBtn.classList.add('active');
+        }
 
         if (mode === 'gold') {
             document.getElementById('btnChartGold').classList.add('active');
@@ -1942,60 +2264,296 @@
         renderMainRecharts();
     }
 
+    // Granular Crosshair Inspection Readout Handlers
+    function updateInspectionBar(item) {
+        if (!item) return;
+        hoveredPoint = item;
+        hoveredPriceY = item.price || item.goldPrice;
+
+        const bar = document.getElementById('rechartsInspectionBar');
+        const pointEl = document.getElementById('inspectPointName');
+        const rateEl = document.getElementById('inspectRateVal');
+        const varEl = document.getElementById('inspectVarianceVal');
+
+        if (bar) bar.classList.add('active');
+        if (pointEl) pointEl.textContent = `${item.date || item.day} (${item.session || item.time || 'Session'})`;
+        
+        if (rateEl) {
+            if (currentChartMode === 'combined') {
+                rateEl.textContent = `Gold: Rs. ${(item.goldPrice/1000).toFixed(0)}k | Pet: Rs. ${item.petrolPrice.toFixed(0)}`;
+            } else {
+                rateEl.textContent = item.price >= 1000 ? `PKR ${item.price.toLocaleString()}` : `PKR ${item.price.toFixed(2)}`;
+            }
+            rateEl.style.color = getActiveChartColor();
+        }
+
+        if (varEl) {
+            varEl.textContent = `${item.change || '▲ +0.2%'}`;
+        }
+    }
+
+    function resetInspectionBar() {
+        hoveredPoint = null;
+        hoveredPriceY = null;
+        const bar = document.getElementById('rechartsInspectionBar');
+        if (bar) bar.classList.remove('active');
+
+        const data = getFullDataset();
+        const latest = data[data.length - 1];
+        if (latest) {
+            const pointEl = document.getElementById('inspectPointName');
+            const rateEl = document.getElementById('inspectRateVal');
+            const varEl = document.getElementById('inspectVarianceVal');
+            if (pointEl) pointEl.textContent = `${latest.date} (${latest.session})`;
+            if (rateEl) {
+                rateEl.textContent = latest.price >= 1000 ? `PKR ${latest.price.toLocaleString()}` : `PKR ${latest.price.toFixed(2)}`;
+                rateEl.style.color = getActiveChartColor();
+            }
+            if (varEl) varEl.textContent = latest.change || '+2.6%';
+        }
+    }
+
+    // Custom Tooltip Component with Crosshair Reticle & Granular Analytics
+    function renderCustomCrosshairTooltip(props) {
+        if (!props.active || !props.payload || !props.payload.length) return null;
+        const e = window.React.createElement;
+        const item = props.payload[0].payload;
+        const strokeColor = getActiveChartColor();
+        const isCombined = currentChartMode === 'combined';
+
+        // Update live readout bar synchronously
+        setTimeout(() => updateInspectionBar(item), 0);
+
+        return e('div', {
+            style: {
+                background: 'rgba(11, 17, 32, 0.96)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                border: `1.5px solid ${strokeColor}`,
+                borderRadius: '10px',
+                padding: '10px 14px',
+                boxShadow: `0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 0 15px ${strokeColor}40`,
+                minWidth: '220px',
+                color: '#fff',
+                fontSize: '11px',
+                fontFamily: 'Plus Jakarta Sans, sans-serif'
+            }
+        },
+            e('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.12)', paddingBottom: '5px', marginBottom: '6px' } },
+                e('span', { style: { color: strokeColor, fontWeight: '800', fontSize: '10px', letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: '3px' } }, 
+                    '🎯 CROSSHAIR LOCKED'
+                ),
+                e('span', { style: { color: '#94A3B8', fontSize: '9px', background: 'rgba(255,255,255,0.08)', padding: '2px 5px', borderRadius: '4px' } }, 
+                    item.time ? item.time : 'Session'
+                )
+            ),
+            e('div', { style: { fontWeight: '700', fontSize: '12px', color: '#F8FAFC', marginBottom: '5px' } },
+                `${item.date || item.day} • ${item.session || 'Trading Session'}`
+            ),
+            isCombined ? e('div', { style: { display: 'flex', flexDirection: 'column', gap: '3px' } },
+                e('div', { style: { color: '#F59E0B', display: 'flex', justifyContent: 'space-between' } },
+                    e('span', null, '🟡 24K Gold:'),
+                    e('span', { style: { fontWeight: '800' } }, `PKR ${item.goldPrice.toLocaleString()} (${item.goldIndex})`)
+                ),
+                e('div', { style: { color: '#38BDF8', display: 'flex', justifyContent: 'space-between' } },
+                    e('span', null, '⛽ Petrol:'),
+                    e('span', { style: { fontWeight: '800' } }, `PKR ${item.petrolPrice.toFixed(2)} (${item.petrolIndex})`)
+                ),
+                e('div', { style: { color: '#10B981', display: 'flex', justifyContent: 'space-between' } },
+                    e('span', null, '🚚 Diesel:'),
+                    e('span', { style: { fontWeight: '800' } }, `PKR ${item.dieselPrice.toFixed(2)} (${item.dieselIndex})`)
+                )
+            ) : e('div', null,
+                e('div', { style: { fontSize: '16px', fontWeight: '900', color: strokeColor, margin: '2px 0' } },
+                    `PKR ${item.price >= 1000 ? item.price.toLocaleString() : item.price.toFixed(2)}${currentChartMode === 'gold' ? ' / tola' : ' / Litre'}`
+                ),
+                e('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#94A3B8', fontSize: '10px', marginTop: '4px' } },
+                    e('span', null, 'Session Variance:'),
+                    e('span', { style: { color: '#10B981', fontWeight: '700' } }, item.change || '▲ +0.2%')
+                ),
+                e('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#64748B', fontSize: '9px', marginTop: '2px' } },
+                    e('span', null, 'Crosshair Axis:'),
+                    e('span', null, `X: ${item.day} | Y: ${Math.round(item.price)}`)
+                )
+            )
+        );
+    }
+
     function renderMainRecharts() {
         const root = document.getElementById('rechartsRoot');
         if (!root) return;
 
-        let activeData = GOLD_7DAY_DATA;
-        let strokeColor = '#F59E0B';
-        let fillColor = 'rgba(245, 158, 11, 0.2)';
+        const allData = getFullDataset();
+        // Safe slice bounds
+        const safeStart = Math.max(0, Math.min(chartZoomStart, allData.length - 2));
+        const safeEnd = Math.max(safeStart + 1, Math.min(chartZoomEnd, allData.length - 1));
+        const activeData = allData.slice(safeStart, safeEnd + 1);
 
-        if (currentChartMode === 'petrol') {
-            activeData = PETROL_7DAY_DATA;
-            strokeColor = '#38BDF8';
-            fillColor = 'rgba(56, 189, 248, 0.2)';
-        } else if (currentChartMode === 'diesel') {
-            activeData = DIESEL_7DAY_DATA;
-            strokeColor = '#10B981';
-            fillColor = 'rgba(16, 185, 129, 0.2)';
-        }
+        const strokeColor = getActiveChartColor();
+        const fillColor = strokeColor === '#38BDF8' ? 'rgba(56, 189, 248, 0.22)' : 
+                         strokeColor === '#10B981' ? 'rgba(16, 185, 129, 0.22)' : 
+                         'rgba(245, 158, 11, 0.22)';
 
         if (window.React && window.ReactDOM && window.Recharts) {
             try {
-                const { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } = window.Recharts;
+                const { ResponsiveContainer, AreaChart, Area, Line, ComposedChart, XAxis, YAxis, Tooltip, CartesianGrid, Brush, ReferenceLine } = window.Recharts;
                 const e = window.React.createElement;
+                const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
 
-                const chartElement = e(ResponsiveContainer, { width: '100%', height: 230 },
-                    e(AreaChart, { data: activeData, margin: { top: 10, right: 10, left: 5, bottom: 0 } },
-                        e('defs', null,
-                            e('linearGradient', { id: 'chartGradientMain', x1: '0', y1: '0', x2: '0', y2: '1' },
-                                e('stop', { offset: '5%', stopColor: strokeColor, stopOpacity: 0.45 }),
-                                e('stop', { offset: '95%', stopColor: strokeColor, stopOpacity: 0.0 })
-                            )
+                const children = [
+                    e('defs', { key: 'defs' },
+                        e('linearGradient', { id: 'chartGradientMain', x1: '0', y1: '0', x2: '0', y2: '1' },
+                            e('stop', { offset: '5%', stopColor: strokeColor, stopOpacity: 0.45 }),
+                            e('stop', { offset: '95%', stopColor: strokeColor, stopOpacity: 0.0 })
                         ),
-                        e(CartesianGrid, { strokeDasharray: '3 3', stroke: '#1E293B' }),
-                        e(XAxis, { dataKey: 'day', stroke: '#94A3B8', fontSize: 11, tickLine: false }),
-                        e(YAxis, {
-                            stroke: '#94A3B8',
-                            fontSize: 10,
-                            domain: ['dataMin - (dataMax-dataMin)*0.1', 'dataMax + (dataMax-dataMin)*0.1'],
-                            tickFormatter: (val) => val >= 1000 ? `${(val/1000).toFixed(0)}k` : val,
-                            tickLine: false
-                        }),
-                        e(Tooltip, {
-                            contentStyle: { backgroundColor: '#0B1120', borderColor: strokeColor, borderRadius: 8, fontSize: 11, color: '#fff' },
-                            formatter: (val) => [`PKR ${val.toLocaleString()}`, 'Rate']
-                        }),
+                        e('linearGradient', { id: 'goldGrad', x1: '0', y1: '0', x2: '0', y2: '1' },
+                            e('stop', { offset: '5%', stopColor: '#F59E0B', stopOpacity: 0.35 }),
+                            e('stop', { offset: '95%', stopColor: '#F59E0B', stopOpacity: 0.0 })
+                        ),
+                        e('linearGradient', { id: 'petrolGrad', x1: '0', y1: '0', x2: '0', y2: '1' },
+                            e('stop', { offset: '5%', stopColor: '#38BDF8', stopOpacity: 0.35 }),
+                            e('stop', { offset: '95%', stopColor: '#38BDF8', stopOpacity: 0.0 })
+                        )
+                    ),
+                    e(CartesianGrid, { 
+                        key: 'grid', 
+                        strokeDasharray: '3 3', 
+                        stroke: isDark ? '#1E293B' : '#E2E8F0',
+                        opacity: 0.8
+                    }),
+                    e(XAxis, { 
+                        key: 'xaxis',
+                        dataKey: 'day', 
+                        stroke: '#94A3B8', 
+                        fontSize: 10, 
+                        tickLine: false,
+                        tickMargin: 4
+                    }),
+                    e(YAxis, {
+                        key: 'yaxis',
+                        stroke: '#94A3B8',
+                        fontSize: 10,
+                        domain: currentChartMode === 'combined' ? ['dataMin - 1', 'dataMax + 1'] : ['dataMin - (dataMax-dataMin)*0.1', 'dataMax + (dataMax-dataMin)*0.1'],
+                        tickFormatter: (val) => currentChartMode === 'combined' ? `${val}` : (val >= 1000 ? `${(val/1000).toFixed(0)}k` : val.toFixed(1)),
+                        tickLine: false,
+                        width: 48
+                    }),
+                    // Dual-Axis Tooltip Crosshair Configuration
+                    e(Tooltip, {
+                        key: 'tooltip',
+                        cursor: { 
+                            stroke: strokeColor, 
+                            strokeWidth: 1.5, 
+                            strokeDasharray: '4 4', 
+                            strokeOpacity: 0.9 
+                        },
+                        content: renderCustomCrosshairTooltip
+                    })
+                ];
+
+                // If hovered, render horizontal crosshair ReferenceLine
+                if (hoveredPriceY != null && currentChartMode !== 'combined') {
+                    children.push(
+                        e(ReferenceLine, {
+                            key: 'hCrosshair',
+                            y: hoveredPriceY,
+                            stroke: strokeColor,
+                            strokeDasharray: '3 3',
+                            strokeOpacity: 0.65
+                        })
+                    );
+                }
+
+                if (currentChartMode === 'combined') {
+                    // Multi-Series curves with crosshair tracking
+                    children.push(
                         e(Area, {
+                            key: 'areaGold',
+                            type: 'monotone',
+                            dataKey: 'goldIndex',
+                            name: 'Gold Index',
+                            stroke: '#F59E0B',
+                            strokeWidth: 2.5,
+                            fill: 'url(#goldGrad)',
+                            activeDot: { r: 6, fill: '#F59E0B', stroke: '#060914', strokeWidth: 2.5 }
+                        }),
+                        e(Line, {
+                            key: 'linePetrol',
+                            type: 'monotone',
+                            dataKey: 'petrolIndex',
+                            name: 'Petrol Index',
+                            stroke: '#38BDF8',
+                            strokeWidth: 2.5,
+                            dot: false,
+                            activeDot: { r: 6, fill: '#38BDF8', stroke: '#060914', strokeWidth: 2.5 }
+                        }),
+                        e(Line, {
+                            key: 'lineDiesel',
+                            type: 'monotone',
+                            dataKey: 'dieselIndex',
+                            name: 'Diesel Index',
+                            stroke: '#10B981',
+                            strokeWidth: 2.5,
+                            dot: false,
+                            activeDot: { r: 6, fill: '#10B981', stroke: '#060914', strokeWidth: 2.5 }
+                        })
+                    );
+                } else {
+                    children.push(
+                        e(Area, {
+                            key: 'areaMain',
                             type: 'monotone',
                             dataKey: 'price',
                             stroke: strokeColor,
-                            strokeWidth: 3,
+                            strokeWidth: 2.5,
                             fillOpacity: 1,
                             fill: 'url(#chartGradientMain)',
-                            dot: { r: 4, fill: strokeColor, strokeWidth: 2, stroke: '#060914' }
+                            dot: { r: 3.5, fill: strokeColor, strokeWidth: 1.5, stroke: '#060914' },
+                            activeDot: { 
+                                r: 6.5, 
+                                fill: strokeColor, 
+                                strokeWidth: 2.5, 
+                                stroke: '#060914' 
+                            }
                         })
-                    )
+                    );
+                }
+
+                // Interactive Brush for slider zoom & pan
+                children.push(
+                    e(Brush, {
+                        key: 'brush',
+                        dataKey: 'day',
+                        height: 26,
+                        stroke: strokeColor,
+                        fill: isDark ? 'rgba(11, 17, 32, 0.85)' : 'rgba(241, 245, 249, 0.85)',
+                        travellerWidth: 10,
+                        startIndex: 0,
+                        endIndex: activeData.length - 1,
+                        onChange: (range) => {
+                            if (range && range.startIndex != null && range.endIndex != null) {
+                                const sub = activeData.slice(range.startIndex, range.endIndex + 1);
+                                if (sub.length > 0) {
+                                    updateInspectionBar(sub[sub.length - 1]);
+                                }
+                            }
+                        }
+                    })
+                );
+
+                const chartElement = e(ResponsiveContainer, { width: '100%', height: 260 },
+                    e(ComposedChart, { 
+                        data: activeData, 
+                        margin: { top: 10, right: 12, left: 0, bottom: 2 },
+                        onMouseMove: (ev) => {
+                            if (ev && ev.activePayload && ev.activePayload.length) {
+                                updateInspectionBar(ev.activePayload[0].payload);
+                            }
+                        },
+                        onMouseLeave: () => {
+                            resetInspectionBar();
+                        }
+                    }, children)
                 );
 
                 if (!root._reactRoot) {
@@ -2011,53 +2569,113 @@
         renderSvgFallback(root, activeData, strokeColor, fillColor);
     }
 
+    // High-Precision SVG Fallback with Dynamic Tooltip Crosshair & Interaction
     function renderSvgFallback(container, data, strokeColor, fillColor) {
         if (!data || !data.length) return;
-        const width = 540;
-        const height = 220;
-        const padX = 40;
+        const width = 560;
+        const height = 230;
+        const padX = 45;
         const padY = 25;
+        const bottomPad = 35;
 
-        const prices = data.map(d => d.price);
+        const prices = data.map(d => d.price || d.goldPrice || 100);
         const minP = Math.min(...prices);
         const maxP = Math.max(...prices);
         const rangeP = (maxP - minP) || 1;
 
         const points = data.map((d, i) => {
             const x = padX + (i / (data.length - 1)) * (width - padX * 2);
-            const val = d.price;
-            const y = height - padY - ((val - minP) / rangeP) * (height - padY * 2);
+            const val = d.price || d.goldPrice;
+            const y = height - bottomPad - ((val - minP) / rangeP) * (height - padY - bottomPad);
             return { x, y, ...d, val };
         });
 
         const pathD = points.reduce((acc, p, i) => i === 0 ? `M ${p.x} ${p.y}` : `${acc} L ${p.x} ${p.y}`, '');
-        const areaD = `${pathD} L ${points[points.length-1].x} ${height - padY} L ${points[0].x} ${height - padY} Z`;
+        const areaD = `${pathD} L ${points[points.length-1].x} ${height - bottomPad} L ${points[0].x} ${height - bottomPad} Z`;
 
         container.innerHTML = `
-            <svg viewBox="0 0 ${width} ${height}" style="width:100%; height:230px; overflow:visible;">
-                <defs>
-                    <linearGradient id="svgFallGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="${strokeColor}" stop-opacity="0.35"/>
-                        <stop offset="100%" stop-color="${strokeColor}" stop-opacity="0.0"/>
-                    </linearGradient>
-                </defs>
-                <line x1="${padX}" y1="${padY}" x2="${width - padX}" y2="${padY}" stroke="#1E293B" stroke-dasharray="3,3"/>
-                <line x1="${padX}" y1="${height - padY}" x2="${width - padX}" y2="${height - padY}" stroke="#1E293B"/>
-                <path d="${areaD}" fill="url(#svgFallGrad)" />
-                <path d="${pathD}" fill="none" stroke="${strokeColor}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                ${points.map((p, idx) => `
-                    <circle cx="${p.x}" cy="${p.y}" r="4.5" fill="${strokeColor}" stroke="#060914" stroke-width="2"/>
-                    <text x="${p.x}" y="${height - 8}" text-anchor="middle" fill="#94A3B8" font-size="10">${p.day}</text>
-                    ${idx === 0 || idx === points.length - 1 ? `
-                        <text x="${p.x}" y="${p.y - 10}" text-anchor="middle" fill="var(--text-primary)" font-size="10" font-weight="700">PKR ${(p.val >= 1000 ? (p.val/1000).toFixed(1)+'k' : p.val)}</text>
-                    ` : ''}
-                `).join('')}
-            </svg>
-        `;
-    }
+            <div style="position:relative; width:100%; height:260px;">
+                <svg id="mainSvgChart" viewBox="0 0 ${width} ${height}" style="width:100%; height:230px; overflow:visible; cursor:crosshair;">
+                    <defs>
+                        <linearGradient id="svgFallGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="${strokeColor}" stop-opacity="0.38"/>
+                            <stop offset="100%" stop-color="${strokeColor}" stop-opacity="0.0"/>
+                        </linearGradient>
+                    </defs>
+                    <line x1="${padX}" y1="${padY}" x2="${width - padX}" y2="${padY}" stroke="#1E293B" stroke-dasharray="3,3"/>
+                    <line x1="${padX}" y1="${height - bottomPad}" x2="${width - padX}" y2="${height - bottomPad}" stroke="#1E293B"/>
+                    <path d="${areaD}" fill="url(#svgFallGrad)" />
+                    <path d="${pathD}" fill="none" stroke="${strokeColor}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <!-- Dynamic Tooltip Crosshair Elements -->
+                    <line id="svgCrossV" x1="-10" y1="0" x2="-10" y2="${height - bottomPad}" stroke="${strokeColor}" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.9" style="transition:x1 0.05s, x2 0.05s;"/>
+                    <line id="svgCrossH" x1="${padX}" y1="-10" x2="${width - padX}" y2="-10" stroke="${strokeColor}" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.7" style="transition:y1 0.05s, y2 0.05s;"/>
+                    <circle id="svgCrossDot" cx="-20" cy="-20" r="6" fill="${strokeColor}" stroke="#060914" stroke-width="2.5"/>
 
-    // -------------------------------------------------------------
-    // 4. HIGH-PRECISION 1-MINUTE NET SPEED TEST (MB/S & MBPS)
+                    ${points.map((p) => `
+                        <circle cx="${p.x}" cy="${p.y}" r="3.5" fill="${strokeColor}" stroke="#060914" stroke-width="1.5"/>
+                        <text x="${p.x}" y="${height - 12}" text-anchor="middle" fill="#94A3B8" font-size="9">${p.day}</text>
+                    `).join('')}
+                </svg>
+                <div id="svgHoverTooltip" style="display:none; position:absolute; pointer-events:none; background:rgba(11,17,32,0.95); border:1.5px solid ${strokeColor}; border-radius:8px; padding:8px 12px; font-size:11px; color:#fff; box-shadow:0 8px 24px rgba(0,0,0,0.6); z-index:100; white-space:nowrap;"></div>
+            </div>
+        `;
+
+        // SVG Interactive Mousemove & Touchmove Crosshair Tracker
+        const svgEl = document.getElementById('mainSvgChart');
+        const vLine = document.getElementById('svgCrossV');
+        const hLine = document.getElementById('svgCrossH');
+        const crossDot = document.getElementById('svgCrossDot');
+        const tipEl = document.getElementById('svgHoverTooltip');
+
+        if (svgEl) {
+            function handleTrack(evt) {
+                const rect = svgEl.getBoundingClientRect();
+                const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+                const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+                const svgX = ((clientX - rect.left) / rect.width) * width;
+
+                // Find closest data point
+                let closest = points[0];
+                let minDiff = Infinity;
+                points.forEach(p => {
+                    const diff = Math.abs(p.x - svgX);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        closest = p;
+                    }
+                });
+
+                if (vLine) { vLine.setAttribute('x1', closest.x); vLine.setAttribute('x2', closest.x); }
+                if (hLine) { hLine.setAttribute('y1', closest.y); hLine.setAttribute('y2', closest.y); }
+                if (crossDot) { crossDot.setAttribute('cx', closest.x); crossDot.setAttribute('cy', closest.y); }
+
+                updateInspectionBar(closest);
+
+                if (tipEl) {
+                    tipEl.style.display = 'block';
+                    const relX = (closest.x / width) * rect.width;
+                    const relY = (closest.y / height) * rect.height;
+                    tipEl.style.left = `${Math.min(rect.width - 180, Math.max(10, relX - 90))}px`;
+                    tipEl.style.top = `${Math.max(10, relY - 70)}px`;
+                    tipEl.innerHTML = `
+                        <div style="font-size:9px; color:${strokeColor}; font-weight:800; letter-spacing:0.5px;">🎯 CROSSHAIR LOCKED</div>
+                        <div style="font-weight:700; color:#fff;">${closest.date || closest.day} (${closest.session})</div>
+                        <div style="font-size:14px; font-weight:900; color:${strokeColor};">PKR ${(closest.val >= 1000 ? closest.val.toLocaleString() : closest.val.toFixed(2))}</div>
+                        <div style="font-size:10px; color:#10B981;">Delta: ${closest.change || '▲ +0.2%'}</div>
+                    `;
+                }
+            }
+
+            svgEl.addEventListener('mousemove', handleTrack);
+            svgEl.addEventListener('touchmove', handleTrack, { passive: true });
+            svgEl.addEventListener('mouseleave', () => {
+                if (tipEl) tipEl.style.display = 'none';
+                resetInspectionBar();
+            });
+        }
+    }
+// 4. HIGH-PRECISION 1-MINUTE NET SPEED TEST (MB/S & MBPS)
     // -------------------------------------------------------------
     let speedTestDurationSec = 60; // Default 1 Minute as requested
     let isSpeedTestRunning = false;
