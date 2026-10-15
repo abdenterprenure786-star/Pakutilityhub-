@@ -82,6 +82,14 @@ fun GoldScreen(
     var zakatSilverGramsInput by remember { mutableStateOf("0.0") }
     var zakatCashInput by remember { mutableStateOf("500000") }
 
+    // Gold Buy / Sell Profit & Commission Simulator State
+    var tradeMode by remember { mutableStateOf("SIMULATE") } // SIMULATE, BUY, SELL
+    var tradeKarat by remember { mutableStateOf("24K") }
+    var tradeQtyInput by remember { mutableStateOf("1.0") }
+    var tradeBuyRateInput by remember { mutableStateOf("434200") }
+    var tradeSellRateInput by remember { mutableStateOf("437836") }
+    var tradeCommissionPercent by remember { mutableDoubleStateOf(1.0) } // 1.0% Sarafa dealer standard
+
     val scrollState = rememberScrollState()
 
     Column(
@@ -387,6 +395,305 @@ fun GoldScreen(
                                 Text("Rs. ${String.format("%,d", val22k)}", style = MaterialTheme.typography.bodyLarge, color = HubEmerald, fontWeight = FontWeight.Bold)
                             }
                         }
+                    }
+                }
+            }
+        }
+
+        // -------------------------------------------------------------
+        // GOLD BUY / SELL PROFIT & COMMISSION SIMULATOR CARD
+        // -------------------------------------------------------------
+        val parsedTradeQty = tradeQtyInput.toDoubleOrNull() ?: 1.0
+        val parsedTradeBuy = tradeBuyRateInput.toDoubleOrNull() ?: 434200.0
+        val parsedTradeSell = tradeSellRateInput.toDoubleOrNull() ?: 437836.0
+        val totalTradeBuy = parsedTradeQty * parsedTradeBuy
+        val totalTradeSell = parsedTradeQty * parsedTradeSell
+        val tradeGrossSpread = totalTradeSell - totalTradeBuy
+        val tradeBase = if (tradeMode == "BUY") totalTradeBuy else totalTradeSell
+        val tradeCommissionPkr = (tradeCommissionPercent / 100.0) * tradeBase
+        val tradeNetProfit = tradeGrossSpread - tradeCommissionPkr
+        val tradeRoi = if (totalTradeBuy > 0) (tradeNetProfit / totalTradeBuy) * 100 else 0.0
+        val tradeBreakEven = parsedTradeBuy + (tradeCommissionPkr / maxOf(0.001, parsedTradeQty))
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(1.5.dp, HubBorderGold, RoundedCornerShape(14.dp)),
+            colors = CardDefaults.cardColors(containerColor = HubCardElevated),
+            shape = RoundedCornerShape(14.dp)
+        ) {
+            Column(modifier = Modifier.padding(14.dp)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            imageVector = Icons.Default.MonetizationOn,
+                            contentDescription = null,
+                            tint = HubGold,
+                            modifier = Modifier.size(18.dp)
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text(
+                            text = "GOLD BUY / SELL PROFIT & COMMISSION",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = HubGold,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(Color(0xFF282D07))
+                            .padding(horizontal = 6.dp, vertical = 2.dp)
+                    ) {
+                        Text(
+                            text = "صرافہ ٹریڈ و کمیشن",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = HubGold,
+                            fontSize = 9.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                // Buy / Sell Mode Toggle Pills
+                Text("TRANSACTION MODE (خرید یا فروخت منتخب کریں):", style = MaterialTheme.typography.labelSmall, color = HubTextSecondary, fontSize = 10.sp)
+                Spacer(modifier = Modifier.height(4.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    listOf("SIMULATE" to "💰 Full Profit", "BUY" to "🟢 Buy Order", "SELL" to "🔴 Sell Order").forEach { (mode, label) ->
+                        val isSelected = tradeMode == mode
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(if (isSelected) (if (mode == "BUY") HubSky else HubGold) else HubInnerWell)
+                                .border(1.dp, if (isSelected) (if (mode == "BUY") HubSky else HubGold) else HubBorder, RoundedCornerShape(8.dp))
+                                .clickable { tradeMode = mode }
+                                .padding(vertical = 8.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = label,
+                                color = if (isSelected) Color.Black else HubTextPrimary,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 10.sp
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                // Karat Chips Row
+                Text("SELECT PURITY (قیراط منتخب کریں):", style = MaterialTheme.typography.labelSmall, color = HubTextDim, fontSize = 9.sp)
+                Spacer(modifier = Modifier.height(4.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    listOf("24K" to 434200.0 to 437836.0, "22K" to 393000.0 to 396458.0, "21K" to 374500.0 to 378000.0, "18K" to 321000.0 to 324000.0).forEach { item ->
+                        val karat = item.first.first
+                        val buyR = item.first.second
+                        val sellR = item.second
+                        val isSelected = tradeKarat == karat
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(if (isSelected) HubGold else HubInnerWell)
+                                .border(1.dp, if (isSelected) HubGold else HubBorder, RoundedCornerShape(6.dp))
+                                .clickable {
+                                    tradeKarat = karat
+                                    tradeBuyRateInput = buyR.toLong().toString()
+                                    tradeSellRateInput = sellR.toLong().toString()
+                                }
+                                .padding(vertical = 6.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = karat,
+                                color = if (isSelected) Color.Black else HubTextPrimary,
+                                fontWeight = FontWeight.Black,
+                                fontSize = 11.sp
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                // Quantity Input
+                OutlinedTextField(
+                    value = tradeQtyInput,
+                    onValueChange = { tradeQtyInput = it },
+                    label = { Text("Weight in Tolas (مقدار بمع تولہ)") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Rates Row (Buy & Sell)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    if (tradeMode != "SELL") {
+                        OutlinedTextField(
+                            value = tradeBuyRateInput,
+                            onValueChange = { tradeBuyRateInput = it },
+                            label = { Text("Buy Rate/Tola") },
+                            modifier = Modifier.weight(1f),
+                            singleLine = true
+                        )
+                    }
+                    if (tradeMode != "BUY") {
+                        OutlinedTextField(
+                            value = tradeSellRateInput,
+                            onValueChange = { tradeSellRateInput = it },
+                            label = { Text("Sell Rate/Tola") },
+                            modifier = Modifier.weight(1f),
+                            singleLine = true
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                // Commission Selection Box
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(HubInnerWell)
+                        .padding(10.dp)
+                ) {
+                    Column {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text("MY BROKER COMMISSION (آپ کا کمیشن):", style = MaterialTheme.typography.labelSmall, color = HubGold, fontWeight = FontWeight.Bold, fontSize = 10.sp)
+                            Text("${tradeCommissionPercent}% (Rs. ${String.format("%,.0f", tradeCommissionPkr / maxOf(0.001, parsedTradeQty))}/Tola)", style = MaterialTheme.typography.labelSmall, color = HubGold, fontWeight = FontWeight.Black, fontSize = 10.sp)
+                        }
+                        Spacer(modifier = Modifier.height(6.dp))
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            listOf(0.5 to "0.5%", 1.0 to "1.0% (Std)", 1.5 to "1.5%", 2.0 to "2.0%").forEach { (rate, lbl) ->
+                                val isSelected = tradeCommissionPercent == rate
+                                Box(
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .clip(RoundedCornerShape(4.dp))
+                                        .background(if (isSelected) HubGold else Color(0xFF131B2E))
+                                        .border(1.dp, if (isSelected) HubGold else HubBorder, RoundedCornerShape(4.dp))
+                                        .clickable { tradeCommissionPercent = rate }
+                                        .padding(vertical = 4.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = lbl,
+                                        color = if (isSelected) Color.Black else HubTextSecondary,
+                                        fontSize = 9.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                // Breakdown Card
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(HubInnerWell)
+                        .padding(10.dp)
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                            Text("Total Purchase Cost:", style = MaterialTheme.typography.labelSmall, color = HubTextSecondary, fontSize = 10.sp)
+                            Text("Rs. ${String.format("%,.0f", totalTradeBuy)}", style = MaterialTheme.typography.labelSmall, color = HubTextPrimary, fontWeight = FontWeight.Bold)
+                        }
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                            Text("Total Gross Revenue:", style = MaterialTheme.typography.labelSmall, color = HubTextSecondary, fontSize = 10.sp)
+                            Text("Rs. ${String.format("%,.0f", totalTradeSell)}", style = MaterialTheme.typography.labelSmall, color = HubTextPrimary, fontWeight = FontWeight.Bold)
+                        }
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                            Text("Trading Spread:", style = MaterialTheme.typography.labelSmall, color = HubTextSecondary, fontSize = 10.sp)
+                            Text("${if (tradeGrossSpread >= 0) "+" else ""}Rs. ${String.format("%,.0f", tradeGrossSpread)}", style = MaterialTheme.typography.labelSmall, color = if (tradeGrossSpread >= 0) HubEmerald else HubRose, fontWeight = FontWeight.Bold)
+                        }
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                            Text("My Commission Earned:", style = MaterialTheme.typography.labelSmall, color = HubGold, fontWeight = FontWeight.Bold, fontSize = 10.sp)
+                            Text("Rs. ${String.format("%,.0f", tradeCommissionPkr)}", style = MaterialTheme.typography.labelSmall, color = HubGold, fontWeight = FontWeight.Black)
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                // Result Box
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(if (tradeNetProfit >= 0) Color(0xFF0C2413) else Color(0xFF280B10))
+                        .border(1.dp, if (tradeNetProfit >= 0) HubEmerald else HubRose, RoundedCornerShape(10.dp))
+                        .padding(12.dp)
+                ) {
+                    Column {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column {
+                                Text(
+                                    text = if (tradeMode == "BUY") "TOTAL BUY ACQUISITION" else if (tradeMode == "SELL") "NET CASH-OUT PAYOUT" else "NET INVESTOR / TRADER PROFIT",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = if (tradeNetProfit >= 0) HubEmerald else HubRose,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 10.sp
+                                )
+                                Text(
+                                    text = if (tradeMode == "BUY") "کل لاگت بمع کمیشن" else if (tradeMode == "SELL") "بعد از کمیشن وصولی رقم" else "خالص منافع بعد از کمیشن",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = HubTextDim,
+                                    fontSize = 9.sp
+                                )
+                            }
+                            Text(
+                                text = if (tradeMode == "BUY") "Rs. ${String.format("%,.0f", totalTradeBuy + tradeCommissionPkr)}"
+                                       else if (tradeMode == "SELL") "Rs. ${String.format("%,.0f", totalTradeSell - tradeCommissionPkr)}"
+                                       else "${if (tradeNetProfit >= 0) "+" else ""}Rs. ${String.format("%,.0f", tradeNetProfit)}",
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = if (tradeNetProfit >= 0) HubEmerald else HubRose,
+                                fontWeight = FontWeight.Black,
+                                fontSize = 22.sp
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = if (tradeMode == "SIMULATE") "ROI: ${String.format("%.2f", tradeRoi)}% • Break-Even Sell: Rs. ${String.format("%,.0f", tradeBreakEven)}"
+                                   else "Commission: Rs. ${String.format("%,.0f", tradeCommissionPkr)} (${tradeCommissionPercent}%)",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = HubTextSecondary,
+                            fontSize = 9.sp
+                        )
                     }
                 }
             }

@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+    <!-- Cache-Busting Headers for Instant GitHub & Web Updates -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="build-version" content="2026.10.15.v3-gold-trade">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
@@ -1473,6 +1479,123 @@
                     <div class="result-sub" id="goldEquivDetails">Equivalent to 1.000 Tola (11.66 Grams)</div>
                 </div>
             </div>
+        
+            <!-- GOLD BUY / SELL PROFIT & COMMISSION SIMULATOR -->
+            <div class="card elevated" style="border:1.5px solid var(--gold-border); margin-top:14px;">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="svg-icon" style="width:18px; height:18px; color:var(--gold);"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></span>
+                        <span class="card-title">GOLD BUY / SELL PROFIT & COMMISSION SIMULATOR</span>
+                    </div>
+                    <span class="badge gold">صرافہ ٹریڈ و کمیشن</span>
+                </div>
+
+                <!-- Buy / Sell Mode Toggle Pills -->
+                <div style="font-size:11px; color:var(--text-secondary); margin-bottom:6px; font-weight:700;">TRANSACTION MODE (خرید یا فروخت منتخب کریں):</div>
+                <div class="chart-toggle-row" id="goldTradeModeRow">
+                    <button class="chart-pill active" id="btnTradeSimulate" onclick="setGoldTradeMode('simulate', this)">💰 Profit Simulator (خرید و فروخت منافع)</button>
+                    <button class="chart-pill" id="btnTradeBuy" onclick="setGoldTradeMode('buy', this)">🟢 Buy Order (خریداری تخمینہ)</button>
+                    <button class="chart-pill" id="btnTradeSell" onclick="setGoldTradeMode('sell', this)">🔴 Sell Order (فروخت و کیش آؤٹ)</button>
+                </div>
+
+                <!-- Karat Chips -->
+                <div style="font-size:11px; color:var(--text-dim); margin:8px 0 4px; font-weight:700;">SELECT PURITY / KARAT (قیراط منتخب کریں):</div>
+                <div class="chip-group" id="tradeKaratChips">
+                    <button class="chip active" onclick="setTradeCarat(24, this)">24K Pure (Rs. 437,836)</button>
+                    <button class="chip" onclick="setTradeCarat(22, this)">22K Jewelry (Rs. 396,458)</button>
+                    <button class="chip" onclick="setTradeCarat(21, this)">21K Gulf (Rs. 378,000)</button>
+                    <button class="chip" onclick="setTradeCarat(18, this)">18K Standard (Rs. 324,000)</button>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Weight Quantity (مقدار)</label>
+                        <input type="number" step="0.01" class="form-control" id="tradeGoldQty" value="1" oninput="calculateGoldTrade()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Unit of Measure (پیمائش)</label>
+                        <select class="form-control" id="tradeGoldUnit" onchange="calculateGoldTrade()">
+                            <option value="tola" selected>Per Tola (تولہ - 11.664g)</option>
+                            <option value="10gram">Per 10 Grams (۱۰ گرام)</option>
+                            <option value="gram">Per 1 Gram (۱ گرام)</option>
+                            <option value="ounce">Per Troy Ounce (اونس - 31.103g)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group" id="tradeBuyRateGroup">
+                        <label class="form-label">Purchase Rate (خریداری ریٹ فی تولہ - PKR)</label>
+                        <input type="number" class="form-control" id="tradeBuyRate" value="434200" oninput="calculateGoldTrade()">
+                        <span style="font-size:9px; color:var(--text-secondary); margin-top:2px; display:block;">Benchmark Buy: Rs. 434,200</span>
+                    </div>
+                    <div class="form-group" id="tradeSellRateGroup">
+                        <label class="form-label">Selling Rate (فروخت ریٹ فی تولہ - PKR)</label>
+                        <input type="number" class="form-control" id="tradeSellRate" value="437836" oninput="calculateGoldTrade()">
+                        <span style="font-size:9px; color:var(--text-secondary); margin-top:2px; display:block;">Benchmark Sell: Rs. 437,836</span>
+                    </div>
+                </div>
+
+                <!-- Commission Section -->
+                <div style="background:var(--bg-inner); border:1px solid var(--border-dim); border-radius:10px; padding:12px; margin:10px 0;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                        <span style="font-size:11px; font-weight:800; color:var(--gold); display:flex; align-items:center; gap:4px;">
+                            🤝 MY COMMISSION / BROKERAGE (آپ کا کمیشن):
+                        </span>
+                        <span class="badge gold" id="tradeCommissionBadge">1.0% (Rs. 4,378 / Tola)</span>
+                    </div>
+                    
+                    <div class="chip-group" style="margin-bottom:8px;">
+                        <button class="chip" onclick="setTradeCommissionPreset(0.5, 'percent', this)">0.5% (Wholesale)</button>
+                        <button class="chip active" onclick="setTradeCommissionPreset(1.0, 'percent', this)">1.0% (Standard Dealer - Recommended)</button>
+                        <button class="chip" onclick="setTradeCommissionPreset(1.5, 'percent', this)">1.5% (Retail Broker)</button>
+                        <button class="chip" onclick="setTradeCommissionPreset(1000, 'fixed', this)">Rs. 1,000 / Tola</button>
+                        <button class="chip" onclick="setTradeCommissionPreset(2000, 'fixed', this)">Rs. 2,000 / Tola</button>
+                    </div>
+
+                    <div class="form-row" style="margin-bottom:0;">
+                        <div class="form-group">
+                            <label class="form-label">Commission Model</label>
+                            <select class="form-control" id="tradeCommType" onchange="calculateGoldTrade()">
+                                <option value="percent" selected>Percentage (%) of Gross Trade</option>
+                                <option value="fixed">Fixed Amount (PKR per Tola)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Commission Rate (درج کریں)</label>
+                            <input type="number" step="0.1" class="form-control" id="tradeCommValue" value="1.0" oninput="calculateGoldTrade()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulation Breakdown Table -->
+                <div style="background:var(--bg-inner); border:1px solid var(--border-dim); border-radius:10px; padding:12px; margin-bottom:12px;">
+                    <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px;">
+                        <span style="color:var(--text-secondary);">Total Purchase Cost (کل لاگت خرید):</span>
+                        <span style="font-weight:700;" id="tradeTotalBuy">PKR 434,200</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px;">
+                        <span style="color:var(--text-secondary);">Total Gross Revenue (کل فروخت رقم):</span>
+                        <span style="font-weight:700;" id="tradeTotalSell">PKR 437,836</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px;">
+                        <span style="color:var(--text-secondary);">Gross Trading Spread (خام فرق):</span>
+                        <span style="font-weight:700; color:var(--sky);" id="tradeGrossSpread">+PKR 3,636</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:12px; padding-top:6px; border-top:1px dashed var(--border-dim);">
+                        <span style="color:var(--gold); font-weight:800;">My Commission Earned (آپ کا کمیشن):</span>
+                        <span style="font-weight:900; color:var(--gold);" id="tradeCommissionEarned">PKR 4,378</span>
+                    </div>
+                </div>
+
+                <!-- Net Trade Result Banner -->
+                <div class="result-box gold-theme" id="tradeResultBox">
+                    <div class="result-lbl" id="tradeResultTitle">NET TRADER RETURN / PROFIT (خالص نفع یا نقصان)</div>
+                    <div class="result-val gold" id="tradeNetProfit">+PKR 8,014</div>
+                    <div class="result-sub" id="tradeRoiSubtitle">ROI: +1.85% • Net Per Tola: +PKR 8,014 • Break-Even Sell: PKR 438,542</div>
+                </div>
+            </div>
+
         </section>
 
         <!-- 2. FUEL & TRIP EXPENSE SCREEN (UPDATED FROM USER SCREENSHOTS) -->
@@ -1974,7 +2097,169 @@
     (function initTheme() {
         const savedTheme = localStorage.getItem('pakutility_theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
-        window.addEventListener('DOMContentLoaded', () => {
+        
+    // -------------------------------------------------------------
+    // GOLD BUY / SELL PROFIT & COMMISSION SIMULATOR LOGIC
+    // -------------------------------------------------------------
+    let currentTradeMode = 'simulate'; // 'simulate', 'buy', 'sell'
+    let tradeCarat = 24;
+
+    const BENCHMARK_RATES = {
+        24: { buy: 434200, sell: 437836 },
+        22: { buy: 393000, sell: 396458 },
+        21: { buy: 374500, sell: 378000 },
+        18: { buy: 321000, sell: 324000 }
+    };
+
+    function setGoldTradeMode(mode, btn) {
+        currentTradeMode = mode;
+        document.querySelectorAll('#goldTradeModeRow .chart-pill').forEach(b => b.classList.remove('active', 'sky-active'));
+        if (btn) btn.classList.add(mode === 'buy' ? 'sky-active' : 'active');
+
+        const buyGroup = document.getElementById('tradeBuyRateGroup');
+        const sellGroup = document.getElementById('tradeSellRateGroup');
+
+        if (mode === 'buy') {
+            if (buyGroup) buyGroup.style.display = 'block';
+            if (sellGroup) sellGroup.style.display = 'none';
+        } else if (mode === 'sell') {
+            if (buyGroup) buyGroup.style.display = 'none';
+            if (sellGroup) sellGroup.style.display = 'block';
+        } else {
+            if (buyGroup) buyGroup.style.display = 'block';
+            if (sellGroup) sellGroup.style.display = 'block';
+        }
+
+        calculateGoldTrade();
+        showToast(mode === 'buy' ? '🟢 Buy Order Mode' : (mode === 'sell' ? '🔴 Sell Order Mode' : '💰 Full Profit Simulator Mode'));
+    }
+
+    function setTradeCarat(carat, btn) {
+        tradeCarat = carat;
+        document.querySelectorAll('#tradeKaratChips .chip').forEach(c => c.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+
+        const rates = BENCHMARK_RATES[carat] || BENCHMARK_RATES[24];
+        const buyInput = document.getElementById('tradeBuyRate');
+        const sellInput = document.getElementById('tradeSellRate');
+
+        if (buyInput) buyInput.value = rates.buy;
+        if (sellInput) sellInput.value = rates.sell;
+
+        calculateGoldTrade();
+    }
+
+    function setTradeCommissionPreset(val, type, btn) {
+        document.querySelectorAll('#tradeKaratChips .chip, .card .chip').forEach(c => {
+            if (c.onclick && c.onclick.toString().includes('setTradeCommissionPreset')) {
+                c.classList.remove('active');
+            }
+        });
+        if (btn) btn.classList.add('active');
+
+        const typeSelect = document.getElementById('tradeCommType');
+        const valInput = document.getElementById('tradeCommValue');
+        if (typeSelect) typeSelect.value = type;
+        if (valInput) valInput.value = val;
+
+        calculateGoldTrade();
+    }
+
+    function calculateGoldTrade() {
+        const qty = parseFloat(document.getElementById('tradeGoldQty')?.value) || 0;
+        const unit = document.getElementById('tradeGoldUnit')?.value || 'tola';
+        const buyRate = parseFloat(document.getElementById('tradeBuyRate')?.value) || 0;
+        const sellRate = parseFloat(document.getElementById('tradeSellRate')?.value) || 0;
+        const commType = document.getElementById('tradeCommType')?.value || 'percent';
+        const commVal = parseFloat(document.getElementById('tradeCommValue')?.value) || 0;
+
+        let tolas = qty;
+        if (unit === '10gram') tolas = (qty * 10.0) / 11.664;
+        else if (unit === 'gram') tolas = qty / 11.664;
+        else if (unit === 'ounce') tolas = qty * 2.6666;
+
+        const totalBuy = tolas * buyRate;
+        const totalSell = tolas * sellRate;
+        const grossSpread = totalSell - totalBuy;
+
+        let commission = 0;
+        if (commType === 'percent') {
+            // Dealer commission standardly calculated on gross transaction value
+            const tradeBase = (currentTradeMode === 'buy') ? totalBuy : totalSell;
+            commission = (commVal / 100.0) * tradeBase;
+        } else {
+            // Fixed Rs per tola
+            commission = commVal * tolas;
+        }
+
+        const commPerTola = tolas > 0 ? (commission / tolas) : 0;
+        const commBadge = document.getElementById('tradeCommissionBadge');
+        if (commBadge) {
+            commBadge.textContent = commType === 'percent' 
+                ? `${commVal.toFixed(1)}% (PKR ${Math.round(commPerTola).toLocaleString()} / Tola)`
+                : `PKR ${commVal.toLocaleString()} / Tola (${((commission/Math.max(1, totalSell))*100).toFixed(2)}%)`;
+        }
+
+        const totalBuyEl = document.getElementById('tradeTotalBuy');
+        const totalSellEl = document.getElementById('tradeTotalSell');
+        const spreadEl = document.getElementById('tradeGrossSpread');
+        const commEarnedEl = document.getElementById('tradeCommissionEarned');
+
+        if (totalBuyEl) totalBuyEl.textContent = `PKR ${Math.round(totalBuy).toLocaleString()}`;
+        if (totalSellEl) totalSellEl.textContent = `PKR ${Math.round(totalSell).toLocaleString()}`;
+        if (spreadEl) {
+            spreadEl.textContent = `${grossSpread >= 0 ? '+' : ''}PKR ${Math.round(grossSpread).toLocaleString()}`;
+            spreadEl.style.color = grossSpread >= 0 ? 'var(--emerald)' : 'var(--rose)';
+        }
+        if (commEarnedEl) commEarnedEl.textContent = `PKR ${Math.round(commission).toLocaleString()}`;
+
+        const resultTitle = document.getElementById('tradeResultTitle');
+        const netProfitEl = document.getElementById('tradeNetProfit');
+        const roiSubEl = document.getElementById('tradeRoiSubtitle');
+
+        if (currentTradeMode === 'buy') {
+            const totalAcquisitionCost = totalBuy + commission;
+            const effectivePerTola = tolas > 0 ? totalAcquisitionCost / tolas : 0;
+            if (resultTitle) resultTitle.textContent = "TOTAL BUY ACQUISITION COST (کل لاگت بمع کمیشن)";
+            if (netProfitEl) {
+                netProfitEl.textContent = `PKR ${Math.round(totalAcquisitionCost).toLocaleString()}`;
+                netProfitEl.style.color = 'var(--sky)';
+            }
+            if (roiSubEl) {
+                roiSubEl.textContent = `Effective Buy Rate: PKR ${Math.round(effectivePerTola).toLocaleString()}/Tola • Broker Commission: PKR ${Math.round(commission).toLocaleString()}`;
+            }
+        } else if (currentTradeMode === 'sell') {
+            const netPayout = totalSell - commission;
+            const effectivePerTola = tolas > 0 ? netPayout / tolas : 0;
+            if (resultTitle) resultTitle.textContent = "NET CASH-OUT PAYOUT (بعد از کمیشن وصولی رقم)";
+            if (netProfitEl) {
+                netProfitEl.textContent = `PKR ${Math.round(netPayout).toLocaleString()}`;
+                netProfitEl.style.color = 'var(--emerald)';
+            }
+            if (roiSubEl) {
+                roiSubEl.textContent = `Net Cash In Hand: PKR ${Math.round(netPayout).toLocaleString()} • Broker Deducted: PKR ${Math.round(commission).toLocaleString()}`;
+            }
+        } else {
+            // Full Profit Simulation Mode
+            // Investor Net Profit = grossSpread - commission
+            // Trader / Broker Total Earnings = commission + spread
+            const netProfit = grossSpread - commission;
+            const roi = totalBuy > 0 ? (netProfit / totalBuy) * 100 : 0;
+            const profitPerTola = tolas > 0 ? netProfit / tolas : 0;
+            const breakEvenSellRate = buyRate + (commission / Math.max(0.001, tolas));
+
+            if (resultTitle) resultTitle.textContent = "NET TRADER / INVESTOR PROFIT (خالص منافع بعد از کمیشن)";
+            if (netProfitEl) {
+                netProfitEl.textContent = `${netProfit >= 0 ? '+' : ''}PKR ${Math.round(netProfit).toLocaleString()}`;
+                netProfitEl.style.color = netProfit >= 0 ? 'var(--emerald)' : 'var(--rose)';
+            }
+            if (roiSubEl) {
+                roiSubEl.textContent = `ROI: ${roi >= 0 ? '+' : ''}${roi.toFixed(2)}% • Net/Tola: ${profitPerTola >= 0 ? '+' : ''}PKR ${Math.round(profitPerTola).toLocaleString()} • Break-Even: PKR ${Math.round(breakEvenSellRate).toLocaleString()}`;
+            }
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
             const icon = document.getElementById('themeToggleIcon');
             if (icon) {
                 icon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
@@ -2869,6 +3154,7 @@
             case 21: currentCaratMultiplier = 378000; break;
             case 18: currentCaratMultiplier = 324000; break;
         }
+        calculateGoldTrade();
         calculateCustomGold();
     }
 
