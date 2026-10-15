@@ -136,7 +136,7 @@ fun HubHeader(
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = "Panel",
+                        text = "Navigation Panel",
                         style = MaterialTheme.typography.labelSmall,
                         color = HubTextPrimary,
                         fontFamily = FontFamily.Monospace,
@@ -162,7 +162,7 @@ fun HubHeader(
                     fontSize = 15.sp
                 )
                 Text(
-                    text = "Hub",
+                    text = "PRO",
                     style = MaterialTheme.typography.titleMedium,
                     color = HubGold,
                     fontFamily = FontFamily.Serif,

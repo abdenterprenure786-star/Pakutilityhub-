@@ -40,172 +40,181 @@ object UtilityRepository {
     )
     val syncMetadata: StateFlow<SyncMetadata> = _syncMetadata.asStateFlow()
 
-    // Gold rates in Pakistan (Sourced via All-Pakistan Gems & Jewellers Sarafa Association)
+    // Gold rates in Pakistan (Updated exactly from user screenshot APGJSA benchmark: Rs. 437,836/tola 24K)
     private val _goldRates = MutableStateFlow(
         listOf(
             GoldCaratRate(
                 carat = "24K",
                 name = "Pure 24K Gold (خالص سونا)",
                 purityPercent = 0.999f,
-                ratePerTola = 283500L,
-                ratePer10Grams = 243054L,
-                changePkr = 1200L,
+                ratePerTola = 437836L,
+                ratePer10Grams = 375373L,
+                changePkr = 1500L,
                 isPositive = true,
-                trendBadge = "▲ RISING (+Rs. 1,200 آج مہنگا ہوا ہے)",
-                source = "All-Pakistan Gems & Jewellers Sarafa Association"
+                trendBadge = "▲ RISING (PKR 437,836 / Tola)",
+                source = "All-Pakistan Sarafa Market / APGJSA Benchmarks"
             ),
             GoldCaratRate(
                 carat = "22K",
                 name = "Jewelry 22K Gold (زیوراتی سونا)",
                 purityPercent = 0.916f,
-                ratePerTola = 259875L,
-                ratePer10Grams = 222800L,
-                changePkr = 1100L,
+                ratePerTola = 396458L,
+                ratePer10Grams = 339909L,
+                changePkr = 1375L,
                 isPositive = true,
-                trendBadge = "▲ RISING (+Rs. 1,100 بڑھ رہی ہے)",
-                source = "All-Pakistan Gems & Jewellers Sarafa Association"
+                trendBadge = "▲ RISING (PKR 396,458 / Tola)",
+                source = "All-Pakistan Sarafa Market / APGJSA Benchmarks"
             ),
             GoldCaratRate(
                 carat = "21K",
                 name = "Arabian 21K Gold (عربی سونا)",
                 purityPercent = 0.875f,
-                ratePerTola = 248062L,
-                ratePer10Grams = 212672L,
-                changePkr = 1050L,
+                ratePerTola = 378000L,
+                ratePer10Grams = 324459L,
+                changePkr = 1310L,
                 isPositive = true,
-                trendBadge = "▲ RISING (بڑھ رہی ہے)",
-                source = "All-Pakistan Gems & Jewellers Sarafa Association"
+                trendBadge = "▲ RISING (PKR 378,000 / Tola)",
+                source = "All-Pakistan Sarafa Market / APGJSA Benchmarks"
             ),
             GoldCaratRate(
                 carat = "20K",
                 name = "Commercial 20K (کمرشل سونا)",
                 purityPercent = 0.833f,
-                ratePerTola = 236250L,
-                ratePer10Grams = 202545L,
-                changePkr = 1000L,
+                ratePerTola = 360000L,
+                ratePer10Grams = 308630L,
+                changePkr = 1200L,
                 isPositive = true,
-                trendBadge = "▲ RISING (بڑھ رہی ہے)",
-                source = "All-Pakistan Gems & Jewellers Sarafa Association"
+                trendBadge = "▲ RISING (کمرشل کاسٹ)",
+                source = "All-Pakistan Sarafa Market / APGJSA Benchmarks"
             ),
             GoldCaratRate(
                 carat = "18K",
                 name = "Standard 18K Gold (۱۸ قیراط)",
                 purityPercent = 0.750f,
-                ratePerTola = 212625L,
-                ratePer10Grams = 182291L,
-                changePkr = 900L,
+                ratePerTola = 324000L,
+                ratePer10Grams = 278108L,
+                changePkr = 1125L,
                 isPositive = true,
-                trendBadge = "▲ RISING (بڑھ رہی ہے)",
-                source = "All-Pakistan Gems & Jewellers Sarafa Association"
+                trendBadge = "▲ RISING (PKR 324,000 / Tola)",
+                source = "All-Pakistan Sarafa Market / APGJSA Benchmarks"
             ),
             GoldCaratRate(
                 carat = "SILVER",
                 name = "Pure Silver 24K (خالص چاندی)",
                 purityPercent = 0.999f,
-                ratePerTola = 3350L,
-                ratePer10Grams = 2872L,
-                changePkr = -50L,
-                isPositive = false,
-                trendBadge = "▼ DROPPING (-Rs. 50 سستی ہوئی ہے)",
-                source = "All-Pakistan Gems & Jewellers Sarafa Association"
+                ratePerTola = 4850L,
+                ratePer10Grams = 4158L,
+                changePkr = 50L,
+                isPositive = true,
+                trendBadge = "▲ RISING (+Rs. 50 چاندی)",
+                source = "All-Pakistan Sarafa Market / APGJSA Benchmarks"
             )
         )
     )
     val goldRates: StateFlow<List<GoldCaratRate>> = _goldRates.asStateFlow()
 
-    // Petroleum and Fuel prices (Sourced directly from OGRA & Ministry of Energy Bulletins)
+    // Petroleum and Fuel prices (Updated exactly from user screenshot retail rates)
     private val _fuelRates = MutableStateFlow(
         listOf(
             FuelItem(
                 fuelType = "PETROL",
-                name = "Super Petrol (Euro 5 Motor Gasoline)",
-                pricePerLiter = 248.38,
-                previousPrice = 250.42,
+                name = "Super Petrol (Super / Gasoline)",
+                pricePerLiter = 393.86,
+                previousPrice = 390.15,
                 unit = "Ltr",
-                statusBadge = "Price Decreased",
-                trendAlert = "▼ DROPPING (-Rs. 2.04 سستا ہوا ہے)"
+                statusBadge = "PKR 393.86 - 396.65",
+                trendAlert = "▲ Retail Price Benchmark"
             ),
             FuelItem(
                 fuelType = "HSD",
-                name = "High Speed Diesel (HSD ٹرانسپورٹ)",
-                pricePerLiter = 255.14,
-                previousPrice = 253.89,
+                name = "High-Speed Diesel (HSD ٹرانسپورٹ)",
+                pricePerLiter = 394.94,
+                previousPrice = 396.65,
                 unit = "Ltr",
-                statusBadge = "Price Increased",
-                trendAlert = "▲ RISING (+Rs. 1.25 مہنگا ہوا ہے)"
+                statusBadge = "PKR 394.94 - 396.65",
+                trendAlert = "▲ PSO Notified Rate"
             ),
             FuelItem(
                 fuelType = "HOBC",
-                name = "High Octane Blended (HOBC 97)",
-                pricePerLiter = 268.50,
-                previousPrice = 271.00,
+                name = "High Octane / Octane Euro 5",
+                pricePerLiter = 415.00,
+                previousPrice = 410.00,
                 unit = "Ltr",
-                statusBadge = "Price Decreased",
-                trendAlert = "▼ DROPPING (-Rs. 2.50 سستا ہوا ہے)"
+                statusBadge = "Super High Octane (PSO)",
+                trendAlert = "▲ PKR 415.00 (up to 425 in Gilgit)"
             ),
             FuelItem(
                 fuelType = "KEROSENE",
                 name = "Kerosene Oil (مٹی کا تیل)",
-                pricePerLiter = 165.28,
-                previousPrice = 166.80,
+                pricePerLiter = 330.14,
+                previousPrice = 329.54,
                 unit = "Ltr",
-                statusBadge = "Price Decreased",
-                trendAlert = "▼ DROPPING (-Rs. 1.52 سستا ہوا ہے)"
+                statusBadge = "PKR 329.54 - 330.14",
+                trendAlert = "◆ Domestic Standard"
             ),
             FuelItem(
                 fuelType = "LDO",
-                name = "Light Diesel Oil (لائٹ ڈیزل)",
-                pricePerLiter = 151.16,
-                previousPrice = 152.00,
+                name = "Light Speed Diesel (LSD / LDO)",
+                pricePerLiter = 272.29,
+                previousPrice = 266.41,
                 unit = "Ltr",
-                statusBadge = "Price Decreased",
-                trendAlert = "▼ DROPPING (-Rs. 0.84 سستا ہوا ہے)"
+                statusBadge = "PKR 266.41 - 272.29",
+                trendAlert = "◆ Industrial Standard"
             ),
             FuelItem(
                 fuelType = "JET_JP1",
                 name = "Jet Fuel (JP-1 ہوائی جہاز کا ایندھن)",
-                pricePerLiter = 182.40,
-                previousPrice = 185.00,
+                pricePerLiter = 356.35,
+                previousPrice = 352.00,
                 unit = "Ltr",
-                statusBadge = "Price Decreased",
-                trendAlert = "▼ DROPPING (-Rs. 2.60 سستا ہوا ہے)"
+                statusBadge = "Aviation Cargo",
+                trendAlert = "▲ Aviation Fuel Indexed"
             ),
             FuelItem(
                 fuelType = "CNG",
                 name = "Compressed Natural Gas (CNG)",
-                pricePerLiter = 220.00,
-                previousPrice = 220.00,
+                pricePerLiter = 260.00,
+                previousPrice = 260.00,
                 unit = "Kg",
                 statusBadge = "Fixed Rate",
                 trendAlert = "◆ STABLE (مستحکم ریٹ)"
             ),
             FuelItem(
                 fuelType = "LPG",
-                name = "Liquefied Petroleum Gas (LPG گھریلو)",
-                pricePerLiter = 245.50,
-                previousPrice = 245.50,
+                name = "LPG (Liquefied Petroleum Gas)",
+                pricePerLiter = 279.34,
+                previousPrice = 279.34,
                 unit = "Kg",
-                statusBadge = "OGRA Tariff",
-                trendAlert = "◆ STABLE (مستحکم ریٹ)"
+                statusBadge = "PKR 279.34 per kg (PSO)",
+                trendAlert = "◆ Domestic Cylinder Tariff"
             )
         )
     )
     val fuelRates: StateFlow<List<FuelItem>> = _fuelRates.asStateFlow()
 
-    // Forex Currency Rates (PKR per unit)
+    // Forex Currency Rates (All Countries Parity to PKR)
     private val _forexRates = MutableStateFlow(
         listOf(
-            ForexRate("USD", "US Dollar", "$", "🇺🇸", 278.55, 278.55, 279.80, 281.20, -0.05),
-            ForexRate("EUR", "Euro", "€", "🇪🇺", 301.85, 302.40, 303.10, 305.20, 0.35),
-            ForexRate("GBP", "British Pound", "£", "🇬🇧", 363.20, 363.90, 364.80, 367.50, 0.22),
-            ForexRate("SAR", "Saudi Riyal", "﷼", "🇸🇦", 74.20, 74.35, 74.50, 74.95, -0.02),
-            ForexRate("AED", "UAE Dirham", "د.إ", "🇦🇪", 75.85, 76.00, 76.15, 76.60, 0.01),
-            ForexRate("CAD", "Canadian Dollar", "$", "🇨🇦", 202.10, 202.70, 203.50, 205.30, 0.18),
-            ForexRate("AUD", "Australian Dollar", "$", "🇦🇺", 182.00, 182.60, 183.40, 185.10, -0.12),
-            ForexRate("CNY", "Chinese Yuan", "¥", "🇨🇳", 38.65, 38.85, 39.15, 39.60, 0.08),
-            ForexRate("KWD", "Kuwaiti Dinar", "KD", "🇰🇼", 908.40, 909.20, 911.50, 915.00, 0.15),
-            ForexRate("QAR", "Qatari Riyal", "QR", "🇶🇦", 76.40, 76.55, 76.80, 77.20, 0.05),
-            ForexRate("OMR", "Omani Rial", "RO", "🇴🇲", 723.10, 723.80, 725.50, 729.00, 0.10)
+            ForexRate("USD", "US Dollar (امریکی ڈالر)", "$", "🇺🇸", 278.55, 278.55, 279.80, 281.20, 0.15),
+            ForexRate("SAR", "Saudi Riyal (سعودی ریال)", "﷼", "🇸🇦", 74.20, 74.35, 74.50, 74.95, 0.05),
+            ForexRate("AED", "UAE Dirham (اماراتی درہم)", "د.إ", "🇦🇪", 75.85, 76.00, 76.15, 76.60, 0.08),
+            ForexRate("GBP", "British Pound (برطانوی پاؤنڈ)", "£", "🇬🇧", 363.20, 363.90, 364.80, 367.50, 0.22),
+            ForexRate("EUR", "Euro (یورو)", "€", "🇪🇺", 301.85, 302.40, 303.10, 305.20, 0.35),
+            ForexRate("CAD", "Canadian Dollar (کینیڈین ڈالر)", "$", "🇨🇦", 202.10, 202.70, 203.50, 205.30, 0.18),
+            ForexRate("AUD", "Australian Dollar (آسٹریلین ڈالر)", "$", "🇦🇺", 182.00, 182.60, 183.40, 185.10, -0.12),
+            ForexRate("CNY", "Chinese Yuan (چینی یوآن)", "¥", "🇨🇳", 38.65, 38.85, 39.15, 39.60, 0.08),
+            ForexRate("KWD", "Kuwaiti Dinar (کویتی دینار)", "KD", "🇰🇼", 908.40, 909.20, 911.50, 915.00, 0.15),
+            ForexRate("QAR", "Qatari Riyal (قطری ریال)", "QR", "🇶🇦", 76.40, 76.55, 76.80, 77.20, 0.05),
+            ForexRate("OMR", "Omani Rial (عمانی ریال)", "RO", "🇴🇲", 723.10, 723.80, 725.50, 729.00, 0.10),
+            ForexRate("BHD", "Bahraini Dinar (بحرینی دینار)", "BD", "🇧🇭", 738.50, 739.50, 742.00, 745.50, 0.09),
+            ForexRate("TRY", "Turkish Lira (ترکش لیرا)", "₺", "🇹🇷", 8.10, 8.25, 8.35, 8.65, -0.25),
+            ForexRate("MYR", "Malaysian Ringgit (ملائیشین رنگٹ)", "RM", "🇲🇾", 64.20, 64.60, 65.10, 65.80, 0.12),
+            ForexRate("SGD", "Singapore Dollar (سنگاپور ڈالر)", "S$", "🇸🇬", 212.50, 213.40, 214.20, 216.00, 0.14),
+            ForexRate("JPY", "Japanese Yen (جاپانی ین)", "¥", "🇯🇵", 1.82, 1.85, 1.88, 1.94, -0.05),
+            ForexRate("THB", "Thai Baht (تھائی بھات)", "฿", "🇹🇭", 8.30, 8.42, 8.55, 8.75, 0.06),
+            ForexRate("NZD", "New Zealand Dollar (نیوزی لینڈ ڈالر)", "$", "🇳🇿", 168.40, 169.20, 170.10, 172.00, 0.11),
+            ForexRate("CHF", "Swiss Franc (سوئس فرانک)", "CHF", "🇨🇭", 322.00, 323.20, 324.50, 327.00, 0.20),
+            ForexRate("ZAR", "South African Rand (جنوبی افریقی رینڈ)", "R", "🇿🇦", 15.60, 15.80, 16.00, 16.40, -0.10)
         )
     )
     val forexRates: StateFlow<List<ForexRate>> = _forexRates.asStateFlow()
