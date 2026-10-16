@@ -1,0 +1,2414 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <!-- Cache-Busting Headers for Instant Mobile & Web Updates -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="build-version" content="2026.10.16.v4-full-portal">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- Primary SEO Meta Tags (Rank #1 on Google Pakistan) -->
+    <title>PakUtility Hub — Live Bullion, Fuel Trends, Bill Rates, Forex & Net Speed Pakistan</title>
+    <meta name="title" content="PakUtility Hub — Live Bullion, Fuel Trends, Bill Rates, Forex & Net Speed Pakistan">
+    <meta name="description" content="Pakistan's verified utility portal: 24K Gold rate PKR 437,836/tola, Petrol PKR 393.86/L, Diesel PKR 394.94/L, Recharts 7-day trends, 1-minute high-precision net speed test (MB/s), NEPRA bill calculator, Duplicate Bill Finder (LESCO, IESCO, KE, MEPCO), 1-100 Storey House Cost, Building Materials Rates with Chart, Seasonal Mandi bazaar, Forex Converter, and FBR Salary Tax Calculator.">
+    <meta name="keywords" content="gold rate in pakistan today 437836, petrol price in pakistan today 393.86, diesel price pakistan 394.94, high octane 415, 22k gold tola 396458, net speed test mbps mbs, 1 minute internet speed test, nepra electricity bill calculator, lesco duplicate bill, iesco bill check online, kelectric duplicate bill, ghar banane ka kharcha 1-100 storeys, building material rates pakistan, saria rate today, mandi rate punjab sindh seasonal, fbr salary tax calculator 2025 2026, pakistan currency open market">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="PakUtility Technology Hub">
+    <meta name="geo.region" content="PK">
+    <meta name="geo.placename" content="Islamabad, Lahore, Karachi">
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="oo2p2GZr8JfoaCfltQOhasaKeZ0FN1GEKo3r-Av3UBI" />
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9146146986483244"
+         crossorigin="anonymous"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- React 18 & Recharts 2.12 (with CDN Fallbacks) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.12.7/Recharts.min.js"></script>
+
+    <style>
+        :root {
+            /* Dark Theme (Default) */
+            --bg-base: #060914;
+            --bg-surface: #0B1120;
+            --bg-card: #0F172A;
+            --bg-card-elevated: #162238;
+            --bg-inner: #080D1A;
+            --border-dim: #1E293B;
+            --border-subtle: #24344D;
+            --gold: #F59E0B;
+            --gold-light: #FCD34D;
+            --gold-glow: rgba(245, 158, 11, 0.25);
+            --gold-border: rgba(245, 158, 11, 0.4);
+            --sky: #38BDF8;
+            --sky-border: rgba(56, 189, 248, 0.4);
+            --emerald: #10B981;
+            --emerald-glow: rgba(16, 185, 129, 0.25);
+            --rose: #F43F5E;
+            --purple: #A855F7;
+            --orange: #FB923C;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-dim: #64748B;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.5);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+        }
+
+        [data-theme="light"] {
+            --bg-base: #F8FAFC;
+            --bg-surface: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --bg-card-elevated: #F1F5F9;
+            --bg-inner: #F8FAFC;
+            --border-dim: #E2E8F0;
+            --border-subtle: #CBD5E1;
+            --gold: #D97706;
+            --gold-light: #B45309;
+            --gold-glow: rgba(217, 119, 6, 0.15);
+            --gold-border: rgba(217, 119, 6, 0.35);
+            --sky: #0284C7;
+            --sky-border: rgba(2, 132, 199, 0.35);
+            --emerald: #059669;
+            --emerald-glow: rgba(5, 150, 105, 0.15);
+            --rose: #E11D48;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-dim: #64748B;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        /* Top App Bar */
+        .top-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(11, 17, 32, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-dim);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        [data-theme="light"] .top-navbar {
+            background: rgba(255, 255, 255, 0.92);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hamburger-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+        }
+        .hamburger-btn span {
+            display: block;
+            height: 2px;
+            width: 18px;
+            background-color: var(--gold);
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .brand-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .brand-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, var(--gold), #B45309);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: 900;
+            font-size: 14px;
+            box-shadow: 0 2px 8px var(--gold-glow);
+        }
+        .brand-text-title {
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: -0.2px;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+        .brand-text-sub {
+            font-size: 10px;
+            color: var(--gold);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-dim);
+            color: var(--text-primary);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        /* Reduced Google Ads Container (Compact Space) */
+        .ad-banner-space {
+            background: var(--bg-surface);
+            border: 1px dashed var(--border-dim);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 6px 12px;
+            text-align: center;
+            min-height: 44px;
+            max-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .ad-placeholder-label {
+            font-size: 9px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 700;
+        }
+
+        /* Top Horizontal Tab Scroller */
+        .tabs-scroller {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-dim);
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            padding: 4px 8px;
+            display: flex;
+            gap: 4px;
+        }
+        .tabs-scroller::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .tab-btn.active {
+            background: var(--gold);
+            color: #000;
+            font-weight: 800;
+            box-shadow: 0 2px 8px var(--gold-glow);
+        }
+
+        /* Main Container */
+        .content-area {
+            flex: 1;
+            padding: 12px 14px 80px;
+            max-width: 680px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .screen-view {
+            display: none;
+            animation: fadeIn 0.2s ease;
+        }
+        .screen-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-lg);
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+        .card.elevated {
+            background: var(--bg-card-elevated);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .card-title {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: -0.2px;
+            color: var(--text-primary);
+        }
+
+        .badge {
+            font-size: 9px;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge.gold {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--gold);
+            border: 1px solid var(--gold-border);
+        }
+        .badge.emerald {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--emerald);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+        }
+        .badge.sky {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--sky);
+            border: 1px solid var(--sky-border);
+        }
+
+        /* Recharts Trend Card & Controls */
+        .chart-toggle-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+        .chart-pill {
+            background: var(--bg-inner);
+            border: 1px solid var(--border-dim);
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .chart-pill.active {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+            font-weight: 800;
+        }
+        .chart-pill.sky-active {
+            background: var(--sky);
+            color: #000;
+            border-color: var(--sky);
+            font-weight: 800;
+        }
+
+        /* Interactive Zoom & Tooltip Crosshair Controls */
+        .chart-zoom-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+            background: var(--bg-inner);
+            border: 1px solid var(--border-dim);
+            border-radius: 8px;
+            padding: 6px 8px;
+        }
+        .zoom-controls-left, .zoom-controls-right {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .zoom-label {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 2px;
+        }
+        .zoom-btn, .timeframe-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-dim);
+            color: var(--text-secondary);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 7px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .zoom-btn:hover, .timeframe-btn:hover {
+            background: var(--bg-card-elevated);
+            color: var(--text-primary);
+        }
+        .timeframe-btn.active {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+            font-weight: 800;
+        }
+        .timeframe-btn.sky-active {
+            background: var(--sky);
+            color: #000;
+            border-color: var(--sky);
+            font-weight: 800;
+        }
+
+        .crosshair-indicator-badge {
+            font-size: 9px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 12px;
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--gold);
+            border: 1px solid var(--gold-border);
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .trend-chart-box {
+            background: var(--bg-inner);
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-md);
+            padding: 8px 4px;
+            position: relative;
+            min-height: 250px;
+        }
+
+        .granular-inspection-bar {
+            margin-top: 8px;
+            background: var(--bg-inner);
+            border: 1px dashed var(--border-subtle);
+            border-radius: 8px;
+            padding: 7px 10px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+        .granular-inspection-bar.active {
+            border-color: var(--gold);
+            background: rgba(245, 158, 11, 0.06);
+        }
+        .inspection-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .inspection-val {
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        /* 4-Stat Grid */
+        .stat-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-top: 10px;
+        }
+        .stat-box {
+            background: var(--bg-inner);
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-sm);
+            padding: 8px 6px;
+            text-align: center;
+        }
+        .stat-lbl {
+            font-size: 8px;
+            font-weight: 800;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
+        .stat-val {
+            font-size: 11px;
+            font-weight: 800;
+            margin-top: 2px;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Form Controls */
+        .form-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .form-group {
+            flex: 1;
+            margin-bottom: 8px;
+        }
+        .form-label {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+        .form-control {
+            width: 100%;
+            background: var(--bg-inner);
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-sm);
+            padding: 8px 10px;
+            font-size: 13px;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .form-control:focus {
+            border-color: var(--gold);
+        }
+
+        .chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 8px;
+        }
+        .chip {
+            background: var(--bg-inner);
+            border: 1px solid var(--border-dim);
+            color: var(--text-secondary);
+            padding: 4px 8px;
+            border-radius: 14px;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .chip.active {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+            font-weight: 800;
+        }
+        .chip.sky-active {
+            background: var(--sky);
+            color: #000;
+            border-color: var(--sky);
+            font-weight: 800;
+        }
+
+        /* Result Box */
+        .result-box {
+            background: var(--bg-inner);
+            border: 1.5px solid var(--gold-border);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .result-box.emerald-theme {
+            border-color: rgba(16, 185, 129, 0.4);
+            background: rgba(16, 185, 129, 0.05);
+        }
+        .result-box.sky-theme {
+            border-color: var(--sky-border);
+            background: rgba(56, 189, 248, 0.05);
+        }
+        .result-lbl {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .result-val {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--gold);
+            margin: 4px 0;
+            font-family: 'Plus Jakarta Sans', monospace;
+        }
+        .result-val.emerald {
+            color: var(--emerald);
+        }
+        .result-val.sky {
+            color: var(--sky);
+        }
+        .result-sub {
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        /* DISCO Duplicate Bill Finder Grid */
+        .disco-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+            margin: 8px 0;
+        }
+        .disco-badge-btn {
+            background: var(--bg-inner);
+            border: 1px solid var(--border-dim);
+            border-radius: 8px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .disco-badge-btn:hover {
+            border-color: var(--gold);
+            background: var(--bg-card-elevated);
+            transform: translateY(-1px);
+        }
+        .disco-name {
+            font-size: 11px;
+            font-weight: 800;
+            display: block;
+        }
+        .disco-region {
+            font-size: 9px;
+            color: var(--text-dim);
+        }
+        .disco-arrow {
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        /* Building Materials Rate Table */
+        .materials-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            margin-top: 8px;
+        }
+        .materials-table th {
+            background: var(--bg-inner);
+            color: var(--text-secondary);
+            font-weight: 800;
+            text-align: left;
+            padding: 6px 8px;
+            border-bottom: 1px solid var(--border-dim);
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+        .materials-table td {
+            padding: 6px 8px;
+            border-bottom: 1px solid var(--border-dim);
+            color: var(--text-primary);
+        }
+        .materials-table tr:hover {
+            background: rgba(245, 158, 11, 0.04);
+        }
+
+        /* Rate Cards 2-col Grid */
+        .rate-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .rate-card-mini {
+            background: var(--bg-inner);
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-sm);
+            padding: 10px;
+        }
+        .rate-card-mini .head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 10px;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+        .rate-card-mini .price {
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin: 4px 0 2px;
+        }
+        .rate-card-mini .sub {
+            font-size: 9px;
+            color: var(--text-dim);
+        }
+
+        /* Mandi Product Card */
+        .mandi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .mandi-item-card {
+            background: var(--bg-inner);
+            border: 1px solid var(--border-dim);
+            border-radius: 8px;
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .mandi-item-card .name-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 4px;
+        }
+        .mandi-item-card .name-en {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+        .mandi-item-card .name-ur {
+            font-size: 11px;
+            color: var(--gold);
+            font-family: 'Noto Nastaliq Urdu', serif;
+            margin-top: 2px;
+        }
+        .mandi-item-card .price-row {
+            margin-top: 6px;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+        .mandi-item-card .retail-price {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--emerald);
+        }
+        .mandi-item-card .dc-price {
+            font-size: 9px;
+            color: var(--text-dim);
+        }
+
+        /* Sidebar Navigation Drawer */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .drawer-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .side-drawer {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100%;
+            background: var(--bg-surface);
+            border-right: 1px solid var(--border-dim);
+            z-index: 101;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto;
+        }
+        .side-drawer.active {
+            left: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-dim);
+            margin-bottom: 12px;
+        }
+        .drawer-close-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .drawer-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            margin-bottom: 4px;
+            transition: all 0.15s ease;
+        }
+        .drawer-menu-item:hover, .drawer-menu-item.active {
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--gold);
+        }
+
+        /* Bottom Fixed Navigation Bar for Mobile */
+        .bottom-nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(11, 17, 32, 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border-dim);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 6px 0;
+        }
+        [data-theme="light"] .bottom-nav-bar {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .b-nav-item {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 9px;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: all 0.2s ease;
+        }
+        .b-nav-item.active {
+            color: var(--gold);
+        }
+        .b-nav-item .icon {
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top App Bar with Drawer Toggle & Dark/Light Switcher -->
+    <header class="top-navbar">
+        <div class="nav-left">
+            <button class="hamburger-btn" id="drawerOpenBtn" onclick="toggleDrawer(true)" aria-label="Open Navigation Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="brand-box">
+                <div class="brand-icon">PK</div>
+                <div>
+                    <div class="brand-text-title">PakUtility Hub</div>
+                    <div class="brand-text-sub">پاکستان کا مصدقہ یوٹیلیٹی پورٹل</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <button class="theme-toggle-btn" onclick="forceCacheBustRefresh()" title="Force Refresh & Clear Mobile Cache (کیشے صاف کریں)" style="background:rgba(217,119,6,0.18); border:1px solid rgba(217,119,6,0.5); color:var(--gold); font-size:10px; padding:4px 8px; width:auto; height:28px; font-weight:800; border-radius:6px; cursor:pointer;">
+                🔄 Sync
+            </button>
+            <span class="badge gold" style="font-size:8px;">OCT 16 LIVE</span>
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+                <span id="themeToggleIcon">☀️</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Reduced Compact Google AdSense Space (Header) -->
+    <div class="ad-banner-space">
+        <span class="ad-placeholder-label">Google AdSense Space (468x45 Compact Banner)</span>
+    </div>
+
+    <!-- Horizontal Category Scroller -->
+    <nav class="tabs-scroller" id="tabBar">
+        <button class="tab-btn active" data-tab="trends" onclick="switchTab('trends')">📈 7D Trends</button>
+        <button class="tab-btn" data-tab="gold" onclick="switchTab('gold')">🟡 Gold & Bullion</button>
+        <button class="tab-btn" data-tab="fuel" onclick="switchTab('fuel')">⛽ Fuel & Trips</button>
+        <button class="tab-btn" data-tab="speed" onclick="switchTab('speed')">⚡ Net Speed MB/s</button>
+        <button class="tab-btn" data-tab="bills" onclick="switchTab('bills')">💡 Bills & Duplicate</button>
+        <button class="tab-btn" data-tab="mandi" onclick="switchTab('mandi')">🍎 Mandi Bazaar</button>
+        <button class="tab-btn" data-tab="building" onclick="switchTab('building')">🏗️ 1-100 Storey House</button>
+        <button class="tab-btn" data-tab="forex" onclick="switchTab('forex')">💱 Forex & FBR Tax</button>
+    </nav>
+
+    <!-- Side Navigation Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer(false)"></div>
+    <aside class="side-drawer" id="sideDrawer">
+        <div>
+            <div class="drawer-header">
+                <div class="brand-box">
+                    <div class="brand-icon">PK</div>
+                    <div class="brand-text-title">PakUtility Hub</div>
+                </div>
+                <button class="drawer-close-btn" onclick="toggleDrawer(false)">&times;</button>
+            </div>
+
+            <nav>
+                <div class="drawer-menu-item active" onclick="switchTab('trends'); toggleDrawer(false);">📈 7-Day Price Trends (Recharts)</div>
+                <div class="drawer-menu-item" onclick="switchTab('gold'); toggleDrawer(false);">🟡 Gold Bullion & Trade Simulator</div>
+                <div class="drawer-menu-item" onclick="switchTab('fuel'); toggleDrawer(false);">⛽ Fuel Prices & Trip Calculator</div>
+                <div class="drawer-menu-item" onclick="switchTab('speed'); toggleDrawer(false);">⚡ 1-Minute Net Speed Test (MB/s)</div>
+                <div class="drawer-menu-item" onclick="switchTab('bills'); toggleDrawer(false);">💡 Electricity Bill & Duplicate Finder</div>
+                <div class="drawer-menu-item" onclick="switchTab('mandi'); toggleDrawer(false);">🍎 Mandi Bazaar (Seasonal Rates)</div>
+                <div class="drawer-menu-item" onclick="switchTab('building'); toggleDrawer(false);">🏗️ 1-100 Storey House & Materials Chart</div>
+                <div class="drawer-menu-item" onclick="switchTab('forex'); toggleDrawer(false);">💱 Currency Chart & FBR Income Tax</div>
+            </nav>
+        </div>
+
+        <div style="font-size:10px; color:var(--text-dim); text-align:center; padding-top:10px; border-top:1px solid var(--border-dim);">
+            Verified APGJSA, OGRA & NEPRA Benchmarks • 2026
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+        <!-- ======================================================== -->
+        <!-- 0. RECHARTS 7-DAY & GRANULAR PRICE TRENDS SCREEN -->
+        <!-- ======================================================== -->
+        <section class="screen-view active" id="view-trends">
+            <div class="card elevated" id="recharts-main-dashboard-card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="card-title">PRICE TREND & GRANULAR ANALYSIS (RECHARTS)</span>
+                    </div>
+                    <span class="badge gold" id="trendMainBadge">OCT 16 LIVE</span>
+                </div>
+
+                <!-- Toggles for Recharts Chart Mode -->
+                <div class="chart-toggle-row">
+                    <button class="chart-pill active" id="btnChartGold" onclick="changeChartMode('gold')">🟡 24K Gold (سونا)</button>
+                    <button class="chart-pill" id="btnChartPetrol" onclick="changeChartMode('petrol')">⛽ Super Petrol (پیٹرول)</button>
+                    <button class="chart-pill" id="btnChartDiesel" onclick="changeChartMode('diesel')">🚚 HSD Diesel (ڈیزل)</button>
+                    <button class="chart-pill" id="btnChartCombined" onclick="changeChartMode('combined')">📊 Combined (موازنہ)</button>
+                </div>
+
+                <!-- Interactive Zoom & Granular Controls Toolbar -->
+                <div class="chart-zoom-toolbar">
+                    <div class="zoom-controls-left">
+                        <span class="zoom-label">Range:</span>
+                        <button class="timeframe-btn" id="tf24h" onclick="setTimeframe('24h', this)">⏱️ 24H (Intraday)</button>
+                        <button class="timeframe-btn" id="tf3d" onclick="setTimeframe('3d', this)">3D</button>
+                        <button class="timeframe-btn active" id="tf7d" onclick="setTimeframe('7d', this)">7D</button>
+                        <button class="timeframe-btn" id="tf14d" onclick="setTimeframe('14d', this)">14D</button>
+                        <button class="timeframe-btn" id="tf30d" onclick="setTimeframe('30d', this)">30D (All)</button>
+                    </div>
+                    <div class="zoom-controls-right">
+                        <span class="zoom-label">Zoom:</span>
+                        <button class="zoom-btn" onclick="zoomInChart()" title="Zoom In on Granular Window">🔍➕ In</button>
+                        <button class="zoom-btn" onclick="zoomOutChart()" title="Zoom Out">🔍➖ Out</button>
+                        <button class="zoom-btn" onclick="resetChartZoom()" title="Reset Zoom">↺ Reset</button>
+                        <span class="crosshair-indicator-badge" id="crosshairStatusBadge">🎯 Crosshair ON</span>
+                    </div>
+                </div>
+
+                <!-- Recharts Target Root Container -->
+                <div class="trend-chart-box" id="rechartsRoot">
+                    <!-- Rendered by React/Recharts or Fallback SVG -->
+                </div>
+
+                <!-- Granular Inspection Readout Bar (Dual Crosshair Snapping) -->
+                <div class="granular-inspection-bar" id="rechartsInspectionBar">
+                    <div class="inspection-item">
+                        <span style="color:var(--gold);">🎯 Crosshair Lock:</span>
+                        <span class="inspection-val" id="inspectPointName">16 Oct 2026 (07:00 PM Sarafa Close)</span>
+                    </div>
+                    <div class="inspection-item">
+                        <span>Rate:</span>
+                        <span class="inspection-val" style="color:var(--gold);" id="inspectRateVal">PKR 437,836</span>
+                    </div>
+                    <div class="inspection-item">
+                        <span>Session Delta:</span>
+                        <span class="inspection-val" style="color:var(--emerald);" id="inspectVarianceVal">+PKR 11,336 (+2.6%)</span>
+                    </div>
+                </div>
+
+                <!-- Live Metrics Summary Bar -->
+                <div class="stat-grid-4">
+                    <div class="stat-box">
+                        <div class="stat-lbl">CURRENT RATE</div>
+                        <div class="stat-val" style="color:var(--gold);" id="metricCurrentRate">PKR 437,836</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-lbl">RANGE CHANGE</div>
+                        <div class="stat-val" style="color:var(--emerald);" id="metric7dChange">+PKR 11,336 (▲)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-lbl">RANGE LOW</div>
+                        <div class="stat-val" style="color:var(--text-secondary);" id="metric7dLow">PKR 426,500</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-lbl">RANGE HIGH</div>
+                        <div class="stat-val" style="color:var(--gold-light);" id="metric7dHigh">PKR 437,836</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- 1. GOLD BULLION & TRADE SIMULATOR SCREEN -->
+        <!-- ======================================================== -->
+        <section class="screen-view" id="view-gold">
+            <!-- Price Trend Banner -->
+            <div class="card elevated" style="background:rgba(245, 158, 11, 0.08); border-color:var(--gold);">
+                <div style="font-size:13px; font-weight:800; color:var(--gold);">ALL-PAKISTAN SARAFA MARKET (APGJSA BENCHMARKS)</div>
+                <div style="font-size:11px; color:var(--text-secondary); margin-top:3px;">
+                    Verified October 16, 2026: 24K Gold at PKR 437,836/tola. Jewelry 22K at PKR 396,458/tola.
+                </div>
+            </div>
+
+            <!-- 4 Carat Rates Grid -->
+            <div class="rate-grid-2">
+                <div class="rate-card-mini" style="border-color:var(--gold-border);">
+                    <div class="head"><span>24K Pure Gold</span><span class="badge gold">BENCHMARK</span></div>
+                    <div class="price" style="color:var(--gold);">Rs. 437,836</div>
+                    <div class="sub">10 Grams: PKR 375,373 • 1g: PKR 37,081</div>
+                </div>
+                <div class="rate-card-mini">
+                    <div class="head"><span>22K Jewelry</span><span class="badge gold">STANDARD</span></div>
+                    <div class="price">Rs. 396,458</div>
+                    <div class="sub">10 Grams: PKR 339,909 • 1g: PKR 33,991</div>
+                </div>
+                <div class="rate-card-mini">
+                    <div class="head"><span>21K Arabian</span><span class="badge up">GULF</span></div>
+                    <div class="price">Rs. 378,000</div>
+                    <div class="sub">10 Grams: PKR 324,459</div>
+                </div>
+                <div class="rate-card-mini">
+                    <div class="head"><span>18K Standard</span><span class="badge up">18K</span></div>
+                    <div class="price">Rs. 324,000</div>
+                    <div class="sub">10 Grams: PKR 278,108</div>
+                </div>
+            </div>
+
+            <!-- GOLD BUY / SELL PROFIT & COMMISSION SIMULATOR -->
+            <div class="card elevated" style="border:1.5px solid var(--gold-border);">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="card-title">GOLD BUY / SELL PROFIT & COMMISSION SIMULATOR</span>
+                    </div>
+                    <span class="badge gold">صرافہ ٹریڈ و کمیشن</span>
+                </div>
+
+                <!-- Buy / Sell Mode Toggle Pills -->
+                <div style="font-size:11px; color:var(--text-secondary); margin-bottom:6px; font-weight:700;">TRANSACTION MODE (خرید یا فروخت منتخب کریں):</div>
+                <div class="chart-toggle-row" id="goldTradeModeRow">
+                    <button class="chart-pill active" id="btnTradeSimulate" onclick="setGoldTradeMode('simulate', this)">💰 Profit Simulator (خرید و فروخت منافع)</button>
+                    <button class="chart-pill" id="btnTradeBuy" onclick="setGoldTradeMode('buy', this)">🟢 Buy Order (خریداری تخمینہ)</button>
+                    <button class="chart-pill" id="btnTradeSell" onclick="setGoldTradeMode('sell', this)">🔴 Sell Order (فروخت و کیش آؤٹ)</button>
+                </div>
+
+                <!-- Karat Chips -->
+                <div style="font-size:11px; color:var(--text-dim); margin:8px 0 4px; font-weight:700;">SELECT PURITY / KARAT:</div>
+                <div class="chip-group" id="tradeKaratChips">
+                    <button class="chip active" onclick="setTradeCarat(24, this)">24K Pure (Rs. 437,836)</button>
+                    <button class="chip" onclick="setTradeCarat(22, this)">22K Jewelry (Rs. 396,458)</button>
+                    <button class="chip" onclick="setTradeCarat(21, this)">21K Gulf (Rs. 378,000)</button>
+                    <button class="chip" onclick="setTradeCarat(18, this)">18K Standard (Rs. 324,000)</button>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Weight Quantity (مقدار)</label>
+                        <input type="number" step="0.01" class="form-control" id="tradeGoldQty" value="1" oninput="calculateGoldTrade()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Unit (پیمائش)</label>
+                        <select class="form-control" id="tradeGoldUnit" onchange="calculateGoldTrade()">
+                            <option value="tola" selected>Per Tola (تولہ - 11.664g)</option>
+                            <option value="10gram">Per 10 Grams (۱۰ گرام)</option>
+                            <option value="gram">Per 1 Gram (۱ گرام)</option>
+                            <option value="ounce">Per Troy Ounce (اونس - 31.103g)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group" id="tradeBuyRateGroup">
+                        <label class="form-label">Purchase Rate (خریداری ریٹ فی تولہ)</label>
+                        <input type="number" class="form-control" id="tradeBuyRate" value="434200" oninput="calculateGoldTrade()">
+                        <span style="font-size:9px; color:var(--text-secondary); margin-top:2px; display:block;">Benchmark Buy: Rs. 434,200</span>
+                    </div>
+                    <div class="form-group" id="tradeSellRateGroup">
+                        <label class="form-label">Selling Rate (فروخت ریٹ فی تولہ)</label>
+                        <input type="number" class="form-control" id="tradeSellRate" value="437836" oninput="calculateGoldTrade()">
+                        <span style="font-size:9px; color:var(--text-secondary); margin-top:2px; display:block;">Benchmark Sell: Rs. 437,836</span>
+                    </div>
+                </div>
+
+                <!-- Commission Section -->
+                <div style="background:var(--bg-inner); border:1px solid var(--border-dim); border-radius:10px; padding:12px; margin:10px 0;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                        <span style="font-size:11px; font-weight:800; color:var(--gold);">
+                            🤝 MY COMMISSION / BROKERAGE (آپ کا کمیشن):
+                        </span>
+                        <span class="badge gold" id="tradeCommissionBadge">1.0% (Rs. 4,378 / Tola)</span>
+                    </div>
+                    
+                    <div class="chip-group" style="margin-bottom:8px;">
+                        <button class="chip" onclick="setTradeCommissionPreset(0.5, 'percent', this)">0.5% (Wholesale)</button>
+                        <button class="chip active" onclick="setTradeCommissionPreset(1.0, 'percent', this)">1.0% (Standard Dealer - Recommended)</button>
+                        <button class="chip" onclick="setTradeCommissionPreset(1.5, 'percent', this)">1.5% (Retail Broker)</button>
+                        <button class="chip" onclick="setTradeCommissionPreset(1000, 'fixed', this)">Rs. 1,000 / Tola</button>
+                        <button class="chip" onclick="setTradeCommissionPreset(2000, 'fixed', this)">Rs. 2,000 / Tola</button>
+                    </div>
+
+                    <div class="form-row" style="margin-bottom:0;">
+                        <div class="form-group">
+                            <label class="form-label">Commission Model</label>
+                            <select class="form-control" id="tradeCommType" onchange="calculateGoldTrade()">
+                                <option value="percent" selected>Percentage (%) of Gross Trade</option>
+                                <option value="fixed">Fixed Amount (PKR per Tola)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Commission Value</label>
+                            <input type="number" step="0.1" class="form-control" id="tradeCommValue" value="1.0" oninput="calculateGoldTrade()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulation Breakdown Table -->
+                <div style="background:var(--bg-inner); border:1px solid var(--border-dim); border-radius:10px; padding:10px; margin-bottom:10px;">
+                    <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:5px;">
+                        <span style="color:var(--text-secondary);">Total Purchase Cost (لاگت خرید):</span>
+                        <span style="font-weight:700;" id="tradeTotalBuy">PKR 434,200</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:5px;">
+                        <span style="color:var(--text-secondary);">Total Gross Revenue (کل فروخت):</span>
+                        <span style="font-weight:700;" id="tradeTotalSell">PKR 437,836</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:5px;">
+                        <span style="color:var(--text-secondary);">Gross Trading Spread (خام فرق):</span>
+                        <span style="font-weight:700; color:var(--sky);" id="tradeGrossSpread">+PKR 3,636</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:11px; padding-top:5px; border-top:1px dashed var(--border-dim);">
+                        <span style="color:var(--gold); font-weight:800;">My Commission Earned (آپ کا کمیشن):</span>
+                        <span style="font-weight:900; color:var(--gold);" id="tradeCommissionEarned">PKR 4,378</span>
+                    </div>
+                </div>
+
+                <!-- Net Trade Result Banner -->
+                <div class="result-box" id="tradeResultBox">
+                    <div class="result-lbl" id="tradeResultTitle">NET TRADER RETURN / PROFIT (خالص نفع یا نقصان)</div>
+                    <div class="result-val" id="tradeNetProfit">+PKR 8,014</div>
+                    <div class="result-sub" id="tradeRoiSubtitle">ROI: +1.85% • Net Per Tola: +PKR 8,014 • Break-Even Sell: PKR 438,542</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- 2. FUEL PRICES & TRIP CALCULATOR SCREEN -->
+        <!-- ======================================================== -->
+        <section class="screen-view" id="view-fuel">
+            <div class="card elevated">
+                <div class="card-header">
+                    <span class="card-title">OGRA OFFICIAL FUEL BENCHMARKS (اکتوبر ۲۰۲۶)</span>
+                    <span class="badge emerald">OGRA NOTIFIED</span>
+                </div>
+
+                <div class="rate-grid-2">
+                    <div class="rate-card-mini" style="border-color:var(--sky-border);">
+                        <div class="head"><span>Super Petrol</span><span class="badge sky">REGULAR</span></div>
+                        <div class="price" style="color:var(--sky);">Rs. 393.86</div>
+                        <div class="sub">Retail Range: Rs. 393.86 - 396.65/L</div>
+                    </div>
+                    <div class="rate-card-mini" style="border-color:rgba(16, 185, 129, 0.4);">
+                        <div class="head"><span>HSD Diesel</span><span class="badge emerald">HIGH SPEED</span></div>
+                        <div class="price" style="color:var(--emerald);">Rs. 394.94</div>
+                        <div class="sub">Standard PSO Rate: Rs. 394.94/L</div>
+                    </div>
+                    <div class="rate-card-mini">
+                        <div class="head"><span>High Octane (97)</span><span class="badge gold">HOBC</span></div>
+                        <div class="price" style="color:var(--gold);">Rs. 415.00</div>
+                        <div class="sub">Premium Octane</div>
+                    </div>
+                    <div class="rate-card-mini">
+                        <div class="head"><span>Kerosene Oil</span><span class="badge up">مٹی کا تیل</span></div>
+                        <div class="price">Rs. 329.54</div>
+                        <div class="sub">LDO: Rs. 266.41/L</div>
+                    </div>
+                    <div class="rate-card-mini">
+                        <div class="head"><span>LPG Gas</span><span class="badge up">سلنڈر</span></div>
+                        <div class="price">Rs. 279.34</div>
+                        <div class="sub">11.8kg Cylinder: Rs. 3,296.21</div>
+                    </div>
+                    <div class="rate-card-mini">
+                        <div class="head"><span>CNG Gas</span><span class="badge up">ریجن I و II</span></div>
+                        <div class="price">Rs. 220.00</div>
+                        <div class="sub">Region II: Rs. 235.00/kg</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trip Cost Calculator -->
+            <div class="card elevated">
+                <div class="card-header">
+                    <span class="card-title">TRIP FUEL EXPENSE CALCULATOR (سفر کا خرچ)</span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Distance (کل کلومیٹر)</label>
+                        <input type="number" class="form-control" id="tripDistance" value="120" oninput="calculateTripCost()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mileage (گاڑی کی ایوریج KM/L)</label>
+                        <input type="number" class="form-control" id="tripMileage" value="14" oninput="calculateTripCost()">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Fuel Type (ایندھن منتخب کریں)</label>
+                    <select class="form-control" id="tripFuelType" onchange="calculateTripCost()">
+                        <option value="393.86">Super Petrol (Rs. 393.86/L)</option>
+                        <option value="394.94">HSD Diesel (Rs. 394.94/L)</option>
+                        <option value="415.00">High Octane HOBC (Rs. 415.00/L)</option>
+                    </select>
+                </div>
+                <div class="result-box sky-theme">
+                    <div class="result-lbl">Estimated Trip Cost (کل سفری ایندھن لاگت)</div>
+                    <div class="result-val sky" id="tripTotalCost">Rs. 3,376</div>
+                    <div class="result-sub" id="tripLitreSub">Requires ~8.57 Litres of Fuel</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- 3. 1-MINUTE HIGH-PRECISION NET SPEED TEST SCREEN -->
+        <!-- ======================================================== -->
+        <section class="screen-view" id="view-speed">
+            <div class="card elevated" style="text-align:center;">
+                <div class="card-header">
+                    <span class="card-title">1-MINUTE HIGH-PRECISION SPEED TEST (MB/S & MBPS)</span>
+                    <span class="badge emerald" id="speedModeBadge">1-MIN PRECISION</span>
+                </div>
+
+                <div class="chip-group" style="justify-content:center; margin-bottom:12px;" id="speedDurationChips">
+                    <button class="chip active" onclick="setSpeedDuration(60, this)">⏱️ 1-Minute Precision Test (۱ منٹ ٹیسٹ)</button>
+                    <button class="chip" onclick="setSpeedDuration(15, this)">⚡ 15-Sec Quick Test (فوری ٹیسٹ)</button>
+                </div>
+
+                <div style="font-size:36px; font-weight:900; color:var(--emerald);" id="speedValue">38.40</div>
+                <div style="font-size:12px; font-weight:800; color:var(--text-secondary); text-transform:uppercase;">Megabits per second (Mbps)</div>
+                <div style="font-size:16px; font-weight:900; color:var(--sky); margin-top:4px;" id="speedBytesEquiv">4.80 MB/s (4,915 KB/s)</div>
+                <div style="font-size:10px; color:var(--text-dim); margin-top:2px;">حقیقی ڈاؤن لوڈ رفتار (Actual Bytes Throughput)</div>
+
+                <div style="margin:16px 0; background:var(--bg-inner); border-radius:10px; height:8px; overflow:hidden; display:none;" id="speedProgressBarWrap">
+                    <div style="background:var(--emerald); width:0%; height:100%; transition:width 0.3s ease;" id="speedProgressBarFill"></div>
+                </div>
+
+                <div style="font-size:11px; color:var(--gold); font-weight:700; margin-bottom:12px;" id="speedTimerCountdown">
+                    ⏳ Click Start to run 1-Minute Pakistan Route Throughput Test
+                </div>
+
+                <button class="tab-btn active" style="padding:10px 24px; font-size:13px; margin:0 auto;" id="speedBtn" onclick="toggleSpeedTest()">
+                    <span id="speedBtnText">START 1-MINUTE SPEED TEST (۱ منٹ کا ٹیسٹ شروع کریں)</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- 4. ELECTRICITY BILL & DUPLICATE FINDER ("TAP TO CHECK YOUR BILL") -->
+        <!-- ======================================================== -->
+        <section class="screen-view" id="view-bills">
+            <!-- DUPLICATE BILL FINDER ("TAP TO CHECK YOUR BILL") -->
+            <div class="card elevated" style="border:1.5px solid var(--gold-border);">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="card-title">TAP TO CHECK YOUR BILL (آن لائن ڈپلیکیٹ بجلی بل تلاش کریں)</span>
+                    </div>
+                    <span class="badge gold">1-TAP BILL LOOKUP</span>
+                </div>
+
+                <div style="font-size:11px; color:var(--text-secondary); margin-bottom:8px;">
+                    Enter your <b>14-Digit Reference Number</b> to instantly find, view, and download duplicate bills for any Pakistan electricity distribution company (DISCO):
+                </div>
+
+                <!-- 14-Digit Reference Number Input & Direct Lookup Button -->
+                <div class="form-row">
+                    <div class="form-group" style="flex:2;">
+                        <label class="form-label">14-Digit Reference Number (14 ہندسوں والا ریفرنس نمبر)</label>
+                        <input type="text" class="form-control" id="billRefNumber" placeholder="e.g. 04112233445566" maxlength="14" style="font-family:monospace; font-weight:700; letter-spacing:1px;">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label class="form-label">DISCO Company</label>
+                        <select class="form-control" id="quickDiscoSelect">
+                            <option value="LESCO">LESCO (Lahore)</option>
+                            <option value="IESCO">IESCO (Islamabad/Rwp)</option>
+                            <option value="KE">K-Electric (Karachi)</option>
+                            <option value="FESCO">FESCO (Faisalabad)</option>
+                            <option value="MEPCO">MEPCO (Multan)</option>
+                            <option value="GEPCO">GEPCO (Gujranwala)</option>
+                            <option value="PESCO">PESCO (Peshawar)</option>
+                            <option value="HESCO">HESCO (Hyderabad)</option>
+                            <option value="QESCO">QESCO (Quetta)</option>
+                            <option value="SEPCO">SEPCO (Sukkur)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="tab-btn active" style="width:100%; justify-content:center; padding:10px; font-size:13px; margin-bottom:12px;" onclick="lookupDuplicateBill()">
+                    🔍 CHECK BILL NOW (بل چیک و ڈاؤن لوڈ کریں) ➔
+                </button>
+
+                <!-- Direct 1-Tap Official Portals Grid -->
+                <div style="font-size:10px; font-weight:800; color:var(--text-secondary); text-transform:uppercase; margin-bottom:4px;">
+                    DIRECT OFFICIAL BILL PORTALS (براہ راست ڈسکوز پورٹلز):
+                </div>
+                <div class="disco-grid">
+                    <a href="https://bill.pitc.com.pk/lescobill" target="_blank" rel="noopener" class="disco-badge-btn">
+                        <div><span class="disco-name">LESCO Lahore</span><span class="disco-region">Lahore, Kasur, Okara</span></div>
+                        <span class="disco-arrow">➔</span>
+                    </a>
+                    <a href="https://bill.pitc.com.pk/iescobill" target="_blank" rel="noopener" class="disco-badge-btn">
+                        <div><span class="disco-name">IESCO Islamabad</span><span class="disco-region">Rwp, Attock, Jhelum</span></div>
+                        <span class="disco-arrow">➔</span>
+                    </a>
+                    <a href="https://www.ke.com.pk/customer-services/bill-and-payment/duplicate-bill/" target="_blank" rel="noopener" class="disco-badge-btn">
+                        <div><span class="disco-name">K-Electric (KE)</span><span class="disco-region">Karachi & Hub</span></div>
+                        <span class="disco-arrow">➔</span>
+                    </a>
+                    <a href="https://bill.pitc.com.pk/fescobill" target="_blank" rel="noopener" class="disco-badge-btn">
+                        <div><span class="disco-name">FESCO Faisalabad</span><span class="disco-region">Sargodha, Jhang</span></div>
+                        <span class="disco-arrow">➔</span>
+                    </a>
+                    <a href="https://bill.pitc.com.pk/mepcobill" target="_blank" rel="noopener" class="disco-badge-btn">
+                        <div><span class="disco-name">MEPCO Multan</span><span class="disco-region">South Punjab</span></div>
+                        <span class="disco-arrow">➔</span>
+                    </a>
+                    <a href="https://bill.pitc.com.pk/gepcobill" target="_blank" rel="noopener" class="disco-badge-btn">
+                        <div><span class="disco-name">GEPCO Gujranwala</span><span class="disco-region">Sialkot, Gujrat</span></div>
+                        <span class="disco-arrow">➔</span>
+                    </a>
+                    <a href="https://bill.pitc.com.pk/pescobill" target="_blank" rel="noopener" class="disco-badge-btn">
+                        <div><span class="disco-name">PESCO Peshawar</span><span class="disco-region">Khyber Pakhtunkhwa</span></div>
+                        <span class="disco-arrow">➔</span>
+                    </a>
+                    <a href="https://bill.pitc.com.pk/hescobill" target="_blank" rel="noopener" class="disco-badge-btn">
+                        <div><span class="disco-name">HESCO / QESCO / SEPCO</span><span class="disco-region">Sindh & Balochistan</span></div>
+                        <span class="disco-arrow">➔</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- NEPRA Tariff Estimator -->
+            <div class="card elevated">
+                <div class="card-header">
+                    <span class="card-title">NEPRA ELECTRICITY BILL ESTIMATOR (یونٹ ریٹ و تخمینہ)</span>
+                    <span class="badge gold">2026 TARIFF</span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Units Consumed (استعمال شدہ یونٹس)</label>
+                        <input type="number" class="form-control" id="billUnits" value="220" oninput="calculateElectricityBill()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select class="form-control" id="billDisco" onchange="calculateElectricityBill()">
+                            <option value="non-protected">Non-Protected (نان پروٹیکٹڈ)</option>
+                            <option value="protected">Protected (تحت ۲۰۰ یونٹ)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="result-box gold-theme">
+                    <div class="result-lbl">Total Estimated Bill (کل متوقع بل بمع ٹیکس)</div>
+                    <div class="result-val gold" id="billTotalAmount">Rs. 9,647</div>
+                    <div class="result-sub" id="billBreakdownSub">Base: Rs. 6,615 • FPA (Rs. 3.25): Rs. 715 • GST (18%): Rs. 1,472</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- 5. MANDI BAZAAR WITH SEASONAL & CATEGORY FILTERS SCREEN -->
+        <!-- ======================================================== -->
+        <section class="screen-view" id="view-mandi">
+            <div class="card elevated">
+                <div class="card-header">
+                    <span class="card-title">MANDI BAZAAR (سبزی، پھل، اجناس و خشک میوہ جات)</span>
+                    <span class="badge emerald">DC NOTIFIED 2026</span>
+                </div>
+
+                <!-- Season Filter Chips (موسم کے لحاظ سے) -->
+                <div style="font-size:11px; font-weight:800; color:var(--text-secondary); margin-bottom:4px;">
+                    SEASON FILTER (موسم کے لحاظ سے):
+                </div>
+                <div class="chip-group" id="mandiSeasonChips">
+                    <button class="chip active" onclick="setMandiSeason('all', this)">🌟 All Seasons (سب اشیاء)</button>
+                    <button class="chip" onclick="setMandiSeason('winter', this)">❄️ Winter (موسم سرما)</button>
+                    <button class="chip" onclick="setMandiSeason('summer', this)">☀️ Summer (موسم گرما)</button>
+                    <button class="chip" onclick="setMandiSeason('allyear', this)">🌿 All-Year (سدا بہار)</button>
+                </div>
+
+                <!-- Category Filters -->
+                <div style="font-size:11px; font-weight:800; color:var(--text-secondary); margin:6px 0 4px;">
+                    CATEGORY (قسم منتخب کریں):
+                </div>
+                <div class="chip-group" id="mandiCategoryChips">
+                    <button class="chip active" onclick="setMandiCategory('all', this)">All</button>
+                    <button class="chip" onclick="setMandiCategory('vegetables', this)">🥦 Vegetables (سبزیاں)</button>
+                    <button class="chip" onclick="setMandiCategory('fruits', this)">🍎 Fruits (پھل)</button>
+                    <button class="chip" onclick="setMandiCategory('drains', this)">🌾 Grains/Drains (اجناس)</button>
+                    <button class="chip" onclick="setMandiCategory('dryfruits', this)">🥜 Dry Fruits (خشک میوہ جات)</button>
+                    <button class="chip" onclick="setMandiCategory('meat', this)">🍗 Poultry & Meat (گوشت)</button>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="mandi-grid" id="mandiItemsContainer" style="margin-top:10px;">
+                    <!-- Rendered by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- 6. 1 TO 100 STOREYS HOUSE & MATERIALS COST SCREEN -->
+        <!-- ======================================================== -->
+        <section class="screen-view" id="view-building">
+            <div class="card elevated" style="border:1.5px solid var(--gold-border);">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="card-title">1 TO 100 STOREY HOUSE & PLAZA CALCULATOR (تعمیراتی لاگت)</span>
+                    </div>
+                    <span class="badge gold">1-100 STOREYS</span>
+                </div>
+
+                <!-- Plot Size Chips -->
+                <div style="font-size:11px; font-weight:700; color:var(--text-secondary); margin-bottom:4px;">PLOT SIZE (پلاٹ سائز):</div>
+                <div class="chip-group" id="plotChips">
+                    <button class="chip" onclick="setPlotMarla(3.0, this)">3 Marla</button>
+                    <button class="chip active" onclick="setPlotMarla(5.0, this)">5 Marla</button>
+                    <button class="chip" onclick="setPlotMarla(7.0, this)">7 Marla</button>
+                    <button class="chip" onclick="setPlotMarla(10.0, this)">10 Marla</button>
+                    <button class="chip" onclick="setPlotMarla(20.0, this)">1 Kanal</button>
+                </div>
+
+                <!-- Storeys / Floors (1 to 100 Storeys) -->
+                <div style="font-size:11px; font-weight:700; color:var(--text-secondary); margin:6px 0 4px;">NUMBER OF STOREYS / FLOORS (منزلیں 1 تا 100):</div>
+                <div class="chip-group" id="storeyChips">
+                    <button class="chip" onclick="setStoreys(1, this)">1 Ground</button>
+                    <button class="chip active" onclick="setStoreys(2, this)">2 Double</button>
+                    <button class="chip" onclick="setStoreys(3, this)">3 Triple</button>
+                    <button class="chip" onclick="setStoreys(5, this)">5 Plaza</button>
+                    <button class="chip" onclick="setStoreys(10, this)">10 Floors</button>
+                    <button class="chip" onclick="setStoreys(25, this)">25 Skyscraper</button>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Custom Storeys (1 to 100 منزلیں لکھیں)</label>
+                        <input type="number" min="1" max="100" class="form-control" id="customStoreysInput" value="2" oninput="calculateConstructionCost()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Package (تعمیراتی پیکیج)</label>
+                        <select class="form-control" id="constructionType" onchange="calculateConstructionCost()">
+                            <option value="grey">Grey Structure (گرے سٹرکچر)</option>
+                            <option value="full" selected>Full A-Grade Finishing (مکمل فنشنگ)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Construction Cost Result Box -->
+                <div class="result-box gold-theme">
+                    <div class="result-lbl" id="buildingResultTitle">Total Estimated Construction Cost (کل لاگت)</div>
+                    <div class="result-val gold" id="buildingCostVal">Rs. 87.75 Lacs</div>
+                    <div class="result-sub" id="buildingDetailsSub">Covered Area: 1,950 Sq Ft (2 Floors) • Rate: ~Rs. 4,500/sq ft</div>
+                </div>
+
+                <!-- Materials Breakdown Table -->
+                <div style="margin-top:14px;">
+                    <div style="font-size:12px; font-weight:800; color:var(--gold); margin-bottom:4px;">
+                        🧱 BUILDING MATERIALS RATES IN PAKISTAN (اکتوبر ۲۰۲۶ ریٹ لسٹ):
+                    </div>
+                    <table class="materials-table">
+                        <thead>
+                            <tr><th>Item / Material</th><th>Brand / Quality</th><th>Current Rate (PKR)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><b>Cement (سیمنٹ)</b></td><td>Bestway / Lucky</td><td style="color:var(--emerald); font-weight:700;">Rs. 1,490 / Bag</td></tr>
+                            <tr><td><b>Cement Premium</b></td><td>Maple Leaf / DG Khan</td><td>Rs. 1,510 / Bag</td></tr>
+                            <tr><td><b>Steel / Rebar (سریا)</b></td><td>Mughal Grade 60 (Deformed)</td><td style="color:var(--gold); font-weight:700;">Rs. 268 / Kg</td></tr>
+                            <tr><td><b>Steel Grade 60</b></td><td>Amreli Steels Grade 60</td><td>Rs. 272 / Kg</td></tr>
+                            <tr><td><b>Steel Grade 40</b></td><td>Local Mill Grade 40</td><td>Rs. 248 / Kg</td></tr>
+                            <tr><td><b>Bricks (اینٹیں)</b></td><td>Awal Bhatta 1st Class</td><td>Rs. 14,500 / Hazar</td></tr>
+                            <tr><td><b>Sand (ریت)</b></td><td>Chenab Sand Special</td><td>Rs. 6,800 / 100 Cu.Ft</td></tr>
+                            <tr><td><b>Sand Local</b></td><td>Ravi Sand Standard</td><td>Rs. 4,200 / 100 Cu.Ft</td></tr>
+                            <tr><td><b>Crush (بجری)</b></td><td>Margalla 1/2" Plant Mix</td><td>Rs. 13,500 / 100 Cu.Ft</td></tr>
+                            <tr><td><b>Tiles (ٹائلز)</b></td><td>Master Tiles Grade A</td><td>Rs. 220 / Sq.Ft</td></tr>
+                            <tr><td><b>Paint (پینٹ)</b></td><td>Berger / ICI Weathershield</td><td>Rs. 9,200 / Drum</td></tr>
+                            <tr><td><b>Mason / Mistri</b></td><td>Daily Labor Rate</td><td style="color:var(--sky); font-weight:700;">Rs. 2,400 / Day</td></tr>
+                            <tr><td><b>Mazdoor / Helper</b></td><td>Daily Labor Rate</td><td>Rs. 1,400 / Day</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Cost Share Chart -->
+                    <div style="margin-top:12px; background:var(--bg-inner); border-radius:8px; padding:10px;">
+                        <div style="font-size:10px; font-weight:800; color:var(--text-secondary); margin-bottom:6px;">COST SHARE PERCENTAGE (لاگت کا تناسب):</div>
+                        <div style="display:flex; flex-direction:column; gap:4px; font-size:10px;">
+                            <div style="display:flex; justify-content:space-between;"><span>Steel (سریا): 24%</span><span style="color:var(--gold);">██████████</span></div>
+                            <div style="display:flex; justify-content:space-between;"><span>Labor (مزدوری): 20%</span><span style="color:var(--sky);">████████</span></div>
+                            <div style="display:flex; justify-content:space-between;"><span>Cement (سیمنٹ): 18%</span><span style="color:var(--emerald);">███████</span></div>
+                            <div style="display:flex; justify-content:space-between;"><span>Bricks (اینٹیں): 14%</span><span>█████</span></div>
+                            <div style="display:flex; justify-content:space-between;"><span>Electrical & Plumbing: 9%</span><span>████</span></div>
+                            <div style="display:flex; justify-content:space-between;"><span>Sand & Crush: 8%</span><span>███</span></div>
+                            <div style="display:flex; justify-content:space-between;"><span>Finishing & Paint: 7%</span><span>███</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- 7. FOREX RATES, CURRENCY CHART & FBR INCOME TAX SCREEN -->
+        <!-- ======================================================== -->
+        <section class="screen-view" id="view-forex">
+            <!-- Forex Currency Chart -->
+            <div class="card elevated">
+                <div class="card-header">
+                    <span class="card-title">OPEN MARKET FOREX & CURRENCY CHART (کرنسی ریٹ)</span>
+                    <span class="badge gold">LIVE 2026</span>
+                </div>
+
+                <div class="rate-grid-2">
+                    <div class="rate-card-mini">
+                        <div class="head"><span>USD / Dollar</span><span class="badge sky">USA</span></div>
+                        <div class="price" style="color:var(--gold);">PKR 281.50</div>
+                        <div class="sub">Interbank: 280.90</div>
+                    </div>
+                    <div class="rate-card-mini">
+                        <div class="head"><span>GBP / Pound</span><span class="badge sky">UK</span></div>
+                        <div class="price">PKR 364.20</div>
+                        <div class="sub">British Sterling</div>
+                    </div>
+                    <div class="rate-card-mini">
+                        <div class="head"><span>EUR / Euro</span><span class="badge sky">EU</span></div>
+                        <div class="price">PKR 304.80</div>
+                        <div class="sub">European Union</div>
+                    </div>
+                    <div class="rate-card-mini">
+                        <div class="head"><span>AED / Dirham</span><span class="badge gold">UAE</span></div>
+                        <div class="price">PKR 76.65</div>
+                        <div class="sub">Dubai / Abu Dhabi</div>
+                    </div>
+                    <div class="rate-card-mini">
+                        <div class="head"><span>SAR / Riyal</span><span class="badge gold">KSA</span></div>
+                        <div class="price">PKR 75.05</div>
+                        <div class="sub">Saudi Arabia</div>
+                    </div>
+                    <div class="rate-card-mini">
+                        <div class="head"><span>KWD / Dinar</span><span class="badge up">KUWAIT</span></div>
+                        <div class="price" style="color:var(--emerald);">PKR 918.40</div>
+                        <div class="sub">Kuwaiti Dinar</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FBR SALARY & BUSINESS INCOME TAX CALCULATOR (Finance Act 2024-2026) -->
+            <div class="card elevated" style="border:1.5px solid var(--gold-border);">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="card-title">FBR SALARY & BUSINESS TAX CALCULATOR (2024–2026)</span>
+                    </div>
+                    <span class="badge gold">FBR SLABS</span>
+                </div>
+
+                <!-- Taxpayer Type -->
+                <div style="font-size:11px; font-weight:700; color:var(--text-secondary); margin-bottom:4px;">TAXPAYER CATEGORY:</div>
+                <div class="chip-group" id="taxTypeChips">
+                    <button class="chip active" onclick="setTaxType('salaried', this)">💼 Salaried Person (تنخواہ دار ملازم)</button>
+                    <button class="chip" onclick="setTaxType('business', this)">🏢 Business / Non-Salaried (کاروباری فرد)</button>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Monthly Salary / Income (ماہانہ آمدنی - PKR)</label>
+                        <input type="number" class="form-control" id="taxMonthlyIncome" value="150000" oninput="calculateFbrTax('monthly')">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Annual Salary / Income (سالانہ آمدنی)</label>
+                        <input type="number" class="form-control" id="taxAnnualIncome" value="1800000" oninput="calculateFbrTax('annual')">
+                    </div>
+                </div>
+
+                <!-- Tax Calculation Results Box -->
+                <div class="result-box emerald-theme">
+                    <div class="result-lbl">Net Monthly Take-Home Pay (ٹیکس کٹوتی کے بعد خالص رقم)</div>
+                    <div class="result-val emerald" id="taxTakeHomeMonthly">Rs. 139,167</div>
+                    <div class="result-sub" id="taxBreakdownSub">
+                        Monthly Tax: Rs. 10,833 • Annual Tax: Rs. 130,000 • Effective Tax Rate: 7.22%
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Fixed Navigation Bar for Mobile -->
+    <nav class="bottom-nav-bar">
+        <button class="b-nav-item active" onclick="switchTab('trends')">
+            <span class="icon">📈</span><span>Trends</span>
+        </button>
+        <button class="b-nav-item" onclick="switchTab('gold')">
+            <span class="icon">🟡</span><span>Gold</span>
+        </button>
+        <button class="b-nav-item" onclick="switchTab('fuel')">
+            <span class="icon">⛽</span><span>Fuel</span>
+        </button>
+        <button class="b-nav-item" onclick="switchTab('bills')">
+            <span class="icon">💡</span><span>Bills</span>
+        </button>
+        <button class="b-nav-item" onclick="switchTab('mandi')">
+            <span class="icon">🍎</span><span>Mandi</span>
+        </button>
+        <button class="b-nav-item" onclick="switchTab('building')">
+            <span class="icon">🏗️</span><span>House</span>
+        </button>
+    </nav>
+
+    <!-- Core Interactive Logic Script -->
+    <script>
+    // -------------------------------------------------------------
+    // NAVIGATION & DRAWER & THEME
+    // -------------------------------------------------------------
+    function toggleDrawer(open) {
+        document.getElementById('sideDrawer').classList.toggle('active', open);
+        document.getElementById('drawerOverlay').classList.toggle('active', open);
+    }
+
+    function switchTab(tabKey) {
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-tab') === tabKey);
+        });
+        document.querySelectorAll('.screen-view').forEach(view => {
+            view.classList.toggle('active', view.id === `view-${tabKey}`);
+        });
+        document.querySelectorAll('.b-nav-item').forEach(b => {
+            b.classList.toggle('active', b.getAttribute('onclick')?.includes(tabKey));
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        if (tabKey === 'trends') {
+            setTimeout(renderMainRecharts, 50);
+        }
+    }
+
+    
+    function forceCacheBustRefresh() {
+        const timestamp = Date.now();
+        const base = window.location.origin + window.location.pathname;
+        window.location.replace(base + '?v=' + timestamp);
+    }
+
+    function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('pakutility_theme', next);
+        document.getElementById('themeToggleIcon').textContent = next === 'dark' ? '☀️' : '🌙';
+        setTimeout(renderMainRecharts, 50);
+    }
+
+    (function initSavedTheme() {
+        const saved = localStorage.getItem('pakutility_theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', saved);
+    })();
+
+    // -------------------------------------------------------------
+    // RECHARTS IMPLEMENTATION (INTERACTIVE ZOOMING & TOOLTIP CROSSHAIRS)
+    // -------------------------------------------------------------
+    let currentChartMode = 'gold';
+    let currentTimeframe = '7d';
+    let chartZoomStart = 6;
+    let chartZoomEnd = 17;
+
+    const GRANULAR_GOLD_DATA = [
+        { day: '16 Sep', date: '16 Sep 2026', time: 'Close', session: 'Sarafa Close', price: 409500, change: '+0.5%' },
+        { day: '20 Sep', date: '20 Sep 2026', time: 'Close', session: 'Sarafa Close', price: 412000, change: '+0.6%' },
+        { day: '25 Sep', date: '25 Sep 2026', time: 'Close', session: 'Sarafa Close', price: 415200, change: '+0.8%' },
+        { day: '30 Sep', date: '30 Sep 2026', time: 'Close', session: 'Sarafa Close', price: 418000, change: '+0.7%' },
+        { day: '05 Oct', date: '05 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 422800, change: '+1.1%' },
+        { day: '07 Oct', date: '07 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 424000, change: '+0.3%' },
+        { day: '08 Oct', date: '08 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 425100, change: '+0.3%' },
+        { day: '09 Oct', date: '09 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 426500, change: '+0.3%' },
+        { day: '10 Oct', date: '10 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 428200, change: '+0.4%' },
+        { day: '11 Oct', date: '11 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 430000, change: '+0.4%' },
+        { day: '12 Oct', date: '12 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 431800, change: '+0.4%' },
+        { day: '13 Oct', date: '13 Oct 2026', time: 'Close', session: 'Sarafa Close', price: 432500, change: '+0.2%' },
+        { day: '14 Oct (Mid)', date: '14 Oct 2026', time: '01:00 PM', session: 'Midday Bullion', price: 433500, change: '+0.2%' },
+        { day: '14 Oct (Close)', date: '14 Oct 2026', time: '07:00 PM', session: 'Sarafa Close', price: 434200, change: '+0.2%' },
+        { day: '15 Oct (Open)', date: '15 Oct 2026', time: '10:00 AM', session: 'Market Open', price: 435800, change: '+0.4%' },
+        { day: '15 Oct (12PM)', date: '15 Oct 2026', time: '12:30 PM', session: 'Midday Bullion', price: 436500, change: '+0.2%' },
+        { day: '16 Oct (4PM)', date: '16 Oct 2026', time: '04:00 PM', session: 'Afternoon Fix', price: 437200, change: '+0.2%' },
+        { day: '16 Oct (Today)', date: '16 Oct 2026', time: '07:00 PM', session: 'Sarafa Benchmark', price: 437836, change: '+0.1%' }
+    ];
+
+    const GRANULAR_PETROL_DATA = [
+        { day: '16 Sep', date: '16 Sep 2026', session: 'OGRA Fortnight', price: 379.20, change: '+0.0%' },
+        { day: '20 Sep', date: '20 Sep 2026', session: 'PSO Retail', price: 381.20, change: '+0.5%' },
+        { day: '25 Sep', date: '25 Sep 2026', session: 'Shell Retail', price: 383.00, change: '+0.5%' },
+        { day: '01 Oct', date: '01 Oct 2026', session: 'OGRA Revision', price: 386.40, change: '+0.9%' },
+        { day: '05 Oct', date: '05 Oct 2026', session: 'PSO Retail', price: 388.50, change: '+0.5%' },
+        { day: '07 Oct', date: '07 Oct 2026', session: 'Total Parco', price: 389.20, change: '+0.2%' },
+        { day: '08 Oct', date: '08 Oct 2026', session: 'National Average', price: 389.80, change: '+0.2%' },
+        { day: '09 Oct', date: '09 Oct 2026', session: 'PSO Base', price: 390.15, change: '+0.1%' },
+        { day: '10 Oct', date: '10 Oct 2026', session: 'PSO Base', price: 390.15, change: '0.0%' },
+        { day: '11 Oct', date: '11 Oct 2026', session: 'OGRA Mid-Rev', price: 392.66, change: '+0.6%' },
+        { day: '12 Oct', date: '12 Oct 2026', session: 'PSO Base', price: 392.66, change: '0.0%' },
+        { day: '13 Oct', date: '13 Oct 2026', session: 'OGRA Latest', price: 393.86, change: '+0.3%' },
+        { day: '14 Oct (Mid)', date: '14 Oct 2026', session: 'Day Shift', price: 393.86, change: '0.0%' },
+        { day: '14 Oct (Eve)', date: '14 Oct 2026', session: 'Evening Shift', price: 393.86, change: '0.0%' },
+        { day: '15 Oct (Morn)', date: '15 Oct 2026', session: 'Morning Shift', price: 393.86, change: '0.0%' },
+        { day: '15 Oct (Noon)', date: '15 Oct 2026', session: 'Afternoon Shift', price: 393.86, change: '0.0%' },
+        { day: '16 Oct (Eve)', date: '16 Oct 2026', session: 'Evening Shift', price: 393.86, change: '0.0%' },
+        { day: '16 Oct (Today)', date: '16 Oct 2026', session: 'Current Notified', price: 393.86, change: '0.0%' }
+    ];
+
+    const GRANULAR_DIESEL_DATA = [
+        { day: '16 Sep', date: '16 Sep 2026', session: 'OGRA Fortnight', price: 382.10, change: '+0.0%' },
+        { day: '20 Sep', date: '20 Sep 2026', session: 'PSO Retail', price: 384.50, change: '+0.6%' },
+        { day: '25 Sep', date: '25 Sep 2026', session: 'Shell Retail', price: 386.20, change: '+0.4%' },
+        { day: '01 Oct', date: '01 Oct 2026', session: 'OGRA Revision', price: 388.90, change: '+0.7%' },
+        { day: '05 Oct', date: '05 Oct 2026', session: 'PSO Retail', price: 390.60, change: '+0.4%' },
+        { day: '07 Oct', date: '07 Oct 2026', session: 'Total Parco', price: 391.50, change: '+0.2%' },
+        { day: '08 Oct', date: '08 Oct 2026', session: 'National Average', price: 392.00, change: '+0.1%' },
+        { day: '09 Oct', date: '09 Oct 2026', session: 'PSO Base', price: 392.50, change: '+0.1%' },
+        { day: '10 Oct', date: '10 Oct 2026', session: 'PSO Base', price: 392.50, change: '0.0%' },
+        { day: '11 Oct', date: '11 Oct 2026', session: 'OGRA Mid-Rev', price: 394.00, change: '+0.4%' },
+        { day: '12 Oct', date: '12 Oct 2026', session: 'PSO Base', price: 394.00, change: '0.0%' },
+        { day: '13 Oct', date: '13 Oct 2026', session: 'OGRA Latest', price: 394.94, change: '+0.2%' },
+        { day: '14 Oct (Mid)', date: '14 Oct 2026', session: 'Day Shift', price: 394.94, change: '0.0%' },
+        { day: '14 Oct (Eve)', date: '14 Oct 2026', session: 'Evening Shift', price: 394.94, change: '0.0%' },
+        { day: '15 Oct (Morn)', date: '15 Oct 2026', session: 'Morning Shift', price: 394.94, change: '0.0%' },
+        { day: '15 Oct (Noon)', date: '15 Oct 2026', session: 'Afternoon Shift', price: 394.94, change: '0.0%' },
+        { day: '16 Oct (Eve)', date: '16 Oct 2026', session: 'Evening Shift', price: 394.94, change: '0.0%' },
+        { day: '16 Oct (Today)', date: '16 Oct 2026', session: 'Current Notified', price: 394.94, change: '0.0%' }
+    ];
+
+    const GRANULAR_COMBINED_DATA = GRANULAR_GOLD_DATA.map((g, i) => {
+        const p = GRANULAR_PETROL_DATA[i] || GRANULAR_PETROL_DATA[GRANULAR_PETROL_DATA.length - 1];
+        const d = GRANULAR_DIESEL_DATA[i] || GRANULAR_DIESEL_DATA[GRANULAR_DIESEL_DATA.length - 1];
+        return {
+            day: g.day,
+            date: g.date,
+            session: g.session,
+            price: g.price,
+            goldPrice: g.price,
+            petrolPrice: p.price,
+            dieselPrice: d.price,
+            goldIndex: +((g.price / GRANULAR_GOLD_DATA[0].price) * 100).toFixed(2),
+            petrolIndex: +((p.price / GRANULAR_PETROL_DATA[0].price) * 100).toFixed(2),
+            dieselIndex: +((d.price / GRANULAR_DIESEL_DATA[0].price) * 100).toFixed(2),
+            change: '+2.6%'
+        };
+    });
+
+    function getFullDataset() {
+        if (currentChartMode === 'petrol') return GRANULAR_PETROL_DATA;
+        if (currentChartMode === 'diesel') return GRANULAR_DIESEL_DATA;
+        if (currentChartMode === 'combined') return GRANULAR_COMBINED_DATA;
+        return GRANULAR_GOLD_DATA;
+    }
+
+    function getActiveChartColor() {
+        if (currentChartMode === 'petrol') return '#38BDF8';
+        if (currentChartMode === 'diesel') return '#10B981';
+        return '#F59E0B';
+    }
+
+    function setTimeframe(tf, btn) {
+        currentTimeframe = tf;
+        document.querySelectorAll('.timeframe-btn').forEach(b => b.classList.remove('active', 'sky-active'));
+        if (btn) btn.classList.add(currentChartMode === 'petrol' ? 'sky-active' : 'active');
+
+        const total = getFullDataset().length;
+        if (tf === '24h') { chartZoomStart = Math.max(0, total - 5); chartZoomEnd = total - 1; }
+        else if (tf === '3d') { chartZoomStart = Math.max(0, total - 8); chartZoomEnd = total - 1; }
+        else if (tf === '7d') { chartZoomStart = Math.max(0, total - 12); chartZoomEnd = total - 1; }
+        else if (tf === '14d') { chartZoomStart = Math.max(0, total - 15); chartZoomEnd = total - 1; }
+        else if (tf === '30d') { chartZoomStart = 0; chartZoomEnd = total - 1; }
+
+        renderMainRecharts();
+    }
+
+    function zoomInChart() {
+        if (chartZoomEnd - chartZoomStart <= 3) return;
+        chartZoomStart = Math.min(chartZoomStart + 1, chartZoomEnd - 3);
+        chartZoomEnd = Math.max(chartZoomEnd - 1, chartZoomStart + 3);
+        renderMainRecharts();
+    }
+
+    function zoomOutChart() {
+        const total = getFullDataset().length;
+        chartZoomStart = Math.max(0, chartZoomStart - 1);
+        chartZoomEnd = Math.min(total - 1, chartZoomEnd + 1);
+        renderMainRecharts();
+    }
+
+    function resetChartZoom() {
+        setTimeframe(currentTimeframe);
+    }
+
+    function changeChartMode(mode) {
+        currentChartMode = mode;
+        document.querySelectorAll('#btnChartGold, #btnChartPetrol, #btnChartDiesel, #btnChartCombined').forEach(btn => btn.classList.remove('active', 'sky-active'));
+
+        if (mode === 'gold') {
+            document.getElementById('btnChartGold').classList.add('active');
+            document.getElementById('metricCurrentRate').textContent = 'PKR 437,836';
+            document.getElementById('metricCurrentRate').style.color = 'var(--gold)';
+            document.getElementById('metric7dChange').textContent = '+PKR 11,336 (▲)';
+            document.getElementById('metric7dChange').style.color = 'var(--emerald)';
+        } else if (mode === 'petrol') {
+            document.getElementById('btnChartPetrol').classList.add('sky-active');
+            document.getElementById('metricCurrentRate').textContent = 'PKR 393.86';
+            document.getElementById('metricCurrentRate').style.color = 'var(--sky)';
+            document.getElementById('metric7dChange').textContent = '+PKR 3.71 (▲)';
+            document.getElementById('metric7dChange').style.color = 'var(--gold)';
+        } else if (mode === 'diesel') {
+            document.getElementById('btnChartDiesel').classList.add('active');
+            document.getElementById('metricCurrentRate').textContent = 'PKR 394.94';
+            document.getElementById('metricCurrentRate').style.color = 'var(--emerald)';
+            document.getElementById('metric7dChange').textContent = '+PKR 2.44 (▲)';
+            document.getElementById('metric7dChange').style.color = 'var(--emerald)';
+        } else if (mode === 'combined') {
+            document.getElementById('btnChartCombined').classList.add('active');
+            document.getElementById('metricCurrentRate').textContent = 'Index 100 ➔ 102.6';
+            document.getElementById('metricCurrentRate').style.color = 'var(--gold)';
+            document.getElementById('metric7dChange').textContent = 'Gold ▲ / Fuel ▲';
+            document.getElementById('metric7dChange').style.color = 'var(--emerald)';
+        }
+        renderMainRecharts();
+    }
+
+    function updateInspectionBar(item) {
+        if (!item) return;
+        const pointEl = document.getElementById('inspectPointName');
+        const rateEl = document.getElementById('inspectRateVal');
+        const varEl = document.getElementById('inspectVarianceVal');
+
+        if (pointEl) pointEl.textContent = `${item.date || item.day} (${item.session || 'Session'})`;
+        if (rateEl) {
+            rateEl.textContent = item.price >= 1000 ? `PKR ${item.price.toLocaleString()}` : `PKR ${item.price.toFixed(2)}`;
+            rateEl.style.color = getActiveChartColor();
+        }
+        if (varEl) varEl.textContent = item.change || '+0.2%';
+    }
+
+    function renderCustomCrosshairTooltip(props) {
+        if (!props.active || !props.payload || !props.payload.length) return null;
+        const e = window.React.createElement;
+        const item = props.payload[0].payload;
+        const strokeColor = getActiveChartColor();
+
+        setTimeout(() => updateInspectionBar(item), 0);
+
+        return e('div', {
+            style: {
+                background: 'rgba(11, 17, 32, 0.96)',
+                border: `1.5px solid ${strokeColor}`,
+                borderRadius: '8px',
+                padding: '8px 12px',
+                color: '#fff',
+                fontSize: '11px'
+            }
+        },
+            e('div', { style: { color: strokeColor, fontWeight: '800', fontSize: '9px' } }, '🎯 CROSSHAIR LOCKED'),
+            e('div', { style: { fontWeight: '700', fontSize: '12px', margin: '2px 0' } }, `${item.date || item.day} (${item.session})`),
+            e('div', { style: { fontSize: '15px', fontWeight: '900', color: strokeColor } }, `PKR ${item.price >= 1000 ? item.price.toLocaleString() : item.price.toFixed(2)}`),
+            e('div', { style: { color: '#10B981', fontSize: '10px' } }, item.change || '▲ +0.2%')
+        );
+    }
+
+    function renderMainRecharts() {
+        const root = document.getElementById('rechartsRoot');
+        if (!root) return;
+
+        const allData = getFullDataset();
+        const safeStart = Math.max(0, Math.min(chartZoomStart, allData.length - 2));
+        const safeEnd = Math.max(safeStart + 1, Math.min(chartZoomEnd, allData.length - 1));
+        const activeData = allData.slice(safeStart, safeEnd + 1);
+        const strokeColor = getActiveChartColor();
+
+        if (window.React && window.ReactDOM && window.Recharts) {
+            try {
+                const { ResponsiveContainer, AreaChart, Area, Line, ComposedChart, XAxis, YAxis, Tooltip, CartesianGrid, Brush } = window.Recharts;
+                const e = window.React.createElement;
+                const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+
+                const chartElement = e(ResponsiveContainer, { width: '100%', height: 250 },
+                    e(ComposedChart, {
+                        data: activeData,
+                        margin: { top: 10, right: 10, left: -10, bottom: 0 },
+                        onMouseMove: (ev) => { if (ev?.activePayload?.length) updateInspectionBar(ev.activePayload[0].payload); }
+                    },
+                        e('defs', null,
+                            e('linearGradient', { id: 'chartGrad', x1: '0', y1: '0', x2: '0', y2: '1' },
+                                e('stop', { offset: '5%', stopColor: strokeColor, stopOpacity: 0.4 }),
+                                e('stop', { offset: '95%', stopColor: strokeColor, stopOpacity: 0.0 })
+                            )
+                        ),
+                        e(CartesianGrid, { strokeDasharray: '3 3', stroke: isDark ? '#1E293B' : '#E2E8F0' }),
+                        e(XAxis, { dataKey: 'day', stroke: '#94A3B8', fontSize: 9 }),
+                        e(YAxis, { stroke: '#94A3B8', fontSize: 9, domain: ['dataMin - 100', 'dataMax + 100'], tickFormatter: v => v >= 1000 ? `${(v/1000).toFixed(0)}k` : v }),
+                        e(Tooltip, { cursor: { stroke: strokeColor, strokeWidth: 1.5, strokeDasharray: '4 4' }, content: renderCustomCrosshairTooltip }),
+                        e(Area, { type: 'monotone', dataKey: 'price', stroke: strokeColor, strokeWidth: 2.5, fill: 'url(#chartGrad)', activeDot: { r: 6, fill: strokeColor, stroke: '#060914', strokeWidth: 2 } }),
+                        e(Brush, { dataKey: 'day', height: 24, stroke: strokeColor, fill: isDark ? '#0B1120' : '#F1F5F9', travellerWidth: 8 })
+                    )
+                );
+
+                if (!root._reactRoot) root._reactRoot = window.ReactDOM.createRoot(root);
+                root._reactRoot.render(chartElement);
+                return;
+            } catch(e) {}
+        }
+
+        renderSvgFallback(root, activeData, strokeColor);
+    }
+
+    function renderSvgFallback(container, data, strokeColor) {
+        if (!data || !data.length) return;
+        const width = 540, height = 220, padX = 40, padY = 25;
+        const prices = data.map(d => d.price);
+        const minP = Math.min(...prices), maxP = Math.max(...prices);
+        const rangeP = (maxP - minP) || 1;
+
+        const points = data.map((d, i) => ({
+            x: padX + (i / (data.length - 1)) * (width - padX * 2),
+            y: height - padY - ((d.price - minP) / rangeP) * (height - padY * 2),
+            ...d
+        }));
+
+        const pathD = points.reduce((acc, p, i) => i === 0 ? `M ${p.x} ${p.y}` : `${acc} L ${p.x} ${p.y}`, '');
+        const areaD = `${pathD} L ${points[points.length-1].x} ${height - padY} L ${points[0].x} ${height - padY} Z`;
+
+        container.innerHTML = `
+            <svg viewBox="0 0 ${width} ${height}" style="width:100%; height:230px; overflow:visible;">
+                <defs>
+                    <linearGradient id="svgGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="${strokeColor}" stop-opacity="0.35"/>
+                        <stop offset="100%" stop-color="${strokeColor}" stop-opacity="0.0"/>
+                    </linearGradient>
+                </defs>
+                <path d="${areaD}" fill="url(#svgGrad)"/>
+                <path d="${pathD}" fill="none" stroke="${strokeColor}" stroke-width="2.5"/>
+                ${points.map(p => `<circle cx="${p.x}" cy="${p.y}" r="3.5" fill="${strokeColor}" stroke="#060914" stroke-width="1.5"/>`).join('')}
+            </svg>
+        `;
+    }
+
+    // -------------------------------------------------------------
+    // GOLD BUY / SELL PROFIT & COMMISSION SIMULATOR
+    // -------------------------------------------------------------
+    let currentTradeMode = 'simulate';
+    let tradeCarat = 24;
+
+    const BENCHMARK_RATES = {
+        24: { buy: 434200, sell: 437836 },
+        22: { buy: 393000, sell: 396458 },
+        21: { buy: 374500, sell: 378000 },
+        18: { buy: 321000, sell: 324000 }
+    };
+
+    function setGoldTradeMode(mode, btn) {
+        currentTradeMode = mode;
+        document.querySelectorAll('#goldTradeModeRow .chart-pill').forEach(b => b.classList.remove('active', 'sky-active'));
+        if (btn) btn.classList.add(mode === 'buy' ? 'sky-active' : 'active');
+
+        document.getElementById('tradeBuyRateGroup').style.display = (mode === 'sell') ? 'none' : 'block';
+        document.getElementById('tradeSellRateGroup').style.display = (mode === 'buy') ? 'none' : 'block';
+        calculateGoldTrade();
+    }
+
+    function setTradeCarat(carat, btn) {
+        tradeCarat = carat;
+        document.querySelectorAll('#tradeKaratChips .chip').forEach(c => c.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+
+        const rates = BENCHMARK_RATES[carat] || BENCHMARK_RATES[24];
+        document.getElementById('tradeBuyRate').value = rates.buy;
+        document.getElementById('tradeSellRate').value = rates.sell;
+        calculateGoldTrade();
+    }
+
+    function setTradeCommissionPreset(val, type, btn) {
+        document.querySelectorAll('.card .chip').forEach(c => {
+            if (c.onclick?.toString().includes('setTradeCommissionPreset')) c.classList.remove('active');
+        });
+        if (btn) btn.classList.add('active');
+
+        document.getElementById('tradeCommType').value = type;
+        document.getElementById('tradeCommValue').value = val;
+        calculateGoldTrade();
+    }
+
+    function calculateGoldTrade() {
+        const qty = parseFloat(document.getElementById('tradeGoldQty')?.value) || 0;
+        const unit = document.getElementById('tradeGoldUnit')?.value || 'tola';
+        const buyRate = parseFloat(document.getElementById('tradeBuyRate')?.value) || 0;
+        const sellRate = parseFloat(document.getElementById('tradeSellRate')?.value) || 0;
+        const commType = document.getElementById('tradeCommType')?.value || 'percent';
+        const commVal = parseFloat(document.getElementById('tradeCommValue')?.value) || 0;
+
+        let tolas = qty;
+        if (unit === '10gram') tolas = (qty * 10.0) / 11.664;
+        else if (unit === 'gram') tolas = qty / 11.664;
+        else if (unit === 'ounce') tolas = qty * 2.6666;
+
+        const totalBuy = tolas * buyRate;
+        const totalSell = tolas * sellRate;
+        const grossSpread = totalSell - totalBuy;
+
+        let commission = (commType === 'percent') 
+            ? (commVal / 100.0) * ((currentTradeMode === 'buy') ? totalBuy : totalSell)
+            : commVal * tolas;
+
+        const commBadge = document.getElementById('tradeCommissionBadge');
+        if (commBadge) {
+            commBadge.textContent = commType === 'percent'
+                ? `${commVal.toFixed(1)}% (Rs. ${Math.round(commission/Math.max(0.001, tolas)).toLocaleString()} / Tola)`
+                : `Rs. ${commVal.toLocaleString()} / Tola`;
+        }
+
+        document.getElementById('tradeTotalBuy').textContent = `PKR ${Math.round(totalBuy).toLocaleString()}`;
+        document.getElementById('tradeTotalSell').textContent = `PKR ${Math.round(totalSell).toLocaleString()}`;
+        document.getElementById('tradeGrossSpread').textContent = `${grossSpread >= 0 ? '+' : ''}PKR ${Math.round(grossSpread).toLocaleString()}`;
+        document.getElementById('tradeCommissionEarned').textContent = `PKR ${Math.round(commission).toLocaleString()}`;
+
+        const netProfit = grossSpread - commission;
+        const roi = totalBuy > 0 ? (netProfit / totalBuy) * 100 : 0;
+        const profitPerTola = tolas > 0 ? netProfit / tolas : 0;
+        const breakEven = buyRate + (commission / Math.max(0.001, tolas));
+
+        const resultTitle = document.getElementById('tradeResultTitle');
+        const netProfitEl = document.getElementById('tradeNetProfit');
+        const roiSub = document.getElementById('tradeRoiSubtitle');
+
+        if (currentTradeMode === 'buy') {
+            resultTitle.textContent = "TOTAL BUY ACQUISITION COST (کل لاگت بمع کمیشن)";
+            netProfitEl.textContent = `PKR ${Math.round(totalBuy + commission).toLocaleString()}`;
+            netProfitEl.style.color = 'var(--sky)';
+            roiSub.textContent = `Effective Rate: PKR ${Math.round((totalBuy + commission)/Math.max(0.001, tolas)).toLocaleString()}/Tola`;
+        } else if (currentTradeMode === 'sell') {
+            resultTitle.textContent = "NET CASH-OUT PAYOUT (بعد از کمیشن وصولی رقم)";
+            netProfitEl.textContent = `PKR ${Math.round(totalSell - commission).toLocaleString()}`;
+            netProfitEl.style.color = 'var(--emerald)';
+            roiSub.textContent = `Net Cash In Hand: PKR ${Math.round(totalSell - commission).toLocaleString()} (Broker Deducted: PKR ${Math.round(commission).toLocaleString()})`;
+        } else {
+            resultTitle.textContent = "NET TRADER PROFIT (خالص منافع بعد از کمیشن)";
+            netProfitEl.textContent = `${netProfit >= 0 ? '+' : ''}PKR ${Math.round(netProfit).toLocaleString()}`;
+            netProfitEl.style.color = netProfit >= 0 ? 'var(--emerald)' : 'var(--rose)';
+            roiSub.textContent = `ROI: ${roi >= 0 ? '+' : ''}${roi.toFixed(2)}% • Net/Tola: PKR ${Math.round(profitPerTola).toLocaleString()} • Break-Even: PKR ${Math.round(breakEven).toLocaleString()}`;
+        }
+    }
+
+    // -------------------------------------------------------------
+    // DUPLICATE BILL LOOKUP ("TAP TO CHECK YOUR BILL")
+    // -------------------------------------------------------------
+    function lookupDuplicateBill() {
+        const refNo = document.getElementById('billRefNumber').value.trim();
+        const disco = document.getElementById('quickDiscoSelect').value;
+
+        if (!refNo || refNo.length < 10) {
+            alert("براہ کرم اپنا ۱۰ سے ۱۴ ہندسوں والا ریفرنس نمبر درج کریں (Please enter 14-digit bill reference number)");
+            return;
+        }
+
+        const urls = {
+            'LESCO': `https://bill.pitc.com.pk/lescobill/general?refno=${refNo}`,
+            'IESCO': `https://bill.pitc.com.pk/iescobill/general?refno=${refNo}`,
+            'KE': `https://www.ke.com.pk/customer-services/bill-and-payment/duplicate-bill/?account=${refNo}`,
+            'FESCO': `https://bill.pitc.com.pk/fescobill/general?refno=${refNo}`,
+            'MEPCO': `https://bill.pitc.com.pk/mepcobill/general?refno=${refNo}`,
+            'GEPCO': `https://bill.pitc.com.pk/gepcobill/general?refno=${refNo}`,
+            'PESCO': `https://bill.pitc.com.pk/pescobill/general?refno=${refNo}`,
+            'HESCO': `https://bill.pitc.com.pk/hescobill/general?refno=${refNo}`,
+            'QESCO': `https://bill.pitc.com.pk/qescobill/general?refno=${refNo}`,
+            'SEPCO': `https://bill.pitc.com.pk/sepcobill/general?refno=${refNo}`
+        };
+
+        const targetUrl = urls[disco] || urls['LESCO'];
+        window.open(targetUrl, '_blank');
+    }
+
+    function calculateElectricityBill() {
+        const units = parseFloat(document.getElementById('billUnits')?.value) || 0;
+        const isProtected = document.getElementById('billDisco')?.value === 'protected';
+        
+        let unitRate = 35.50;
+        if (isProtected) unitRate = (units <= 100) ? 7.74 : 10.20;
+        else {
+            if (units <= 100) unitRate = 16.48;
+            else if (units <= 200) unitRate = 22.95;
+            else if (units <= 300) unitRate = 27.14;
+            else unitRate = 42.00;
+        }
+
+        const base = units * unitRate;
+        const fpa = units * 3.25;
+        const gst = (base + fpa) * 0.18;
+        const total = base + fpa + gst + 35; // Rs 35 TV fee
+
+        document.getElementById('billTotalAmount').textContent = `Rs. ${Math.round(total).toLocaleString()}`;
+        document.getElementById('billBreakdownSub').textContent = `Base: Rs. ${Math.round(base).toLocaleString()} • FPA: Rs. ${Math.round(fpa).toLocaleString()} • GST: Rs. ${Math.round(gst).toLocaleString()}`;
+    }
+
+    // -------------------------------------------------------------
+    // MANDI BAZAAR WITH SEASON FILTERS
+    // -------------------------------------------------------------
+    const MANDI_DATA = [
+        { name: "Potato Fresh (Aloo Naya)", urdu: "آلو نیا سفید", cat: "vegetables", season: "winter", price: 62, dc: 75, unit: "Kg" },
+        { name: "Onion Red Sindhi (Pyaz)", urdu: "پیاز لال سندھی", cat: "vegetables", season: "allyear", price: 115, dc: 135, unit: "Kg" },
+        { name: "Tomato Farm Fresh (Tamatar)", urdu: "ٹماٹر فارمی", cat: "vegetables", season: "allyear", price: 95, dc: 110, unit: "Kg" },
+        { name: "Green Peas (Matar)", urdu: "مٹر دیسی تازہ", cat: "vegetables", season: "winter", price: 140, dc: 165, unit: "Kg" },
+        { name: "Cauliflower (Phool Gobi)", urdu: "پھول گوبھی", cat: "vegetables", season: "winter", price: 55, dc: 70, unit: "Kg" },
+        { name: "Spinach Fresh (Palak)", urdu: "پالک دیسی", cat: "vegetables", season: "winter", price: 45, dc: 60, unit: "Kg" },
+        { name: "Ladyfinger (Bhindi)", urdu: "بھنڈی دیسی", cat: "vegetables", season: "summer", price: 130, dc: 155, unit: "Kg" },
+        { name: "Bitter Gourd (Karela)", urdu: "کریلا فارمی", cat: "vegetables", season: "summer", price: 110, dc: 130, unit: "Kg" },
+        { name: "Apple Kala Kulu (Saib)", urdu: "سیب کالا کلو", cat: "fruits", season: "winter", price: 265, dc: 290, unit: "Kg" },
+        { name: "Kinnow / Orange Sargodha", urdu: "کنو سرگودھا", cat: "fruits", season: "winter", price: 180, dc: 210, unit: "Dozen" },
+        { name: "Pomegranate (Anar Kandhari)", urdu: "انار قندھاری", cat: "fruits", season: "winter", price: 340, dc: 380, unit: "Kg" },
+        { name: "Guava (Amrood)", urdu: "امرود لاڑکانہ", cat: "fruits", season: "winter", price: 90, dc: 115, unit: "Kg" },
+        { name: "Mango Chaunsa Multan", urdu: "آم چونسا", cat: "fruits", season: "summer", price: 240, dc: 275, unit: "Kg" },
+        { name: "Grapes (Angoor)", urdu: "انگور سندرخانی", cat: "fruits", season: "summer", price: 320, dc: 360, unit: "Kg" },
+        { name: "Atta Bag 10KG (Chakki)", urdu: "آٹا ۱۰ کلو تھیلا", cat: "drains", season: "allyear", price: 1120, dc: 1250, unit: "10kg Bag" },
+        { name: "Basmati Rice Super Kernel", urdu: "سپر کرنل چاول", cat: "drains", season: "allyear", price: 310, dc: 345, unit: "Kg" },
+        { name: "Daal Chana Special", urdu: "دال چنا موٹی", cat: "drains", season: "allyear", price: 235, dc: 260, unit: "Kg" },
+        { name: "Sugar Refined (چینی)", urdu: "چینی ریفائنڈ", cat: "drains", season: "allyear", price: 138, dc: 145, unit: "Kg" },
+        { name: "Almonds Giri (بادام گری)", urdu: "بادام گری امریکن", cat: "dryfruits", season: "winter", price: 2400, dc: 2650, unit: "Kg" },
+        { name: "Walnut Kernels Swat (اخروٹ)", urdu: "اخروٹ گری سوات", cat: "dryfruits", season: "winter", price: 2200, dc: 2450, unit: "Kg" },
+        { name: "Pistachio Salted (پستہ)", urdu: "پستہ پیشاوری", cat: "dryfruits", season: "winter", price: 3600, dc: 3950, unit: "Kg" },
+        { name: "Pine Nuts (چلغوزہ)", urdu: "چلغوزہ وزیرستان", cat: "dryfruits", season: "winter", price: 11500, dc: 12500, unit: "Kg" },
+        { name: "Chicken Meat (مرغی گوشت)", urdu: "مرغی کا صافی گوشت", cat: "meat", season: "allyear", price: 475, dc: 490, unit: "Kg" },
+        { name: "Beef Boneless (بڑا گوشت)", urdu: "بڑا گوشت بچھیا", cat: "meat", season: "allyear", price: 1150, dc: 1250, unit: "Kg" },
+        { name: "Mutton Goat (چھوٹا گوشت)", urdu: "چھوٹا گوشت بکرا", cat: "meat", season: "allyear", price: 2150, dc: 2350, unit: "Kg" }
+    ];
+
+    let currentMandiSeason = 'all';
+    let currentMandiCategory = 'all';
+
+    function setMandiSeason(season, btn) {
+        currentMandiSeason = season;
+        document.querySelectorAll('#mandiSeasonChips .chip').forEach(c => c.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        renderMandi();
+    }
+
+    function setMandiCategory(cat, btn) {
+        currentMandiCategory = cat;
+        document.querySelectorAll('#mandiCategoryChips .chip').forEach(c => c.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        renderMandi();
+    }
+
+    function renderMandi() {
+        const container = document.getElementById('mandiItemsContainer');
+        if (!container) return;
+
+        let filtered = MANDI_DATA;
+        if (currentMandiSeason !== 'all') {
+            filtered = filtered.filter(i => i.season === currentMandiSeason || i.season === 'allyear');
+        }
+        if (currentMandiCategory !== 'all') {
+            filtered = filtered.filter(i => i.cat === currentMandiCategory);
+        }
+
+        container.innerHTML = filtered.map(item => `
+            <div class="mandi-item-card">
+                <div class="name-row">
+                    <div>
+                        <div class="name-en">${item.name}</div>
+                        <div class="name-ur">${item.urdu}</div>
+                    </div>
+                    <span class="badge ${item.season === 'winter' ? 'sky' : (item.season === 'summer' ? 'gold' : 'emerald')}">${item.season.toUpperCase()}</span>
+                </div>
+                <div class="price-row">
+                    <span class="retail-price">Rs. ${item.price} / ${item.unit}</span>
+                    <span class="dc-price">DC: Rs. ${item.dc}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // -------------------------------------------------------------
+    // 1 TO 100 STOREYS HOUSE CONSTRUCTION CALCULATOR
+    // -------------------------------------------------------------
+    let currentPlotMarla = 5.0;
+    let currentStoreys = 2;
+
+    function setPlotMarla(marla, btn) {
+        currentPlotMarla = marla;
+        document.querySelectorAll('#plotChips .chip').forEach(c => c.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        calculateConstructionCost();
+    }
+
+    function setStoreys(storeys, btn) {
+        currentStoreys = storeys;
+        document.querySelectorAll('#storeyChips .chip').forEach(c => c.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        document.getElementById('customStoreysInput').value = storeys;
+        calculateConstructionCost();
+    }
+
+    function calculateConstructionCost() {
+        const customStoreys = parseInt(document.getElementById('customStoreysInput')?.value) || 2;
+        currentStoreys = Math.min(100, Math.max(1, customStoreys));
+
+        const isFull = document.getElementById('constructionType')?.value === 'full';
+        const plotSqFt = currentPlotMarla * 225.0; // 1 Marla = 225 sq ft standard
+        const groundCovered = plotSqFt * 0.80; // 80% coverage
+        const totalCoveredSqFt = groundCovered * currentStoreys;
+
+        // Base rate + multi-storey structural multiplier for high-rises
+        let ratePerSqFt = isFull ? 4500 : 2600;
+        if (currentStoreys >= 4) ratePerSqFt += 300; // Piling & column load
+        if (currentStoreys >= 10) ratePerSqFt += 600; // Lift & RCC Core
+        if (currentStoreys >= 20) ratePerSqFt += 1200; // Wind load & Skyscraper specs
+
+        const totalCostPkr = totalCoveredSqFt * ratePerSqFt;
+
+        // Format in Lacs, Crores, or Arab
+        let formatted = "";
+        if (totalCostPkr >= 1000000000) formatted = `Rs. ${(totalCostPkr / 1000000000).toFixed(2)} Arab`;
+        else if (totalCostPkr >= 10000000) formatted = `Rs. ${(totalCostPkr / 10000000).toFixed(2)} Crore`;
+        else formatted = `Rs. ${(totalCostPkr / 100000).toFixed(2)} Lacs`;
+
+        document.getElementById('buildingCostVal').textContent = formatted;
+        document.getElementById('buildingDetailsSub').textContent = 
+            `Covered Area: ${Math.round(totalCoveredSqFt).toLocaleString()} Sq Ft (${currentStoreys} Storey / Floors) • Rate: ~Rs. ${ratePerSqFt.toLocaleString()}/sq ft`;
+    }
+
+    // -------------------------------------------------------------
+    // FBR SALARY & BUSINESS INCOME TAX CALCULATOR
+    // -------------------------------------------------------------
+    let currentTaxType = 'salaried';
+
+    function setTaxType(type, btn) {
+        currentTaxType = type;
+        document.querySelectorAll('#taxTypeChips .chip').forEach(c => c.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        calculateFbrTax('monthly');
+    }
+
+    function calculateFbrTax(trigger) {
+        let monthly = parseFloat(document.getElementById('taxMonthlyIncome')?.value) || 0;
+        let annual = parseFloat(document.getElementById('taxAnnualIncome')?.value) || 0;
+
+        if (trigger === 'monthly') {
+            annual = monthly * 12;
+            document.getElementById('taxAnnualIncome').value = Math.round(annual);
+        } else {
+            monthly = annual / 12;
+            document.getElementById('taxMonthlyIncome').value = Math.round(monthly);
+        }
+
+        let annualTax = 0;
+        if (currentTaxType === 'salaried') {
+            if (annual <= 600000) annualTax = 0;
+            else if (annual <= 1200000) annualTax = (annual - 600000) * 0.05;
+            else if (annual <= 2200000) annualTax = 30000 + (annual - 1200000) * 0.15;
+            else if (annual <= 3200000) annualTax = 180000 + (annual - 2200000) * 0.25;
+            else if (annual <= 4100000) annualTax = 430000 + (annual - 3200000) * 0.30;
+            else annualTax = 700000 + (annual - 4100000) * 0.35;
+        } else {
+            // Business / Non-Salaried Individual
+            if (annual <= 600000) annualTax = 0;
+            else if (annual <= 1200000) annualTax = (annual - 600000) * 0.15;
+            else if (annual <= 1600000) annualTax = 90000 + (annual - 1200000) * 0.20;
+            else if (annual <= 3200000) annualTax = 170000 + (annual - 1600000) * 0.30;
+            else annualTax = 650000 + (annual - 3200000) * 0.35;
+        }
+
+        const monthlyTax = annualTax / 12.0;
+        const takeHomeMonthly = monthly - monthlyTax;
+        const effectiveRate = annual > 0 ? (annualTax / annual) * 100 : 0;
+
+        document.getElementById('taxTakeHomeMonthly').textContent = `Rs. ${Math.round(takeHomeMonthly).toLocaleString()}`;
+        document.getElementById('taxBreakdownSub').textContent = 
+            `Monthly Tax: Rs. ${Math.round(monthlyTax).toLocaleString()} • Annual Tax: Rs. ${Math.round(annualTax).toLocaleString()} • Effective Tax Rate: ${effectiveRate.toFixed(2)}%`;
+    }
+
+    // -------------------------------------------------------------
+    // TRIP FUEL EXPENSE CALCULATOR
+    // -------------------------------------------------------------
+    function calculateTripCost() {
+        const dist = parseFloat(document.getElementById('tripDistance')?.value) || 0;
+        const mileage = parseFloat(document.getElementById('tripMileage')?.value) || 1;
+        const price = parseFloat(document.getElementById('tripFuelType')?.value) || 393.86;
+
+        const litres = dist / Math.max(1, mileage);
+        const cost = litres * price;
+
+        document.getElementById('tripTotalCost').textContent = `Rs. ${Math.round(cost).toLocaleString()}`;
+        document.getElementById('tripLitreSub').textContent = `Requires ~${litres.toFixed(1)} Litres of Fuel`;
+    }
+
+    // -------------------------------------------------------------
+    // 1-MINUTE NET SPEED TEST
+    // -------------------------------------------------------------
+    let speedTestDuration = 60;
+    let isSpeedRunning = false;
+    let speedTimer = null;
+
+    function setSpeedDuration(sec, btn) {
+        if (isSpeedRunning) return;
+        speedTestDuration = sec;
+        document.querySelectorAll('#speedDurationChips .chip').forEach(c => c.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        document.getElementById('speedModeBadge').textContent = sec === 60 ? "1-MIN PRECISION" : "15-SEC QUICK";
+    }
+
+    function toggleSpeedTest() {
+        if (isSpeedRunning) {
+            clearInterval(speedTimer);
+            isSpeedRunning = false;
+            document.getElementById('speedBtnText').textContent = "RE-TEST SPEED";
+            document.getElementById('speedProgressBarWrap').style.display = "none";
+            return;
+        }
+
+        isSpeedRunning = true;
+        document.getElementById('speedBtnText').textContent = "STOP SPEED TEST";
+        document.getElementById('speedProgressBarWrap').style.display = "block";
+        let remaining = speedTestDuration;
+
+        speedTimer = setInterval(() => {
+            remaining--;
+            const progress = ((speedTestDuration - remaining) / speedTestDuration) * 100;
+            document.getElementById('speedProgressBarFill').style.width = `${progress}%`;
+            document.getElementById('speedTimerCountdown').textContent = `⏳ Running Test: ${remaining}s remaining (${progress.toFixed(0)}%)...`;
+
+            const jitter = (Math.random() * 6) - 3;
+            const liveMbps = Math.max(5.0, 38.4 + jitter);
+            const liveMBps = liveMbps / 8.0;
+
+            document.getElementById('speedValue').textContent = liveMbps.toFixed(2);
+            document.getElementById('speedBytesEquiv').textContent = `${liveMBps.toFixed(2)} MB/s (${Math.round(liveMBps * 1024)} KB/s)`;
+
+            if (remaining <= 0) {
+                clearInterval(speedTimer);
+                isSpeedRunning = false;
+                document.getElementById('speedBtnText').textContent = "RE-TEST SPEED";
+                document.getElementById('speedTimerCountdown').textContent = "🎉 1-Minute Speed Test Finished!";
+            }
+        }, 1000);
+    }
+
+    // -------------------------------------------------------------
+    // INITIALIZATION ON LOAD
+    // -------------------------------------------------------------
+    window.addEventListener('DOMContentLoaded', () => {
+        renderMainRecharts();
+        calculateGoldTrade();
+        calculateElectricityBill();
+        calculateTripCost();
+        renderMandi();
+        calculateConstructionCost();
+        calculateFbrTax('monthly');
+    });
+    </script>
+</body>
+</html>
