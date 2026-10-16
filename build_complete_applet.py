@@ -17,7 +17,7 @@ html_code = """<!DOCTYPE html>
     <title>PakUtility Hub — Live Bullion, Fuel Trends, Bill Rates, Forex & Net Speed Pakistan</title>
     <meta name="title" content="PakUtility Hub — Live Bullion, Fuel Trends, Bill Rates, Forex & Net Speed Pakistan">
     <meta name="description" content="Pakistan's verified utility portal: 24K Gold rate PKR 437,836/tola, Petrol PKR 393.86/L, Diesel PKR 394.94/L, Recharts 7-day trends, 1-minute high-precision net speed test (MB/s), NEPRA bill calculator, Duplicate Bill Finder (LESCO, IESCO, KE, MEPCO), 1-100 Storey House Cost, Building Materials Rates with Chart, Seasonal Mandi bazaar, Forex Converter, and FBR Salary Tax Calculator.">
-    <meta name="keywords" content="gold rate in pakistan today 437836, petrol price in pakistan today 393.86, diesel price pakistan 394.94, high octane 415, 22k gold tola 396458, net speed test mbps mbs, 1 minute internet speed test, nepra electricity bill calculator, lesco duplicate bill, iesco bill check online, kelectric duplicate bill, ghar banane ka kharcha 1-100 storeys, building material rates pakistan, saria rate today, mandi rate punjab sindh seasonal, fbr salary tax calculator 2025 2026, pakistan currency open market">
+    <meta name="keywords" content="lesco head office lahore queens road duplicate bill, lesco customer facilitation center gulberg lahore, lesco bill kasur okara sheikhupura nankana, iesco head office sector g-7/4 islamabad duplicate bill check online, iesco customer service center rawalpindi chakwal jhelum attock, ke house sunset boulevard dha karachi duplicate bill, k-electric customer care clifton gulshan iqbal korangi north nazimabad karachi, fesco head office west canal road faisalabad jhang sargodha toba tek singh, mepco complex khanewal road multan bahawalpur d g khan sahiwal rahim yar khan, gepco head office gt road gujranwala sialkot gujrat narowal hafizabad, pesco wapda house shami road peshawar mardan abbottabad swat kohat, hesco wapda complex hussainabad hyderabad mirpurkhas badin nawabshah, qesco zarghoon road quetta chaman sibi khuzdar, sepco thermal power station sukkur larkana khairpur jacobabad, pitc duplicate bill online portal pakistan 14 digit reference number, sarafa bazaar lahore karachi rawalpindi gold rate today 437836, ogra petrol price pakistan today 393.86, diesel price 394.94, badami bagh sabzi mandi lahore commodity rates, sabzi mandi super highway karachi wholesale, fbr salary income tax calculator 2025 2026 finance act, ghar banane ka kharcha 1 to 100 storeys, saria rate today mughal amreli grade 60, lucky cement bag rate pakistan">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="author" content="PakUtility Technology Hub">
     <meta name="geo.region" content="PK">
@@ -33,6 +33,10 @@ html_code = """<!DOCTYPE html>
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="PakUtility Hub — Live Bullion, Fuel Trends, Bill Rates & Forex Pakistan">
     <meta name="twitter:description" content="Pakistan's verified rates: 24K Gold 437,836, Petrol 393.86, Diesel 394.94, NEPRA duplicate bills, Mandi bazaar & FBR salary tax calculator.">
+        <!-- Favicon & Web App Icons -->
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="apple-touch-icon" href="./icon-192.png">
+    <link rel="manifest" href="./manifest.json">
     <link rel="canonical" href="https://pakutility.com/">
 
     <!-- Schema.org JSON-LD Structured Data for Google Rich Results -->
@@ -59,6 +63,170 @@ html_code = """<!DOCTYPE html>
             "bestRating": "5",
             "worstRating": "1"
           }
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://pakutility.com/#localbusiness",
+          "name": "PakUtility Hub — Pakistan Regional Utility & Bullion Intelligence",
+          "alternateName": "پاک یوٹیلیٹی ہب لوکل سروسز سنٹرز",
+          "image": "https://pakutility.com/app_logo.png",
+          "telephone": "+92-306-4678975",
+          "priceRange": "Rs. 0 - Rs. 300",
+          "currenciesAccepted": "PKR",
+          "paymentAccepted": "JazzCash, Cash",
+          "url": "https://pakutility.com/",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "22-A Queens Road, Mozang Chungi",
+            "addressLocality": "Lahore",
+            "addressRegion": "Punjab",
+            "postalCode": "54000",
+            "addressCountry": "PK"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 31.5546,
+            "longitude": 74.3168
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "00:00",
+              "closes": "23:59"
+            }
+          ],
+          "areaServed": [
+            { "@type": "City", "name": "Lahore" },
+            { "@type": "City", "name": "Islamabad" },
+            { "@type": "City", "name": "Rawalpindi" },
+            { "@type": "City", "name": "Karachi" },
+            { "@type": "City", "name": "Faisalabad" },
+            { "@type": "City", "name": "Multan" },
+            { "@type": "City", "name": "Gujranwala" },
+            { "@type": "City", "name": "Peshawar" },
+            { "@type": "City", "name": "Hyderabad" },
+            { "@type": "City", "name": "Quetta" }
+          ],
+          "department": [
+            {
+              "@type": "LocalBusiness",
+              "name": "LESCO Customer Facilitation Center Lahore",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "22-A Queens Road",
+                "addressLocality": "Lahore",
+                "addressRegion": "Punjab",
+                "postalCode": "54000",
+                "addressCountry": "PK"
+              },
+              "telephone": "+92-42-99204814"
+            },
+            {
+              "@type": "LocalBusiness",
+              "name": "IESCO Regional Billing Center Islamabad",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Sector G-7/4, Street 40",
+                "addressLocality": "Islamabad",
+                "addressRegion": "Islamabad Capital Territory",
+                "postalCode": "44000",
+                "addressCountry": "PK"
+              },
+              "telephone": "+92-51-9252937"
+            },
+            {
+              "@type": "LocalBusiness",
+              "name": "K-Electric Central Billing Care Karachi",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "KE House, 39-B Sunset Boulevard, Phase-II DHA",
+                "addressLocality": "Karachi",
+                "addressRegion": "Sindh",
+                "postalCode": "75500",
+                "addressCountry": "PK"
+              },
+              "telephone": "+92-21-118"
+            },
+            {
+              "@type": "LocalBusiness",
+              "name": "FESCO Regional Head Office Faisalabad",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "West Canal Road, Abdullahpur",
+                "addressLocality": "Faisalabad",
+                "addressRegion": "Punjab",
+                "postalCode": "38000",
+                "addressCountry": "PK"
+              },
+              "telephone": "+92-41-9220184"
+            },
+            {
+              "@type": "LocalBusiness",
+              "name": "MEPCO Facilitation Directorate Multan",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "MEPCO Complex, Khanewal Road",
+                "addressLocality": "Multan",
+                "addressRegion": "Punjab",
+                "postalCode": "60000",
+                "addressCountry": "PK"
+              },
+              "telephone": "+92-61-9220315"
+            },
+            {
+              "@type": "LocalBusiness",
+              "name": "GEPCO Regional Center Gujranwala",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "565-A GT Road",
+                "addressLocality": "Gujranwala",
+                "addressRegion": "Punjab",
+                "postalCode": "52250",
+                "addressCountry": "PK"
+              },
+              "telephone": "+92-55-9200519"
+            },
+            {
+              "@type": "LocalBusiness",
+              "name": "PESCO Head Office Directorate Peshawar",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "WAPDA House, Shami Road",
+                "addressLocality": "Peshawar",
+                "addressRegion": "Khyber Pakhtunkhwa",
+                "postalCode": "25000",
+                "addressCountry": "PK"
+              },
+              "telephone": "+92-91-9212013"
+            },
+            {
+              "@type": "LocalBusiness",
+              "name": "HESCO Customer Center Hyderabad",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "WAPDA Complex, Hussainabad",
+                "addressLocality": "Hyderabad",
+                "addressRegion": "Sindh",
+                "postalCode": "71000",
+                "addressCountry": "PK"
+              },
+              "telephone": "+92-22-9260161"
+            },
+            {
+              "@type": "LocalBusiness",
+              "name": "QESCO Directorate Quetta",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Zarghoon Road",
+                "addressLocality": "Quetta",
+                "addressRegion": "Balochistan",
+                "postalCode": "87300",
+                "addressCountry": "PK"
+              },
+              "telephone": "+92-81-9201445"
+            }
+          ]
         },
         {
           "@type": "FinancialService",
@@ -285,6 +453,85 @@ html_code = """<!DOCTYPE html>
             color: var(--text-secondary);
             margin-top: 2px;
             line-height: 1.25;
+        }
+
+        
+        /* Attractive All-Rates App Logo & Brand Header */
+        .brand-logo-container {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #0B1120;
+            border: 1.5px solid var(--gold);
+            box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35), 0 0 12px rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+            flex-shrink: 0;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .brand-logo-container:hover {
+            transform: scale(1.08) rotate(-2deg);
+        }
+        .brand-logo-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 9px;
+            object-fit: cover;
+            display: block;
+        }
+        .live-rate-beacon {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 10px;
+            height: 10px;
+            background: #10B981;
+            border: 2px solid var(--bg-surface);
+            border-radius: 50%;
+            animation: pulseBeacon 1.6s infinite;
+        }
+        @keyframes pulseBeacon {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.85); }
+            70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        .brand-text-sub-urdu {
+            font-size: 9px;
+            color: var(--gold);
+            font-weight: 700;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            line-height: 1.25;
+            letter-spacing: 0.2px;
+        }
+
+        
+        /* PWA Offline Mode Status Indicator */
+        .offline-status-banner {
+            display: none;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(185, 28, 28, 0.3));
+            border-bottom: 1.5px solid var(--rose);
+            color: #FFF;
+            padding: 8px 14px;
+            font-size: 11px;
+            font-weight: 800;
+            text-align: center;
+            z-index: 10000;
+            position: sticky;
+            top: 0;
+            animation: slideDown 0.3s ease;
+        }
+        .offline-status-banner.show {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
         }
 
         /* Top App Bar */
@@ -1311,6 +1558,12 @@ html_code = """<!DOCTYPE html>
     </style>
 </head>
 <body>
+    <!-- Real-Time Offline Mode Status Banner -->
+    <div class="offline-status-banner" id="offlineBanner">
+        <span>📶</span>
+        <span><strong>OFFLINE MODE ACTIVE (آف لائن موڈ):</strong> Internet disconnected. Tamam calculators, benchmark rates aur saved duplicate bill data bina internet ke 100% chal rahe hain!</span>
+    </div>
+
 
     <!-- Floating Push Notification Toast (Heads-Up Banner) -->
     <div class="push-toast-container" id="pushToastAlert" onclick="switchTab('pro')">
@@ -1334,16 +1587,16 @@ html_code = """<!DOCTYPE html>
                 <span></span>
                 <span></span>
             </button>
-            <div class="brand-box" onclick="switchTab('trends')" style="cursor:pointer;" title="PakUtility Hub - Live Pakistani Rates">
-                <div class="brand-icon-modern">
-                    <span>🇵🇰</span>
-                    <span class="live-dot-pulse"></span>
+            <div class="brand-box" onclick="switchTab('trends')" style="cursor:pointer;" title="PakUtility Hub - پاکستان کے تمام لائیو ریٹس">
+                <div class="brand-logo-container">
+                    <img src="./app_logo.png" alt="PakUtility Rates Logo" class="brand-logo-img" onerror="this.src='./app_logo.jpg'; this.onerror=null;">
+                    <span class="live-rate-beacon" title="Live Market Telemetry Active"></span>
                 </div>
                 <div>
                     <div class="brand-text-title-gradient">
                         <span>PakUtility</span> <span class="hub-pill">HUB</span>
                     </div>
-                    <div class="brand-text-sub-urdu">پاکستان کا باضابطہ یوٹیلیٹی پورٹل • لائیو ریٹس</div>
+                    <div class="brand-text-sub-urdu">ہر چیز کے لائیو ریٹس • سونا، پیٹرول، بجلی، منڈی</div>
                 </div>
             </div>
         </div>
@@ -3547,7 +3800,40 @@ html_code = """<!DOCTYPE html>
         showPushToast('Cleared', 'Notification history saaf kar di gayi hai.', '🗑️', 'system');
     }
 
+    
+    // =============================================================
+    // PWA SERVICE WORKER & OFFLINE MODE TELEMETRY
+    // =============================================================
+    function initOfflineTelemetry() {
+        function updateNetworkStatus() {
+            const banner = document.getElementById('offlineBanner');
+            if (!banner) return;
+            if (navigator.onLine) {
+                banner.classList.remove('show');
+            } else {
+                banner.classList.add('show');
+                showPushToast('Offline Mode Active 📶', 'Aapka internet band hai. Tamam calculators aur saved rates offline chal rahe hain.', '📶', 'offline');
+            }
+        }
+
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+        updateNetworkStatus();
+
+        // Register Service Worker for true offline caching
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').then((registration) => {
+                    console.log('[PWA] Service Worker registered with scope:', registration.scope);
+                }).catch((error) => {
+                    console.warn('[PWA] Service Worker registration skipped or failed:', error);
+                });
+            });
+        }
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
+        initOfflineTelemetry();
         initVipPro();
         renderMainRecharts();
         calculateGoldTrade();
